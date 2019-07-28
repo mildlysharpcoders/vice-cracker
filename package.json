@@ -1,7 +1,7 @@
 {
-  "name": "goudagyms",
+  "name": "vice-cracker",
   "version": "1.0.0",
-  "description": "goudagyms project",
+  "description": "vice-cracker project",
   "main": "server.js",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
