@@ -1,6 +1,8 @@
+require("dotenv").config();
 const express = require("express");
 var session = require("express-session");
 const routes = require("./routes");
+const mongoose = require("mongoose");
 const PORT = process.env.PORT || 3001;
 const app = express();
 const passport = require("./controllers/passportController");
@@ -16,6 +18,10 @@ if (process.env.NODE_ENV === "production") {
 app.use(session({ secret: "miw", resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
+
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/vicecracker";
+
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 // Define API routes here
 app.use(routes);
