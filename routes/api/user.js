@@ -4,6 +4,8 @@ const passport = require("../../controllers/passportController");
 
 router.route("/").get(userController.getAuthenticatedUser);
 
+router.route("/getAuthenticatedUser").get(userController.getAuthenticatedUser);
+
 router
   .route("/login")
   .post(passport.authenticate("local"), userController.login);
