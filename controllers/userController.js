@@ -6,7 +6,8 @@ const userController = {
         response.json(request.user);
     },
     login: (request, response) => {
-        console.log("UserController.login")
+        console.log("UserController.login");
+        console.log(response);
         response.json(request.user);
 
     },

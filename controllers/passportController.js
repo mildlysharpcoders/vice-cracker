@@ -20,8 +20,8 @@ passport.use(
         }
         // successful login, return the user -- which consists of an object holding the username
         console.log("User authenticated");
-        let user = { username };
-        return done(null, user);
+        console.log(result)
+        return done(null, result);
       })
       .catch(function(err) {
         return done(err, false, {
@@ -35,12 +35,12 @@ passport.use(
 // passport needs methods to serialize and deseralize the user
 // this is a simple example, the serialzed user is the username -- which is stored in the session.
 passport.serializeUser(function(user, callback) {
-  callback(null, user.username);
+  callback(null, user);
 });
 
 // the deserialized user is an object with a username property -- which is availabe as request.user
-passport.deserializeUser(function(username, callback) {
-  callback(null, { username });
+passport.deserializeUser(function(user, callback) {
+  callback(null, user);
 });
 
 module.exports = passport;
