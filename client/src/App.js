@@ -1,27 +1,9 @@
 import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import axios from "axios";
 import LoginStuff from "./components/LoginStuff"
 
 class App extends Component {
-  state = {
-    username: ""
-  };
-
-  handleButtonClick = event => {
-    console.log("Login Button Clicked");
-    axios
-      .post("/api/user/login", { username: "pablo", password: "password" })
-      .then(response => {
-        console.log(response.data);
-        this.setState({ username: response.data.username });
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  };
-
   render() {
     return (
       <>
@@ -31,10 +13,7 @@ class App extends Component {
             <h2>Mildly Sharp Coders at Work!</h2>
           </div>
         </div>
-        <LoginStuff
-          username={this.state.username}
-          handleButtonClick={this.handleButtonClick}
-        />
+        <LoginStuff />
       </>
     );
   }

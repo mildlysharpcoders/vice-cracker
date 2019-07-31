@@ -20,10 +20,11 @@ const userController = {
 }
 
 function createUser(request, response) {
+    console.log(request.body);
     db.User.create(request.body)
     .then(result => {
       console.log("Created new user: ", result);
-      response.send("Created User");
+      response.json(result);
     })
     .catch(err => {
       console.log(err);
