@@ -18,10 +18,14 @@ class LoginStuff extends Component {
       state: "",
       zip: ""
     },
-    user: {}
+    user: {},
+    login: {
+      email: "",
+      password: ""
+    }
   };
 
-  handleInputChange = event => {
+  handleCreateInputChange = event => {
     const { name, value } = event.target;
     // console.log(name, value);
     let create = this.state.create;
@@ -31,6 +35,15 @@ class LoginStuff extends Component {
     });
   };
 
+  handleLoginInputChange = event => {
+    const { name, value } = event.target;
+    // console.log(name, value);
+    let login = this.state.login;
+    login[name] = value;
+    this.setState({
+      login
+    });
+  };
   componentDidMount = () => {
     axios
       .get("/api/user/getAuthenticatedUser")
@@ -62,14 +75,15 @@ class LoginStuff extends Component {
     event.preventDefault();
     console.log("Login Button Clicked");
     let loginInfo = {
-      username: this.state.create.email,
-      password: this.state.create.password
+      username: this.state.login.email,
+      password: this.state.login.password
     };
     axios
       .post("/api/user/login", loginInfo)
       .then(response => {
         console.log(response.data);
         this.setState({ user: response.data });
+        this.setState({ login: { username: "", password: "" } });
       })
       .catch(error => {
         console.log(error);
@@ -92,12 +106,17 @@ class LoginStuff extends Component {
 
   render() {
     if (this.state.user.email) {
-      return <Welcome user={this.state.user} handleButtonClick={this.handleLogoutButtonClick} />;
+      return (
+        <Welcome
+          user={this.state.user}
+          handleButtonClick={this.handleLogoutButtonClick}
+        />
+      );
     } else {
       return (
         <Login
-          user={this.state.create}
-          handleInputChange={this.handleInputChange}
+          user={this.state.login}
+          handleInputChange={this.handleLoginInputChange}
           handleButtonClick={this.handleLoginButtonClick}
         />
       );
