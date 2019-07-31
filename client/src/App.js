@@ -2,18 +2,7 @@ import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import axios from "axios";
-
-function LogInStuff(props) {
-  if (props.username) {
-    return <h1>Hi {props.username}!</h1>;
-  } else {
-    return (
-      <button type="button" onClick={props.handleButtonClick}>
-        Log Me In
-      </button>
-    );
-  }
-}
+import LoginStuff from "./components/LoginStuff"
 
 class App extends Component {
   state = {
@@ -42,7 +31,7 @@ class App extends Component {
             <h2>Mildly Sharp Coders at Work!</h2>
           </div>
         </div>
-        <LogInStuff
+        <LoginStuff
           username={this.state.username}
           handleButtonClick={this.handleButtonClick}
         />
