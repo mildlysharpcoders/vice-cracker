@@ -4,11 +4,13 @@ function Login(props) {
     return (
         <>
     <form>
-        <input type="text" name="email" value="pblack67@comcast.net" />
+        Email:
+        <input type="text" name="email" value={props.user.email} onChange={props.handleInputChange} />
         <br />
-        <input type="text" name="password" value="password" />
+        Password:
+        <input type="password" name="password" value={props.user.password} onChange={props.handleInputChange} />
         <br />
-        <input type="submit" value="Login" />
+        <input type="submit" value="Login" onClick={props.handleButtonClick}/>
     </form> 
         {/* <button type="button" onClick={props.handleButtonClick}>
             Log Me In

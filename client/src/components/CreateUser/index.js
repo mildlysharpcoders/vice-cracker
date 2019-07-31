@@ -14,7 +14,7 @@ function CreateUser(props) {
         <input type="text" name="email" value={props.user.email} onChange={props.handleInputChange}/>
         <br />
         Password:
-        <input type="text" name="password" value={props.user.password} onChange={props.handleInputChange}/>
+        <input type="password" name="password" value={props.user.password} onChange={props.handleInputChange}/>
         <br />
         Address:
         <input type="text" name="address" value={props.user.address} onChange={props.handleInputChange}/>

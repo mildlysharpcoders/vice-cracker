@@ -5,7 +5,7 @@ const db = require("../models");
 passport.use(
   new LocalStrategy(function(username, password, done) {
     console.log("Attempting authentication of: ", username, password);
-    db.User.findOne({ username })
+    db.User.findOne({ email: username })
       .then(function(result) {
         if (!result) {
           return done(null, false, {

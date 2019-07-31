@@ -46,18 +46,19 @@ class LoginStuff extends Component {
       });
   };
 
-  // handleCreateButtonClick = event => {
-  //   console.log("Create User Button Clicked");
-  //   axios
-  //     .post("/api/user/login", this.state.user)
-  //     .then(response => {
-  //       console.log(response.data);
-  //       this.setState({ username: response.data.username });
-  //     })
-  //     .catch(error => {
-  //       console.log(error);
-  //     });
-  // };
+  handleLoginButtonClick = event => {
+    event.preventDefault();
+    console.log("Login Button Clicked");
+    axios
+      .post("/api/user/login", {username: this.state.user.email, password: this.state.user.password})
+      .then(response => {
+        console.log(response.data);
+        // this.setState({ username: response.data.username });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
 
   render() {
     return (
@@ -67,7 +68,10 @@ class LoginStuff extends Component {
           handleInputChange={this.handleInputChange}
           handleButtonClick={this.handleCreateButtonClick}
         />
-        <Login />
+        <Login 
+          user={this.state.user}
+          handleInputChange={this.handleInputChange}
+          handleButtonClick={this.handleLoginButtonClick}        />
         <Welcome />
       </>
     );
