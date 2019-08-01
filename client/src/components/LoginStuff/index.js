@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import CreateUser from "../CreateUser";
+import CreateUser from "../CreateUser";
 import Login from "../Login";
 import Welcome from "../Welcome";
 import axios from "axios";
@@ -61,7 +61,7 @@ class LoginStuff extends Component {
     event.preventDefault();
     console.log("Create User Button Clicked");
     axios
-      .post("/api/user/create", this.state.user)
+      .post("/api/user/create", this.state.create)
       .then(response => {
         console.log(response.data);
         this.setState({ user: response.data });
@@ -121,11 +121,12 @@ class LoginStuff extends Component {
         />
       );
     }
+
     // return (
     //   <>
     //     <CreateUser
-    //       user={this.state.user}
-    //       handleInputChange={this.handleInputChange}
+    //       user={this.state.create}
+    //       handleInputChange={this.handleCreateInputChange}
     //       handleButtonClick={this.handleCreateButtonClick}
     //     />
     //   </>
