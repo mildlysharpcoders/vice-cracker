@@ -4,6 +4,14 @@ import "./App.css";
 import LoginStuff from "./components/LoginStuff"
 
 class App extends Component {
+  state = {
+    user: {}
+  }
+
+  handleUserUpdate = user => {
+    this.setState({ user });
+  }
+
   render() {
     return (
       <>
@@ -13,7 +21,7 @@ class App extends Component {
             <h2>Mildly Sharp Coders at Work!</h2>
           </div>
         </div>
-        <LoginStuff />
+        <LoginStuff user={this.state.user} handleUserUpdate={this.handleUserUpdate} />
       </>
     );
   }

@@ -1,22 +1,29 @@
 import React from "react";
 
 function Login(props) {
-    return (
-        <>
-    <form>
+  return (
+    <>
+      <form>
         Email:
-        <input type="text" name="email" value={props.user.email} onChange={props.handleInputChange} />
+        <input
+          type="text"
+          name="email"
+          value={props.user.email}
+          onChange={props.handleInputChange}
+        />
         <br />
         Password:
-        <input type="password" name="password" value={props.user.password} onChange={props.handleInputChange} />
+        <input
+          type="password"
+          name="password"
+          value={props.user.password}
+          onChange={props.handleInputChange}
+        />
         <br />
-        <input type="submit" value="Login" onClick={props.handleButtonClick}/>
-    </form> 
-        {/* <button type="button" onClick={props.handleButtonClick}>
-            Log Me In
-        </button> */}
-      </>
-    );
-  }
+        <input type="submit" value="Login" onClick={props.handleButtonClick} />
+      </form>
+    </>
+  );
+}
 
-  export default Login;
+export default Login;

@@ -5,25 +5,27 @@ import Welcome from "../Welcome";
 import axios from "axios";
 
 class LoginStuff extends Component {
-  state = {
-    create: {
-      sessionid: "",
-      username: "",
-      password: "",
-      email: "",
-      firstname: "",
-      lastname: "",
-      address: "",
-      city: "",
-      state: "",
-      zip: ""
-    },
-    user: {},
-    login: {
-      email: "",
-      password: ""
-    }
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      create: {
+        sessionid: "",
+        username: "",
+        password: "",
+        email: "",
+        firstname: "",
+        lastname: "",
+        address: "",
+        city: "",
+        state: "",
+        zip: ""
+      },
+      login: {
+        email: "",
+        password: ""
+      }
+    };
+  }
 
   handleCreateInputChange = event => {
     const { name, value } = event.target;
@@ -44,12 +46,13 @@ class LoginStuff extends Component {
       login
     });
   };
+
   componentDidMount = () => {
     axios
       .get("/api/user/getAuthenticatedUser")
       .then(response => {
         if (response.data.email) {
-          this.setState({ user: response.data });
+          this.props.handleUserUpdate(response.data);
         }
       })
       .catch(error => {
@@ -64,7 +67,7 @@ class LoginStuff extends Component {
       .post("/api/user/create", this.state.create)
       .then(response => {
         console.log(response.data);
-        this.setState({ user: response.data });
+        this.props.handleUserUpdate(response.data);
       })
       .catch(error => {
         console.log(error);
@@ -82,7 +85,7 @@ class LoginStuff extends Component {
       .post("/api/user/login", loginInfo)
       .then(response => {
         console.log(response.data);
-        this.setState({ user: response.data });
+        this.props.handleUserUpdate(response.data);
         this.setState({ login: { username: "", password: "" } });
       })
       .catch(error => {
@@ -97,7 +100,7 @@ class LoginStuff extends Component {
       .post("/api/user/logout", {})
       .then(response => {
         console.log(response.data);
-        this.setState({ user: {} });
+        this.props.handleUserUpdate({});
       })
       .catch(error => {
         console.log(error);
@@ -105,10 +108,10 @@ class LoginStuff extends Component {
   };
 
   render() {
-    if (this.state.user.email) {
+    if (this.props.user.email) {
       return (
         <Welcome
-          user={this.state.user}
+          user={this.props.user}
           handleButtonClick={this.handleLogoutButtonClick}
         />
       );
