@@ -46,7 +46,6 @@ function createUser(request, response) {
 
 function createDefault() {
   db.User.findOne({ email: "admin@admin.com"}).then(result => {
-    console.log("Admin User present")
     if (!result) {
       let defaultUser = {
         password: "admin",
@@ -61,6 +60,8 @@ function createDefault() {
       db.User.create(defaultUser).then(result => {
         console.log("Create default Admin user");
       });
+    } else {
+      console.log("Admin User present")
     }
   })
 }
