@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 const PORT = process.env.PORT || 3001;
 const app = express();
 const passport = require("./controllers/passportController");
+const users = require("./controllers/userController");
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -22,6 +23,9 @@ app.use(passport.session());
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/vicecracker";
 
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
+
+// Creata a default user if not present
+users.createDefaultUser();
 
 // Define API routes here
 app.use(routes);
