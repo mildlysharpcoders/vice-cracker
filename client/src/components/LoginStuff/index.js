@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import CreateUser from "../CreateUser";
 import Login from "../Login";
 import Welcome from "../Welcome";
-import axios from "axios";
+import API from "../../utils/API";
 
 class LoginStuff extends Component {
   constructor(props) {
@@ -48,8 +48,7 @@ class LoginStuff extends Component {
   };
 
   componentDidMount = () => {
-    axios
-      .get("/api/user/getAuthenticatedUser")
+    API.getAuthenticatedUser()
       .then(response => {
         if (response.data.email) {
           this.props.handleUserUpdate(response.data);
@@ -63,8 +62,7 @@ class LoginStuff extends Component {
   handleCreateButtonClick = event => {
     event.preventDefault();
     console.log("Create User Button Clicked");
-    axios
-      .post("/api/user/create", this.state.create)
+    API.createUser(this.state.create)
       .then(response => {
         console.log(response.data);
         this.props.handleUserUpdate(response.data);
@@ -81,8 +79,7 @@ class LoginStuff extends Component {
       username: this.state.login.email,
       password: this.state.login.password
     };
-    axios
-      .post("/api/user/login", loginInfo)
+    API.login(loginInfo)
       .then(response => {
         console.log(response.data);
         this.props.handleUserUpdate(response.data);
@@ -96,8 +93,7 @@ class LoginStuff extends Component {
   handleLogoutButtonClick = event => {
     event.preventDefault();
     console.log("Logout Button Clicked");
-    axios
-      .post("/api/user/logout", {})
+    API.logout()
       .then(response => {
         console.log(response.data);
         this.props.handleUserUpdate({});
