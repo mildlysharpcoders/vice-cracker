@@ -15,6 +15,25 @@ export default {
 
   logout: function() {
     return axios.post("/api/user/logout", {});
-  }
+  },
 
-};
+  getVicesForUser: function(email) {
+    return axios.get(`/api/vice/${email}`);
+  },
+  
+  createVice: function(vice) {
+    return axios.post("/api/vice", vice);
+  },
+
+  updateVice: function(vice) {
+    return axios.put("/api/vice", vice);
+  },
+
+  deleteVice: function(vice) {
+    return axios.delete("/api/vice", vice);
+  },
+
+  createViceEvent: function(vice) {
+    return axios.post("/api/vice/event", vice);
+  }
+}
