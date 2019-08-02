@@ -22,16 +22,16 @@ const viceController = {
       .then(result => {
         if (result.email) {
           console.log("Found existing vice: ", result);
-          response.json(result);
+          response.sendStatus(200);
         } else {
           db.Vice.create(request.body)
             .then(result => {
               console.log("Created new vice: ", result);
-              response.json(result);
+              response.sendStatus(201);
             })
             .catch(err => {
               console.log(err);
-              response.send(err);
+              response.sendStatus(500);
             });
         }
       })
@@ -48,11 +48,11 @@ const viceController = {
     })
       .then(result => {
         console.log("Updated vice: ", result);
-        response.json(result);
+        response.sendStatus(200);
       })
       .catch(err => {
         console.log(err);
-        response.send(err);
+        response.sendStatus(500);
       });
   },
 
@@ -63,11 +63,11 @@ const viceController = {
     })
       .then(result => {
         console.log("Deleted vice: ", result);
-        response.json(result);
+        response.sendStatus(200);
       })
       .catch(err => {
         console.log(err);
-        response.send(err);
+        response.sendStatus(500);
       });
   },
 
@@ -112,16 +112,16 @@ const viceController = {
         })
           .then(result => {
             console.log("Updated vice: ", vice);
-            response.json(vice);
+            response.sendStatus(200);
           })
           .catch(err => {
             console.log(err);
-            response.send(err);
+            response.sendStatus(500);
           });
       })
       .catch(err => {
         console.log(err);
-        response.send(err);
+        response.sendStatus(500);
       });
   }
 };
