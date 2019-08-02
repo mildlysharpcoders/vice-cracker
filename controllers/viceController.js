@@ -43,11 +43,9 @@ const viceController = {
 
   updateVice: (request, response) => {
     console.log("viceController.updateVice ", request.body);
-    db.Vice.findOneAndUpdate(
-      { email: request.body.email, name: request.body.name },
-      request.body,
-      { useFindAndModify: false }
-    )
+    db.Vice.findOneAndUpdate({ _id: request.body._id }, request.body, {
+      useFindAndModify: false
+    })
       .then(result => {
         console.log("Updated vice: ", result);
         response.json(result);
@@ -61,8 +59,7 @@ const viceController = {
   deleteVice: (request, response) => {
     console.log("viceController.deleteVice ", request.body);
     db.Vice.findOneAndDelete({
-      email: request.body.email,
-      name: request.body.name
+      _id: request.body._id
     })
       .then(result => {
         console.log("Deleted vice: ", result);
@@ -87,7 +84,7 @@ const viceController = {
     let thisWeek = today.weekday(0).format("YYYY-MM-DD");
     console.log("This week starts on", thisWeek);
 
-    db.Vice.findOne({ email: request.body.email, name: request.body.name })
+    db.Vice.findOne({ _id: request.body._id })
       .then(vice => {
         let monthCount = vice.monthly.find(
           monthEntry => thisMonth == monthEntry.month
@@ -110,11 +107,9 @@ const viceController = {
         }
 
         // Save document back to database. Easy, huh?
-        db.Vice.findOneAndUpdate(
-          { email: request.body.email, name: request.body.name },
-          vice,
-          { useFindAndModify: false }
-        )
+        db.Vice.findOneAndUpdate({ _id: request.body._id }, vice, {
+          useFindAndModify: false
+        })
           .then(result => {
             console.log("Updated vice: ", vice);
             response.json(vice);
