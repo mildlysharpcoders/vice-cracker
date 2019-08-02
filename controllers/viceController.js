@@ -63,15 +63,50 @@ const viceController = {
 
   createViceEvent: (request, response) => {
     console.log("viceController.createViceEvent ", request.body);
-    let date = moment().format("YYYY-MM-DD");
-    console.log("Vice event date", date);
-    db.Vice.findOneAndUpdate(
-      { email: request.body.email, name: request.body.name },
-      { $push: { details: date } },
-      { useFindAndModify: false }
-    )
-      .then(result => {
-        response.json(result);
+    // Get this month
+    let today = moment();
+
+    // Figure out the month
+    let thisMonth = today.format("YYYY-MM");
+    console.log("This month is:", thisMonth);
+
+    // Figure out the start of the week
+
+    // Query database for vice document
+    db.Vice.findOne({ email: request.body.email, name: request.body.name })
+      .then(vice => {
+        // Find monthly counter
+        let monthCount = vice.monthly.find(
+          monthEntry => thisMonth == monthEntry.month
+        );
+        if (monthCount) {
+          // If present, increment counter
+          monthCount.count++;
+        } else {
+          // If not, add it
+          monthCount = { month: thisMonth, count: 1 };
+          vice.monthly.push(monthCount);
+        }
+        console.log(vice);
+
+        // Find weekly counter
+        // If present, increment it
+        // If not, add it
+
+        // Save document back to database. Easy, huh?
+        db.Vice.findOneAndUpdate(
+          { email: request.body.email, name: request.body.name },
+          vice,
+          { useFindAndModify: false }
+        )
+          .then(result => {
+            console.log("Updated vice: ", result);
+            response.json(result);
+          })
+          .catch(err => {
+            console.log(err);
+            response.send(err);
+          });
       })
       .catch(err => {
         console.log(err);

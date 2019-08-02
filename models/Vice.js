@@ -7,7 +7,8 @@ let viceSchema = new Schema({
   name: String,
   type: String,
   cost: String,
-  details: []
+  weekly: [],
+  monthly: []
 });
 
 let Vice = mongoose.model("Vice", viceSchema);
