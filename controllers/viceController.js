@@ -1,4 +1,5 @@
 const db = require("../models");
+const moment = require("moment");
 
 const viceController = {
   getVicesForUser: (request, response) => {
@@ -28,11 +29,11 @@ const viceController = {
   },
 
   updateVice: (request, response) => {
-    console.log("updateVice.createVice ", request.body);
+    console.log("viceController.createVice ", request.body);
     db.Vice.findOneAndUpdate(
       { email: request.body.email, name: request.body.name },
       request.body,
-      { useFindAndModify : false }
+      { useFindAndModify: false }
     )
       .then(result => {
         console.log("Updated vice: ", result);
@@ -45,18 +46,37 @@ const viceController = {
   },
 
   deleteVice: (request, response) => {
-    console.log("deleteVice.deleteVice ", request.body);
-    db.Vice.findOneAndDelete(
-        { email: request.body.email, name: request.body.name }
-      )
-        .then(result => {
-          console.log("Deleted vice: ", result);
-          response.json(result);
-        })
-        .catch(err => {
-          console.log(err);
-          response.send(err);
-        });
+    console.log("viceController.deleteVice ", request.body);
+    db.Vice.findOneAndDelete({
+      email: request.body.email,
+      name: request.body.name
+    })
+      .then(result => {
+        console.log("Deleted vice: ", result);
+        response.json(result);
+      })
+      .catch(err => {
+        console.log(err);
+        response.send(err);
+      });
+  },
+
+  createViceEvent: (request, response) => {
+    console.log("viceController.createViceEvent ", request.body);
+    let date = moment().format("YYYY-MM-DD");
+    console.log("Vice event date", date);
+    db.Vice.findOneAndUpdate(
+      { email: request.body.email, name: request.body.name },
+      { $push: { details: date } },
+      { useFindAndModify: false }
+    )
+      .then(result => {
+        response.json(result);
+      })
+      .catch(err => {
+        console.log(err);
+        response.send(err);
+      });
   }
 };
 

@@ -9,4 +9,6 @@ router
   .put(viceController.updateVice)
   .delete(viceController.deleteVice);
 
+router.route("/event").post(viceController.createViceEvent);
+
 module.exports = router;
