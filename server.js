@@ -7,6 +7,7 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 const passport = require("./controllers/passportController");
 const users = require("./controllers/userController");
+const reminders = require("./utils/reminders");
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -29,6 +30,8 @@ users.createDefaultUser();
 
 // Define API routes here
 app.use(routes);
+
+reminders();
 
 app.listen(PORT, () => {
   console.log(`🌎 ==> API server now on port ${PORT}!`);
