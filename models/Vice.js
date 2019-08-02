@@ -6,6 +6,7 @@ let viceSchema = new Schema({
   email: String,
   name: String,
   type: String,
+  limit: String,
   cost: String,
   weekly: [],
   monthly: []
