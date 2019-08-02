@@ -17,10 +17,23 @@ const viceController = {
 
   createVice: (request, response) => {
     console.log("viceController.createVice ", request.body);
-    db.Vice.create(request.body)
+    // Check if vice exists. If it does, don't panic, just return object without creating
+    db.Vice.find({ email: request.body.email, name: request.body.name })
       .then(result => {
-        console.log("Created new vice: ", result);
-        response.json(result);
+        if (result.email) {
+          console.log("Found existing vice: ", result);
+          response.json(result);
+        } else {
+          db.Vice.create(request.body)
+            .then(result => {
+              console.log("Created new vice: ", result);
+              response.json(result);
+            })
+            .catch(err => {
+              console.log(err);
+              response.send(err);
+            });
+        }
       })
       .catch(err => {
         console.log(err);
