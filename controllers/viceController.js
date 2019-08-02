@@ -29,7 +29,7 @@ const viceController = {
   },
 
   updateVice: (request, response) => {
-    console.log("viceController.createVice ", request.body);
+    console.log("viceController.updateVice ", request.body);
     db.Vice.findOneAndUpdate(
       { email: request.body.email, name: request.body.name },
       request.body,
@@ -71,27 +71,30 @@ const viceController = {
     console.log("This month is:", thisMonth);
 
     // Figure out the start of the week
+    let thisWeek = today.weekday(0).format("YYYY-MM-DD");
+    console.log("This week starts on", thisWeek);
 
-    // Query database for vice document
     db.Vice.findOne({ email: request.body.email, name: request.body.name })
       .then(vice => {
-        // Find monthly counter
         let monthCount = vice.monthly.find(
           monthEntry => thisMonth == monthEntry.month
         );
         if (monthCount) {
-          // If present, increment counter
           monthCount.count++;
         } else {
-          // If not, add it
           monthCount = { month: thisMonth, count: 1 };
           vice.monthly.push(monthCount);
         }
-        console.log(vice);
 
-        // Find weekly counter
-        // If present, increment it
-        // If not, add it
+        let weekCount = vice.weekly.find(
+          weekEntry => thisWeek == weekEntry.week
+        );
+        if (weekCount) {
+          weekCount.count++;
+        } else {
+          weekCount = { week: thisWeek, count: 1 };
+          vice.weekly.push(weekCount);
+        }
 
         // Save document back to database. Easy, huh?
         db.Vice.findOneAndUpdate(
@@ -100,8 +103,8 @@ const viceController = {
           { useFindAndModify: false }
         )
           .then(result => {
-            console.log("Updated vice: ", result);
-            response.json(result);
+            console.log("Updated vice: ", vice);
+            response.json(vice);
           })
           .catch(err => {
             console.log(err);
