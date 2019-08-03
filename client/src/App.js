@@ -1,12 +1,10 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import logo from "./logo.svg";
 import "./App.css";
-import LoginStuff from "./components/LoginStuff"
 import Welcome from "./components/Welcome";
 import Settings from "./components/Settings";
-import Nav from "./components/Nav";
-import Login from "./components/Login"
+import Vices from "./pages/vices";
+// import Nav from "./components/Nav";
 import FullLogin from "./pages/fullLogin";
 import NoMatch from "./pages/NoMatch";
 
@@ -17,10 +15,11 @@ function App() {
   return (
     <Router>
       <div>
-        <Nav />
+        {/* <Nav /> */}
         <Switch>
           <Route exact path="/" component={FullLogin} />
           <Route exact path="/welcome" component={Welcome} />
+          <Route exact path="/vices" component={Vices} />
           <Route exact path="/settings" component={Settings} />
           <Route component={NoMatch} /> 
         </Switch>
