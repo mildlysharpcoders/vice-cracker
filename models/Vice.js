@@ -5,7 +5,7 @@ let Schema = mongoose.Schema;
 let viceSchema = new Schema({
   email: String,
   name: String,
-  type: String,
+  betteroption: String,
   limit: String,
   cost: String,
   weekly: [],
