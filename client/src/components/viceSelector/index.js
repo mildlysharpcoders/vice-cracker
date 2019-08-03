@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-function selectVice() {
+function SelectVice() {
     return (
         <div className="input-field col s12">
         <select>
@@ -17,4 +17,4 @@ function selectVice() {
     )
 }
 
-export default selectVice;
+export default SelectVice;

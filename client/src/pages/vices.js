@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { Col, Row, Container } from '../components/Grid';
 import logo from "./../logo.svg"  
-import Jumbotron from '../components/Jumbotron'
-import selectVice from '../components/viceSelector'
+import SelectVice from '../components/viceSelector'
 import Nav from './../components/Nav';
 
 function Vices() {
@@ -22,7 +21,8 @@ function Vices() {
           <Col size='m6'>
             <div className='card blue-grey darken-1'>
               <div className='card-content white-text'>
-                <selectVice />
+                <SelectVice />
+                <br />
                 <br />
                 <p>
                   I am a very simple card. I am good at containing small bits of
