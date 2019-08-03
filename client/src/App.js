@@ -7,7 +7,7 @@ import Welcome from "./components/Welcome";
 import Settings from "./components/Settings";
 import Nav from "./components/Nav";
 import Login from "./components/Login"
-import FullLogin from "./components/FullLogin";
+import FullLogin from "./pages/fullLogin";
 import NoMatch from "./pages/NoMatch";
 
 

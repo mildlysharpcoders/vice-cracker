@@ -1,51 +1,104 @@
-import React from 'react'
+import React, { Component } from 'react'
 import logo from './../../logo.svg'
 import './../../App.css'
 
-// class CreateVice extends Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       vice:"", 
-//       betterOption: "", 
-//       consumption: "", 
-//       cost: ""
-//     };
-//   }
-//   handleCreateInputChange = event => {
-//     const { name, value } = event.target;
-//     // console.log(name, value);
-//     let create = this.state.create;
-//     create[name] = value;
-//     this.setState({
-//       create
-//     });
-//   };
+class Settings extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      vice: '',
+      betterOption: '',
+      consumption: '',
+      cost: ''
+    }
+  }
 
-//   handleLoginInputChange = event => {
-//     const { name, value } = event.target;
-//     // console.log(name, value);
-//     let login = this.state.login;
-//     login[name] = value;
-//     this.setState({
-//       login
-//     });
-//   };
+  handleInputChange = event => {
+    const { name, value } = event.target
 
-function Settings (props) {
-  return (
-    <>
-      <div className='App'>
-        <div className='App-header'>
-          <img src={logo} className='App-logo' alt='logo' />
-          <h2>Mildly Sharp Coders at Work!</h2>
+    // Updating the input's state
+    this.setState({
+      [name]: value
+    })
+  }
+
+  handleFormSubmit = event => {
+    // Preventing the default behavior of the form submit (which is to refresh the page)
+    event.preventDefault()
+
+    // Alert the user their first and last name, clear `this.state.firstName` and `this.state.lastName`, clearing the inputs
+    alert(`Your vice: ${this.state.vice}, a better option: ${this.state.betterOption}. Consumption: ${this.state.consumption} per week, cost: ${this.state.cost}`)
+    this.setState({
+      vice: '',
+      betterOption: '',
+      consumption: '',
+      cost: ''
+    })
+  }
+
+  // function Settings (props) {
+  render () {
+    return (
+      <>
+        <div className='App'>
+          <div className='App-header'>
+            <img src={logo} className='App-logo' alt='logo' />
+            <h2>Mildly Sharp Coders at Work!</h2>
+          </div>
         </div>
-      </div>
 
-      <div>
-        <h1>Settings</h1>
-        <div className='NewVice'>
-          <div>
+        <div>
+          <h1>Settings</h1>
+          <div className='NewVice'>
+            <div>
+              <div class='input-group flex-nowrap'>
+                <div class='input-group-prepend'>
+                  <span class='input-group-text' id='addon-wrapping'>
+                    &#191;
+                  </span>
+                </div>
+                <input
+                  type='text'
+                  name='vice'
+                  value={this.state.vice}
+                  onChange={this.handleInputChange}
+                  class='form-control'
+                  placeholder='Your Vice'
+                  aria-label='Username'
+                  aria-describedby='addon-wrapping'
+                />
+              </div>
+            </div>
+            <br />
+            <div>
+              <div class='dropdown'>
+                <button
+                  class='btn btn-secondary dropdown-toggle'
+                  type='button'
+                  name='betterOption'
+                  value={this.state.betterOption}
+                  onChange={this.handleInputChange}
+                  id='dropdownMenuButton'
+                  data-toggle='dropdown'
+                  aria-haspopup='true'
+                  aria-expanded='false'
+                >
+                  Better Option
+                </button>
+                <div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>
+                  <a class='dropdown-item' href='#'>
+                    Health Food Stuff
+                  </a>
+                  <a class='dropdown-item' href='#'>
+                    Gym
+                  </a>
+                  <a class='dropdown-item' href='#'>
+                    Walk
+                  </a>
+                </div>
+              </div>
+            </div>
+            <br />
             <div class='input-group flex-nowrap'>
               <div class='input-group-prepend'>
                 <span class='input-group-text' id='addon-wrapping'>
@@ -53,86 +106,42 @@ function Settings (props) {
                 </span>
               </div>
               <input
-                type='text'
-                name="vice"
-                // value={props.user.vice}
-                // onChange={props.handleInputChange}
+                type='number'
+                name='consumption'
+                value={this.state.consumption}
+                onChange={this.handleInputChange}
                 class='form-control'
-                placeholder='Your Vice'
+                placeholder='Consumption/Week'
+                aria-label='Username'
+                aria-describedby='addon-wrapping'
+              />
+            </div>
+            <br />
+            <div class='input-group flex-nowrap'>
+              <div class='input-group-prepend'>
+                <span class='input-group-text' id='addon-wrapping'>
+                  &#36;
+                </span>
+              </div>
+              <input
+                type='number'
+                name='cost'
+                value={this.state.cost}
+                onChange={this.handleInputChange}
+                class='form-control'
+                placeholder='Cost'
                 aria-label='Username'
                 aria-describedby='addon-wrapping'
               />
             </div>
           </div>
           <br />
-          <div>
-            <div class='dropdown'>
-              <button
-                class='btn btn-secondary dropdown-toggle'
-                type='button'
-                name="better_option"
-                // value={props.user.betterOption}
-                // onChange={props.handleInputChange}
-                id='dropdownMenuButton'
-                data-toggle='dropdown'
-                aria-haspopup='true'
-                aria-expanded='false'
-              >
-                Better Option
-              </button>
-              <div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>
-                <a class='dropdown-item' href='#'>
-                  Health Food Stuff
-                </a>
-                <a class='dropdown-item' href='#'>
-                  Gym
-                </a>
-                <a class='dropdown-item' href='#'>
-                  Walk
-                </a>
-              </div>
-            </div>
-          </div>
-          <br />
-          <div class='input-group flex-nowrap'>
-            <div class='input-group-prepend'>
-              <span class='input-group-text' id='addon-wrapping'>
-                &#191;
-              </span>
-            </div>
-            <input
-              type='number'
-              name="consumption-per-week"
-              // value={props.user.consumption}
-              // onChange={props.handleInputChange}
-              class='form-control'
-              placeholder='Consumption/Week'
-              aria-label='Username'
-              aria-describedby='addon-wrapping'
-            />
-          </div>
-          <br />
-          <div class='input-group flex-nowrap'>
-            <div class='input-group-prepend'>
-              <span class='input-group-text' id='addon-wrapping'>
-                &#36;
-              </span>
-            </div>
-            <input
-              type='number'
-              name="cost"
-              // value={props.user.cost}
-              // onChange={props.handleInputChange}
-              class='form-control'
-              placeholder='Cost'
-              aria-label='Username'
-              aria-describedby='addon-wrapping'
-            />
-          </div>
+          <button type="button" class="btn btn-secondary" onClick={this.handleFormSubmit}>Submit</button>
+
         </div>
-      </div>
-    </>
-  )
+      </>
+    )
+  }
 }
 
-export default Settings
+export default Settings;
