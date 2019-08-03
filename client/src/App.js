@@ -8,6 +8,8 @@ import Settings from "./components/Settings";
 import Nav from "./components/Nav";
 import Login from "./components/Login"
 import FullLogin from "./components/FullLogin";
+import NoMatch from "./pages/NoMatch";
+
 
 
 
@@ -20,8 +22,7 @@ function App() {
           <Route exact path="/" component={FullLogin} />
           <Route exact path="/welcome" component={Welcome} />
           <Route exact path="/settings" component={Settings} />
-          {/* <Route exact path="/books/:id" component={Detail} />
-          <Route component={NoMatch} /> */}
+          <Route component={NoMatch} /> 
         </Switch>
       </div>
     </Router>
