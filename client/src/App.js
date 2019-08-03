@@ -1,30 +1,31 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import logo from "./logo.svg";
 import "./App.css";
 import LoginStuff from "./components/LoginStuff"
+import Welcome from "./components/Welcome";
+import Settings from "./components/Settings";
+import Nav from "./components/Nav";
+import Login from "./components/Login"
+import FullLogin from "./components/FullLogin";
 
-class App extends Component {
-  state = {
-    user: {}
-  }
 
-  handleUserUpdate = user => {
-    this.setState({ user });
-  }
 
-  render() {
-    return (
-      <>
-        <div className="App">
-          <div className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <h2>Mildly Sharp Coders at Work!</h2>
-          </div>
-        </div>
-        <LoginStuff user={this.state.user} handleUserUpdate={this.handleUserUpdate} />
-      </>
-    );
-  }
+function App() {
+  return (
+    <Router>
+      <div>
+        <Nav />
+        <Switch>
+          <Route exact path="/" component={FullLogin} />
+          <Route exact path="/welcome" component={Welcome} />
+          <Route exact path="/settings" component={Settings} />
+          {/* <Route exact path="/books/:id" component={Detail} />
+          <Route component={NoMatch} /> */}
+        </Switch>
+      </div>
+    </Router>
+  );
 }
 
 export default App;
