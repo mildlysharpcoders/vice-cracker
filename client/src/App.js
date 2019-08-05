@@ -9,22 +9,50 @@ import Login from "./pages/Login";
 import NoMatch from "./pages/NoMatch";
 import CreateUser from "./pages/CreateUser";
 
-function App() {
-  return (
-    <Router>
-      <div>
-        {/* <Nav /> */}
-        <Switch>
-          <Route exact path="/" component={Login} />
-          <Route exact path="/welcome" component={Welcome} />
-          <Route exact path="/vices" component={Vices} />
-          <Route exact path="/settings" component={Settings} />
-          <Route exact path="/create" component={CreateUser} />
-          <Route component={NoMatch} /> 
-        </Switch>
-      </div>
-    </Router>
-  );
+class App extends Component {
+  state = {};
+
+  updateUser = user => {
+    console.log("App component updating user to: ", user);
+    this.setState(user);
+  };
+
+  render() {
+    return (
+      <Router>
+        <div>
+          {/* <Nav /> */}
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={props => (
+                <Login
+                  {...props}
+                  user={this.state}
+                  updateUser={this.updateUser}
+                />
+              )}
+            />
+            <Route exact path="/welcome" component={Welcome} />
+            <Route
+              exact
+              path="/vices"
+              render={props => (
+                <Vices
+                  {...props}
+                  user={this.state}
+                />
+              )}
+            />
+            <Route exact path="/settings" component={Settings} />
+            <Route exact path="/create" component={CreateUser} />
+            <Route component={NoMatch} />
+          </Switch>
+        </div>
+      </Router>
+    );
+  }
 }
 
 export default App;

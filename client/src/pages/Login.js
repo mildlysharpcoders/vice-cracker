@@ -4,11 +4,14 @@ import { Link } from "react-router-dom";
 import API from "../utils/API";
 
 class Login extends Component {
-  state = {
-    login: "",
-    password: "",
-    loggedin: false
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      login: "",
+      password: "",
+      loggedin: false
+    };
+  }
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -21,8 +24,10 @@ class Login extends Component {
   componentDidMount = () => {
     API.getAuthenticatedUser()
       .then(response => {
+        console.log("componentDidMount says", response.data);
         if (response.data.email) {
-          this.setState({ loggedin: true });
+          if (!this.state.loggedin)
+            this.setState({ loggedin: true });
         }
       })
       .catch(error => {
@@ -41,6 +46,7 @@ class Login extends Component {
       .then(response => {
         console.log(response.data);
         this.setState({ username: "", password: "", loggedin: true });
+        this.props.updateUser(response.data);
       })
       .catch(error => {
         console.log(error);
@@ -62,7 +68,8 @@ class Login extends Component {
   // };
 
   renderRedirect = () => {
-    if (this.state.loggedin) {
+    console.log("renderRedirect says", this.props.user);
+    if (this.props.user.email) {
       return <Redirect to="/vices" />;
     }
   };
