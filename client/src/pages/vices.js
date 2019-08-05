@@ -1,18 +1,11 @@
-import React, { Component } from "react";
+import React from "react";
 import { Col, Row, Container } from '../components/Grid';
-import logo from "./../logo.svg"  
 import SelectVice from '../components/viceSelector'
 import Nav from './../components/Nav';
 
 function Vices() {
   return (
     <>
-      <div className='App'>
-        <div className='App-header'>
-          <img src={logo} className='App-logo' alt='logo' />
-          <h2>Mildly Sharp Coders at Work!</h2>
-        </div>
-      </div>
       <div>
         <Nav />
       </div>

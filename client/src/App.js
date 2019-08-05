@@ -5,11 +5,9 @@ import Welcome from "./components/Welcome";
 import Settings from "./components/Settings";
 import Vices from "./pages/vices";
 // import Nav from "./components/Nav";
-import FullLogin from "./pages/fullLogin";
+import Login from "./pages/Login";
 import NoMatch from "./pages/NoMatch";
-
-
-
+import CreateUser from "./pages/CreateUser";
 
 function App() {
   return (
@@ -17,10 +15,11 @@ function App() {
       <div>
         {/* <Nav /> */}
         <Switch>
-          <Route exact path="/" component={FullLogin} />
+          <Route exact path="/" component={Login} />
           <Route exact path="/welcome" component={Welcome} />
           <Route exact path="/vices" component={Vices} />
           <Route exact path="/settings" component={Settings} />
+          <Route exact path="/create" component={CreateUser} />
           <Route component={NoMatch} /> 
         </Switch>
       </div>

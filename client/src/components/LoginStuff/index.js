@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import CreateUser from "../CreateUser";
 import Login from "../Login";
 import Welcome from "../Welcome";
 import API from "../../utils/API";
@@ -8,34 +7,12 @@ class LoginStuff extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      create: {
-        sessionid: "",
-        username: "",
-        password: "",
-        email: "",
-        firstname: "",
-        lastname: "",
-        address: "",
-        city: "",
-        state: "",
-        zip: ""
-      },
       login: {
         email: "",
         password: ""
       }
     };
   }
-
-  handleCreateInputChange = event => {
-    const { name, value } = event.target;
-    // console.log(name, value);
-    let create = this.state.create;
-    create[name] = value;
-    this.setState({
-      create
-    });
-  };
 
   handleLoginInputChange = event => {
     const { name, value } = event.target;
@@ -53,19 +30,6 @@ class LoginStuff extends Component {
         if (response.data.email) {
           this.props.handleUserUpdate(response.data);
         }
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  };
-
-  handleCreateButtonClick = event => {
-    event.preventDefault();
-    console.log("Create User Button Clicked");
-    API.createUser(this.state.create)
-      .then(response => {
-        console.log(response.data);
-        this.props.handleUserUpdate(response.data);
       })
       .catch(error => {
         console.log(error);
@@ -120,16 +84,6 @@ class LoginStuff extends Component {
         />
       );
     }
-
-    // return (
-    //   <>
-    //     <CreateUser
-    //       user={this.state.create}
-    //       handleInputChange={this.handleCreateInputChange}
-    //       handleButtonClick={this.handleCreateButtonClick}
-    //     />
-    //   </>
-    // );
   }
 }
 

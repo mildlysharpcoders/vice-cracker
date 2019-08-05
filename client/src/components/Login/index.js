@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Login(props) {
   return (
@@ -21,6 +22,7 @@ function Login(props) {
         />
         <br />
         <input type="submit" value="Login" onClick={props.handleButtonClick} />
+        <Link to="/create">Create New User</Link>
       </form>
     </>
   );
