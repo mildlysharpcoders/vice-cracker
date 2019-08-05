@@ -11,6 +11,18 @@ const userController = {
     }
   },
 
+  getAllUsers: (request, response) => {
+    db.User.find({})
+      .then(result => {
+        console.log("All users: ", result);
+        response.json(result);
+      })
+      .catch(err => {
+        console.log(err);
+        response.send(err);
+      });
+  },
+
   login: (request, response) => {
     console.log("UserController.login");
     response.json(request.user);
@@ -23,7 +35,16 @@ const userController = {
   },
 
   create: (request, response) => {
-    createUser(request, response);
+    console.log(request.body);
+    db.User.create(request.body)
+      .then(result => {
+        console.log("Created new user: ", result);
+        response.json(result);
+      })
+      .catch(err => {
+        console.log(err);
+        response.send(err);
+      });
   },
 
   createDefaultUser: () => {
@@ -31,21 +52,8 @@ const userController = {
   }
 };
 
-function createUser(request, response) {
-  console.log(request.body);
-  db.User.create(request.body)
-    .then(result => {
-      console.log("Created new user: ", result);
-      response.json(result);
-    })
-    .catch(err => {
-      console.log(err);
-      response.send(err);
-    });
-}
-
 function createDefault() {
-  db.User.findOne({ email: "admin@admin.com"}).then(result => {
+  db.User.findOne({ email: "admin@admin.com" }).then(result => {
     if (!result) {
       let defaultUser = {
         password: "admin",
@@ -61,9 +69,9 @@ function createDefault() {
         console.log("Create default Admin user");
       });
     } else {
-      console.log("Admin User present")
+      console.log("Admin User present");
     }
-  })
+  });
 }
 
 module.exports = userController;
