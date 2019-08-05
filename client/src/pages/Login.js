@@ -25,9 +25,11 @@ class Login extends Component {
     API.getAuthenticatedUser()
       .then(response => {
         console.log("componentDidMount says", response.data);
+        console.log(this.state);
         if (response.data.email) {
           if (!this.state.loggedin)
             this.setState({ loggedin: true });
+            this.props.updateUser(response.data);
         }
       })
       .catch(error => {
@@ -68,7 +70,7 @@ class Login extends Component {
   // };
 
   renderRedirect = () => {
-    console.log("renderRedirect says", this.props.user);
+    console.log("Login renderRedirect says", this.props.user);
     if (this.props.user.email) {
       return <Redirect to="/vices" />;
     }
