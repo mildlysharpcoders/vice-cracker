@@ -4,6 +4,7 @@ import React from 'react';
 
 function selectVice() {
     return (
+   
         <div className="input-field col s12">
         <select>
           <option value="" disabled selected>Choose your option</option>
@@ -14,6 +15,7 @@ function selectVice() {
         <label>Choose Your Vice
         </label>
       </div>
+   
     )
 }
 
