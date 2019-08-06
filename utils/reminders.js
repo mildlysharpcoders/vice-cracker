@@ -59,6 +59,37 @@ function sendStatusUpdates() {
     // Get Vices for user here
     // Loop through them and compute all the update messages
     // Send text message with all updates, if they fit...
+
+    //Rika - update fits if they go over their consumption
+    //Will have the random recipe from here and will also give the user the link to the 
+    //recipe to visit.
+
+    //Gym - can send work outs or gym locations
+var unirest = require("unirest");
+
+//going to add an array of tags
+//use random math to select a tag to use to send the random recipe link
+var req = unirest("GET", 
+"https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random");
+
+req.query({
+	"number": "1",
+	"tags": "vegan"
+});
+
+req.headers({
+	"x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+	"x-rapidapi-key": "516f6ef862msh309e9b9830971c9p1bfbb7jsn89525d5813e3"
+});
+
+
+req.end(function (res) {
+	if (res.error) throw new Error(res.error);
+
+  console.log(res.body);
+  
+});
+
   }
 
 module.exports = start;
