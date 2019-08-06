@@ -8,14 +8,44 @@ import { Redirect } from "react-router-dom";
 class Vices extends Component {
   constructor(props) {
     super(props);
-  }
+    this.state = {
+      email: "",
+      name: "",
+      betteroption: "",
+      limit: "",
+      cost: "",
+      weekly: [],
+      monthly: []
+    };
+   }
 
   renderRedirect = () => {
-    console.log("Vice props renderRedirect: ", this.props);
+    // console.log("Vice props renderRedirect: ", this.props);
     if (!this.props.user.email) {
       return <Redirect to="/" />;
     }
-    // return <p>HI</p>;
+  };
+
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    // console.log(name, value);
+    this.setState({
+      [name]: value
+    });
+  };
+
+  handleButtonClick = event => {
+    event.preventDefault();
+    console.log("Create Vice Button Clicked");
+    console.log(this.state);
+    this.state.email = this.props.user.email;
+    API.createVice(this.state)
+      .then(response => {
+        console.log(response.data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 
   render() {
@@ -25,7 +55,46 @@ class Vices extends Component {
         <div>
           <Nav />
         </div>
-        <Container fluid>
+        <form>
+          Vice Name:
+          <input
+            type="text"
+            name="name"
+            value={this.state.name}
+            onChange={this.handleInputChange}
+          />
+          <br />
+          Better Option:
+          <input
+            type="text"
+            name="betteroption"
+            value={this.state.betteroption}
+            onChange={this.handleInputChange}
+          />
+          <br />
+          Weekly Consumption Limit:
+          <input
+            type="text"
+            name="limit"
+            value={this.state.limit}
+            onChange={this.handleInputChange}
+          />
+          <br />
+          Unit Cost:
+          <input
+            type="text"
+            name="cost"
+            value={this.state.cost}
+            onChange={this.handleInputChange}
+          />
+          <br />
+          <input
+            type="submit"
+            value="Create Vice"
+            onClick={this.handleButtonClick}
+          />
+        </form>
+        {/* <Container fluid>
           <Row>
             <Col size="m6">
               <div className="card blue-grey darken-1">
@@ -50,7 +119,7 @@ class Vices extends Component {
               </div>
             </Col>
           </Row>
-        </Container>
+        </Container> */}
       </>
     );
   }
