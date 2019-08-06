@@ -42,9 +42,9 @@ class Settings extends Component {
           <h1>Settings</h1>
           <div className='NewVice'>
             <div>
-              <div class='input-group flex-nowrap'>
-                <div class='input-group-prepend'>
-                  <span class='input-group-text' id='addon-wrapping'>
+              <div className='input-group flex-nowrap'>
+                <div className='input-group-prepend'>
+                  <span className='input-group-text' id='addon-wrapping'>
                     &#191;
                   </span>
                 </div>
@@ -53,7 +53,7 @@ class Settings extends Component {
                   name='vice'
                   value={this.state.vice}
                   onChange={this.handleInputChange}
-                  class='form-control'
+                  className='form-control'
                   placeholder='Your Vice'
                   aria-label='Username'
                   aria-describedby='addon-wrapping'
@@ -62,9 +62,9 @@ class Settings extends Component {
             </div>
             <br />
             <div>
-              <div class='dropdown'>
+              <div className='dropdown'>
                 <button
-                  class='btn btn-secondary dropdown-toggle'
+                  className='btn btn-secondary dropdown-toggle'
                   type='button'
                   name='betterOption'
                   value={this.state.betterOption}
@@ -76,23 +76,23 @@ class Settings extends Component {
                 >
                   Better Option
                 </button>
-                <div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>
-                  <a class='dropdown-item' href='#'>
+                <div className='dropdown-menu' aria-labelledby='dropdownMenuButton'>
+                  <a className='dropdown-item' href='#'>
                     Health Food Stuff
                   </a>
-                  <a class='dropdown-item' href='#'>
+                  <a className='dropdown-item' href='#'>
                     Gym
                   </a>
-                  <a class='dropdown-item' href='#'>
+                  <a className='dropdown-item' href='#'>
                     Walk
                   </a>
                 </div>
               </div>
             </div>
             <br />
-            <div class='input-group flex-nowrap'>
-              <div class='input-group-prepend'>
-                <span class='input-group-text' id='addon-wrapping'>
+            <div className='input-group flex-nowrap'>
+              <div className='input-group-prepend'>
+                <span className='input-group-text' id='addon-wrapping'>
                   &#191;
                 </span>
               </div>
@@ -101,16 +101,16 @@ class Settings extends Component {
                 name='consumption'
                 value={this.state.consumption}
                 onChange={this.handleInputChange}
-                class='form-control'
+                className='form-control'
                 placeholder='Consumption/Week'
                 aria-label='Username'
                 aria-describedby='addon-wrapping'
               />
             </div>
             <br />
-            <div class='input-group flex-nowrap'>
-              <div class='input-group-prepend'>
-                <span class='input-group-text' id='addon-wrapping'>
+            <div className='input-group flex-nowrap'>
+              <div className='input-group-prepend'>
+                <span className='input-group-text' id='addon-wrapping'>
                   &#36;
                 </span>
               </div>
@@ -119,7 +119,7 @@ class Settings extends Component {
                 name='cost'
                 value={this.state.cost}
                 onChange={this.handleInputChange}
-                class='form-control'
+                className='form-control'
                 placeholder='Cost'
                 aria-label='Username'
                 aria-describedby='addon-wrapping'
@@ -127,7 +127,7 @@ class Settings extends Component {
             </div>
           </div>
           <br />
-          <button type="button" class="btn btn-secondary" onClick={this.handleFormSubmit}>Submit</button>
+          <button type="button" className="btn btn-secondary" onClick={this.handleFormSubmit}>Submit</button>
 
         </div>
       </>
