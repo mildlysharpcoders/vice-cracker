@@ -73,7 +73,7 @@ class Login extends Component {
   renderRedirect = () => {
     // console.log("Login renderRedirect says", this.props.user);
     if (this.props.user.email) {
-      return <Redirect to="/settings" />;
+      return <Redirect to="/vices" />;
     }
   };
 
