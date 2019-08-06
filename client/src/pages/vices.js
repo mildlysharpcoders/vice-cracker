@@ -17,7 +17,17 @@ class Vices extends Component {
       weekly: [],
       monthly: []
     };
-   }
+  }
+
+  componentDidMount = () => {
+    API.getVicesForUser(this.props.user.email)
+      .then(response => {
+        console.log(response.data);
+      })
+      .catch(error => {
+        console.log(error);
+      });    
+  };
 
   renderRedirect = () => {
     // console.log("Vice props renderRedirect: ", this.props);

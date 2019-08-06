@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 import Welcome from "./components/Welcome";
-import Settings from "./components/Settings";
+import Settings from "./pages/Settings";
 import Vices from "./pages/vices";
 // import Nav from "./components/Nav";
 import Login from "./pages/Login";
@@ -38,12 +38,13 @@ class App extends Component {
             <Route
               exact
               path="/vices"
-              render={props => (
-                <Vices
-                  {...props}
-                  user={this.state}
-                />
-              )}
+              render={props => <Vices {...props} user={this.state} />}
+            />
+            <Route exact path="/welcome" component={Welcome} />
+            <Route
+              exact
+              path="/settings"
+              render={props => <Settings {...props} user={this.state} />}
             />
             <Route exact path="/settings" component={Settings} />
             <Route exact path="/create" component={CreateUser} />
