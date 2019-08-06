@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 // import Welcome from "./components/Welcome";
 import Settings from "./pages/Settings";
-import Vices from "./pages/Vicess";
+import Vices from "./pages/Vices";
 // import Nav from "./components/Nav";
 import Login from "./pages/Login";
 import NoMatch from "./pages/NoMatch";

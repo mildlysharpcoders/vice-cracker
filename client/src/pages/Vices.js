@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 // import { Col, Row, Container } from "../components/Grid";
-import Nav from "./../components/Nav";
+import Nav from "../components/Nav";
 import API from "../utils/API";
 import { Redirect } from "react-router-dom";
 import ViceItem from "../components/ViceItem";
