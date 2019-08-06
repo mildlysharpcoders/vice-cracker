@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
-import Welcome from "./components/Welcome";
+// import Welcome from "./components/Welcome";
 import Settings from "./pages/Settings";
 import Vices from "./pages/vices";
 // import Nav from "./components/Nav";
@@ -34,13 +34,12 @@ class App extends Component {
                 />
               )}
             />
-            <Route exact path="/welcome" component={Welcome} />
+            {/* <Route exact path="/welcome" component={Welcome} /> */}
             <Route
-              exact
-              path="/vices"
+              exact path="/vices" component={Vices}
               render={props => <Vices {...props} user={this.state} />}
             />
-            <Route exact path="/welcome" component={Welcome} />
+            {/* <Route exact path="/welcome" component={Welcome} /> */}
             <Route
               exact
               path="/settings"
