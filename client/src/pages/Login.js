@@ -27,9 +27,10 @@ class Login extends Component {
         console.log("componentDidMount says", response.data);
         console.log(this.state);
         if (response.data.email) {
-          if (!this.state.loggedin)
+          if (!this.state.loggedin) {
             this.setState({ loggedin: true });
             this.props.updateUser(response.data);
+          }
         }
       })
       .catch(error => {
