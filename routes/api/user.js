@@ -2,7 +2,7 @@ const router = require("express").Router();
 const userController = require("../../controllers/userController");
 const passport = require("../../controllers/passportController");
 
-router.route("/").get(userController.getAuthenticatedUser);
+router.route("/").get(userController.getAllUsers);
 
 router.route("/getAuthenticatedUser").get(userController.getAuthenticatedUser);
 
