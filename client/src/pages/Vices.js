@@ -19,19 +19,21 @@ class Vices extends Component {
 
   loadVices = () => {
     console.log("Vices User:", this.props.user);
-    API.getVicesForUser(this.props.user.email)
-      .then(response => {
-        console.log("Vices returned:", response.data);
-        this.setState({ vices: response.data });
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }
+    if (this.props.user) {
+      API.getVicesForUser(this.props.user.email)
+        .then(response => {
+          console.log("Vices returned:", response.data);
+          this.setState({ vices: response.data });
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
+  };
 
   renderRedirect = () => {
     // console.log("Vice props renderRedirect: ", this.props);
-    if (!this.props.user.email) {
+    if (!this.props.user || !this.props.user.email) {
       return <Redirect to="/" />;
     }
   };
@@ -44,7 +46,7 @@ class Vices extends Component {
     });
   };
 
-  handleButtonClick = (vice) => {
+  handleButtonClick = vice => {
     console.log("Increment Vice Button Clicked for vice:", vice);
     API.createViceEvent(vice)
       .then(response => {
@@ -64,7 +66,13 @@ class Vices extends Component {
           <Nav />
         </div>
         {this.state.vices.map(vice => {
-          return <ViceItem key={vice.name} vice={vice} handleButtonClick={this.handleButtonClick} />
+          return (
+            <ViceItem
+              key={vice.name}
+              vice={vice}
+              handleButtonClick={this.handleButtonClick}
+            />
+          );
         })}
         {/* <Container fluid>
           <Row>
