@@ -11,7 +11,7 @@ class Vices extends Component {
   }
 
   renderRedirect = () => {
-    console.log("Vice props: ", this.props);
+    console.log("Vice props renderRedirect: ", this.props);
     if (!this.props.user.email) {
       return <Redirect to="/" />;
     }
