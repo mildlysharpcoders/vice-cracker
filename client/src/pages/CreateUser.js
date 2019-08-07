@@ -220,7 +220,7 @@ class CreateUser extends Component {
             onClick={this.handleButtonClick}
           />
         </form>
-        <Link to='/settings'>Login</Link>
+        <Link to='/'>Login</Link>
       </>
     )
   }
