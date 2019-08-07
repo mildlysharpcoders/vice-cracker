@@ -8,20 +8,21 @@ passport.use(
     db.User.findOne({ email: username })
       .then(function(result) {
         if (!result) {
+          console.log("Incorrect username");
           return done(null, false, {
             message: "Incorrect username."
           });
         }
         // If we're using an invalid password
         else if (result.password != password) {
+          console.log("Incorrect password");
           return done(null, false, {
             message: "Incorrect password."
           });
         }
-        // successful login, return the user -- which consists of an object holding the username
-        console.log("User authenticated");
-        console.log(result)
-        return done(null, result);
+        let user = { _id: result._id, email: result.email };
+        console.log("User authenticated: ", user);
+        return done(null, user);
       })
       .catch(function(err) {
         return done(err, false, {
