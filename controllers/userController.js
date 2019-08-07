@@ -35,11 +35,22 @@ const userController = {
   },
 
   create: (request, response) => {
-    console.log(request.body);
-    db.User.create(request.body)
+    db.User.findOne({ email: request.body.email })
       .then(result => {
-        console.log("Created new user: ", result);
-        response.json(result);
+        if (result.email) {
+          console.log("Found existing user: ", result.email);
+          response.sendStatus(409);
+        } else {
+          db.User.create(request.body)
+            .then(result => {
+              console.log("Created new user: ", result.email);
+              response.sendStatus(201);
+            })
+            .catch(err => {
+              console.log(err);
+              response.send(err);
+            });
+        }
       })
       .catch(err => {
         console.log(err);
