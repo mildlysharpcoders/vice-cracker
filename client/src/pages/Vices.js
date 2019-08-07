@@ -18,9 +18,9 @@ class Vices extends Component {
   };
 
   loadVices = () => {
-    console.log("Vices User:", this.props.user);
-    if (this.props.user) {
-      API.getVicesForUser(this.props.user.email)
+    const user = this.props.user.email;
+    if (user) {
+      API.getVicesForUser(user)
         .then(response => {
           console.log("Vices returned:", response.data);
           this.setState({ vices: response.data });
@@ -32,7 +32,6 @@ class Vices extends Component {
   };
 
   renderRedirect = () => {
-    // console.log("Vice props renderRedirect: ", this.props);
     if (!this.props.user || !this.props.user.email) {
       return <Redirect to="/" />;
     }

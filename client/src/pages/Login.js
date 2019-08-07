@@ -7,9 +7,8 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      login: "",
-      password: "",
-      loggedin: false
+      email: "",
+      password: ""
     };
   }
 
@@ -21,23 +20,6 @@ class Login extends Component {
     });
   };
 
-  componentDidMount = () => {
-    API.getAuthenticatedUser()
-      .then(response => {
-        console.log("componentDidMount says", response.data);
-        console.log(this.state);
-        if (response.data.email) {
-          if (!this.state.loggedin) {
-            this.setState({ loggedin: true });
-            this.props.updateUser(response.data);
-          }
-        }
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  };
-
   handleButtonClick = event => {
     event.preventDefault();
     console.log("Login Button Clicked");
@@ -45,10 +27,11 @@ class Login extends Component {
       username: this.state.email,
       password: this.state.password
     };
+    console.log("Login info sent:", loginInfo);
     API.login(loginInfo)
       .then(response => {
-        console.log(response.data);
-        this.setState({ username: "", password: "", loggedin: true });
+        console.log("Login data returned", response.data);
+        this.setState({ email: "", password: "" });
         this.props.updateUser(response.data);
       })
       .catch(error => {
@@ -56,22 +39,7 @@ class Login extends Component {
       });
   };
 
-  // TODO: Need to find a home for this
-  // handleLogoutButtonClick = event => {
-  //   event.preventDefault();
-  //   console.log("Logout Button Clicked");
-  //   API.logout()
-  //     .then(response => {
-  //       console.log(response.data);
-  //       this.props.handleUserUpdate({});
-  //     })
-  //     .catch(error => {
-  //       console.log(error);
-  //     });
-  // };
-
   renderRedirect = () => {
-    // console.log("Login renderRedirect says", this.props.user);
     if (this.props.user.email) {
       return <Redirect to="/vices" />;
     }
