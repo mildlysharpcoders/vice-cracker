@@ -55,7 +55,10 @@ function sendStatusUpdates() {
       });
   }
 
-  function sendStatusUpdate(user) {
+  function sendStatusUpdate(user) { //I put my api information here, should that go here
+    // or should that be called by another function and this part should only display the message
+    // that is going back to twilio
+    // or sending the results back to the twilio.js file
     // Get Vices for user here
     // Loop through them and compute all the update messages
     // Send text message with all updates, if they fit...
@@ -69,12 +72,17 @@ var unirest = require("unirest");
 
 //going to add an array of tags
 //use random math to select a tag to use to send the random recipe link
+
+var listOfTags =["vegan", "vegetarian", "ketogenic", "vegetables", "soup", "salad"]
+
+var randomTag = listOfTags[Math.floor(Math.random() * 6)]
+
 var req = unirest("GET", 
 "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random");
 
 req.query({
 	"number": "1",
-	"tags": "vegan"
+	"tags": randomTag
 });
 
 req.headers({
@@ -85,8 +93,11 @@ req.headers({
 
 req.end(function (res) {
 	if (res.error) throw new Error(res.error);
+  console.log("Uh oh! You have hit your limit! Here is a recipe! " + 
+  res.body.recipes[0].sourceUrl);
+  console.log("random tag is: " + randomTag)
 
-  console.log(res.body);
+  //need to figure out how to send this to twilio
   
 });
 
