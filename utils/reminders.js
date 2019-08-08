@@ -55,7 +55,10 @@ function sendStatusUpdates() {
       });
   }
 
-  function sendStatusUpdate(user) {
+  function sendStatusUpdate(user) { //I put my api information here, should that go here
+    // or should that be called by another function and this part should only display the message
+    // that is going back to twilio
+    // or sending the results back to the twilio.js file
     // Get Vices for user here
     // Loop through them and compute all the update messages
     // Send text message with all updates, if they fit...
