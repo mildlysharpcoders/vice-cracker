@@ -1,6 +1,7 @@
 require("dotenv").config();
 const moment = require("moment");
 const db = require("../models");
+const twilio = require("./twilio");
 
 const ENTRY_TIME_HOUR = process.env.ENTRY_TIME_HOUR || 20;
 const ENTRY_TIME_MINUTE = process.env.ENTRY_TIME_MINUTE || 0;
@@ -28,9 +29,9 @@ function reminderCallback() {
 function sendEntryReminders() {
   db.User.find({})
     .then(result => {
-        result.forEach(user => {
-            sendEntryReminder(user);
-        })
+      result.forEach(user => {
+        sendEntryReminder(user);
+      });
     })
     .catch(err => {
       console.log("sendEntryReminders failed, here's why:");
@@ -39,27 +40,30 @@ function sendEntryReminders() {
 }
 
 function sendEntryReminder(user) {
-    console.log("Sending entry reminder for:", user.email);
+  console.log("Sending entry reminder for:", user.email, user.phone);
+  if (user.phone) {
+    twilio.sendTextMessage("Remember to enter today's consumption into the Vice Cracker!", user.phone);
+  }
 }
 
 function sendStatusUpdates() {
-    db.User.find({})
-      .then(result => {
-          result.forEach(user => {
-              sendStatusUpdate(user);
-          })
-      })
-      .catch(err => {
-        console.log("sendEntryReminders failed, here's why:");
-        console.log(err);
+  db.User.find({})
+    .then(result => {
+      result.forEach(user => {
+        sendStatusUpdate(user);
       });
-  }
+    })
+    .catch(err => {
+      console.log("sendEntryReminders failed, here's why:");
+      console.log(err);
+    });
+}
 
-  function sendStatusUpdate(user) { 
-    // Get Vices for user here
-    // Loop through them and compute all the update messages
-    // Send text message with all updates, if they fit...
-    //moved recipe content to its on file. 
-  }
+function sendStatusUpdate(user) {
+  // Get Vices for user here
+  // Loop through them and compute all the update messages
+  // Send text message with all updates, if they fit...
+  //moved recipe content to its on file.
+}
 
-module.exports = start;
+module.exports = { start, sendEntryReminders, sendStatusUpdates };
