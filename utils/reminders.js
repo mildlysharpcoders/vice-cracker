@@ -42,7 +42,10 @@ function sendEntryReminders() {
 function sendEntryReminder(user) {
   console.log("Sending entry reminder for:", user.email, user.phone);
   if (user.phone) {
-    twilio.sendTextMessage("Remember to enter today's consumption into the Vice Cracker!", user.phone);
+    twilio.sendTextMessage(
+      "Remember to enter today's consumption into the Vice Cracker!",
+      user.phone
+    );
   }
 }
 
@@ -54,13 +57,24 @@ function sendStatusUpdates() {
       });
     })
     .catch(err => {
-      console.log("sendEntryReminders failed, here's why:");
+      console.log("sendStatusUpdates failed, here's why:");
       console.log(err);
     });
 }
 
 function sendStatusUpdate(user) {
+  console.log("sendStatusUpdates for", user.email);
   // Get Vices for user here
+  db.Vice.find({ email: user.email })
+    .then(result => {
+      result.forEach(vice => {
+        console.log(vice);
+      });
+    })
+    .catch(err => {
+      console.log("sendStatusUpdates failed, here's why:");
+      console.log(err);
+    });
   // Loop through them and compute all the update messages
   // Send text message with all updates, if they fit...
   //moved recipe content to its on file.
