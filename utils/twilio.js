@@ -13,7 +13,7 @@ const twilio = {
         from: fromPhone,
         to: tonumber
       })
-      .then(message => console.log(message.sid));
+      .then(message => console.log("Message sent", message.sid));
   }
 };
 

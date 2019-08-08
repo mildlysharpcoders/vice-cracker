@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 const passport = require("./controllers/passportController");
 const users = require("./controllers/userController");
-const reminders = require("./utils/reminders");
+const {start} = require("./utils/reminders");
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -28,10 +28,10 @@ mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 // Creata a default user if not present
 users.createDefaultUser();
 
-// Define API routes here
 app.use(routes);
 
-reminders();
+// Start the reminder timer
+start();
 
 app.listen(PORT, () => {
   console.log(`🌎 ==> API server now on port ${PORT}!`);
