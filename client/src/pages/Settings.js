@@ -24,7 +24,6 @@ class Settings extends Component {
   };
 
   handleFormSubmit = event => {
-    // Preventing the default behavior of the form submit (which is to refresh the page)
     event.preventDefault();
     console.log(this.props);
     let vice = {
@@ -39,7 +38,6 @@ class Settings extends Component {
 
     console.log(vice);
 
-    // Save to db
     API.createVice(vice)
       .then(response => {
         console.log("Vice Created:", response.data);
@@ -90,32 +88,11 @@ class Settings extends Component {
             <br />
             <div>
               <div className="dropdown">
-                <button
-                  className="btn btn-secondary dropdown-toggle"
-                  type="button"
-                  name="betteroption"
-                  value={this.state.betteroption}
-                  onChange={this.handleInputChange}
-                  id="dropdownMenuButton"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  Better Option
-                </button>
-                <div
-                  className="dropdown-menu"
-                  aria-labelledby="dropdownMenuButton"
-                >
-                  <a className="dropdown-item" href="#">
-                    Health Food Stuff
-                  </a>
-                  <a className="dropdown-item" href="#">
-                    Gym
-                  </a>
-                  <a className="dropdown-item" href="#">
-                    Walk
-                  </a>
+                <div>
+                  <select name="betteroption" value={this.state.betteroption} onChange={this.handleInputChange}>
+                    <option value="Recipe">Recipe</option>
+                    <option value="Gym">Gym</option>
+                  </select>
                 </div>
               </div>
             </div>
