@@ -37,7 +37,7 @@ const userController = {
   create: (request, response) => {
     db.User.findOne({ email: request.body.email })
       .then(result => {
-        if (result.email) {
+        if (result && result.email) {
           console.log("Found existing user: ", result.email);
           response.sendStatus(409);
         } else {
