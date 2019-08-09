@@ -35,5 +35,14 @@ export default {
 
   createViceEvent: function(vice) {
     return axios.post("/api/vice/event", vice);
+  },
+
+  sendEntryReminders: function() {
+    return axios.get("/api/reminder/entry");
+  },
+
+  sendStatusUpdates: function() {
+    return axios.get("/api/reminder/status");
   }
+
 };

@@ -8,7 +8,7 @@ class Settings extends Component {
     super(props);
     this.state = {
       name: "",
-      betteroption: "",
+      betteroption: "Recipe",
       limit: "",
       cost: "",
       vices: []
@@ -67,6 +67,7 @@ class Settings extends Component {
           limit: "",
           cost: ""
         });
+        this.loadVices();
       })
       .catch(error => {
         console.log(error);

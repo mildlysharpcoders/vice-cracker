@@ -7,6 +7,7 @@ import VicesWrapper from "./pages/VicesWrapper";
 import LoginWrapper from "./pages/LoginWrapper";
 import NoMatch from "./pages/NoMatch";
 import CreateUser from "./pages/CreateUser";
+import Test from "./pages/Test";
 import { UserProvider } from "./UserContext";
 
 class App extends Component {
@@ -35,6 +36,7 @@ class App extends Component {
               <Route exact path="/vices" component={VicesWrapper} />} />
               <Route exact path="/settings" component={SettingsWrapper} />} />
               <Route exact path="/create" component={CreateUser} />
+              <Route exact path="/test" component={Test} />
               <Route component={NoMatch} />
             </Switch>
           </div>
