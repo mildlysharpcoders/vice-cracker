@@ -1,43 +1,50 @@
-//Rika - update fits if they go over their consumption
-    //Will have the random recipe from here and will also give the user the link to the 
-    //recipe to visit.
+require("dotenv").config();
 
-    //Gym - can send work outs or gym locations
+const unirest = require("unirest");
+const twilio = require("./twilio");
+const SPOONACULAR_API_KEY = process.env.SPOONACULAR_API_KEY;
 
-    //I put my api information here, should that go here
-    // or should that be called by another function and this part should only display the message
-    // that is going back to twilio
-    // or sending the results back to the twilio.js file
+const listOfTags = [
+  "vegan",
+  "vegetarian",
+  "ketogenic",
+  "vegetables",
+  "soup",
+  "salad"
+];
 
-var unirest = require("unirest");
+function sendRecipe(phone, vice) {
+  const randomTag = listOfTags[Math.floor(Math.random() * listOfTags.length)];
 
-//going to add an array of tags
-//use random math to select a tag to use to send the random recipe link
+  let req = unirest(
+    "GET",
+    "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random"
+  );
 
-var listOfTags =["vegan", "vegetarian", "ketogenic", "vegetables", "soup", "salad"]
+  req.query({
+    number: "1",
+    tags: randomTag
+  });
 
-var randomTag = listOfTags[Math.floor(Math.random() * 6)]
+  req.headers({
+    "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+    "x-rapidapi-key": SPOONACULAR_API_KEY
+  });
 
-var req = unirest("GET", 
-"https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random");
+  req.end(function(res) {
+    if (res.error) {
+      console.log(res.error);
+    } else {
+      let message =
+        "The Vice Cracker says you've exceeded your " +
+        vice.name +
+        " consumption for the week. Here is a recipe for " +
+        res.body.recipes[0].title +
+        ": " +
+        res.body.recipes[0].sourceUrl;
+        twilio.sendTextMessage(message, phone);
+      }
+  });
+}
 
-req.query({
-	"number": "1",
-	"tags": randomTag
-});
-
-req.headers({
-	"x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-	"x-rapidapi-key": "516f6ef862msh309e9b9830971c9p1bfbb7jsn89525d5813e3"
-});
-
-
-req.end(function (res) {
-	if (res.error) throw new Error(res.error);
-  console.log("Uh oh! You have hit your limit! Here is a recipe for '" + res.body.recipes[0].title 
-  + "' " + res.body.recipes[0].sourceUrl);
-  console.log("random tag is: " + randomTag)
-
-  //need to figure out how to send this to twilio
-  
-});
+module.exports = { sendRecipe };

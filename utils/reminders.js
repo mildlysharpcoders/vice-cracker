@@ -3,6 +3,7 @@ const moment = require("moment");
 const db = require("../models");
 const twilio = require("./twilio");
 const { getWeeklyConsumption } = require("./viceUtils");
+const { sendRecipe } = require("./recipe");
 
 const ENTRY_TIME_HOUR = process.env.ENTRY_TIME_HOUR || 20;
 const ENTRY_TIME_MINUTE = process.env.ENTRY_TIME_MINUTE || 0;
@@ -81,9 +82,7 @@ function sendStatusUpdate(user) {
 }
 
 function sendStatus(phone, vice) {
-  console.log(vice);
   let consumption = getWeeklyConsumption(vice);
-  console.log("Weekly consumption", consumption);
   if (consumption < vice.limit) {
     let message = `Great work! You're doing well with your ${vice.name} consumption. Here's to a healthier life! The Vice Cracker.`;
     twilio.sendTextMessage(message, phone);
@@ -95,8 +94,7 @@ function sendStatus(phone, vice) {
 function sendHealthyAlternative(phone, vice) {
   switch(vice.betteroption) {
     case "Recipe":
-      // Send recipe
-      console.log("Send recipe here");
+      sendRecipe(phone, vice);
       break;
     default:
       // Hmmmmmm. Need to add some code to handle new betteroption
