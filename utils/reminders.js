@@ -2,6 +2,7 @@ require("dotenv").config();
 const moment = require("moment");
 const db = require("../models");
 const twilio = require("./twilio");
+const { getWeeklyConsumption } = require("./viceUtils");
 
 const ENTRY_TIME_HOUR = process.env.ENTRY_TIME_HOUR || 20;
 const ENTRY_TIME_MINUTE = process.env.ENTRY_TIME_MINUTE || 0;
@@ -67,17 +68,41 @@ function sendStatusUpdate(user) {
   // Get Vices for user here
   db.Vice.find({ email: user.email })
     .then(result => {
-      result.forEach(vice => {
-        console.log(vice);
-      });
+      if (result) {
+        result.forEach(vice => {
+          sendStatus(user.phone, vice);
+        });
+      }
     })
     .catch(err => {
       console.log("sendStatusUpdates failed, here's why:");
       console.log(err);
     });
-  // Loop through them and compute all the update messages
-  // Send text message with all updates, if they fit...
-  //moved recipe content to its on file.
+}
+
+function sendStatus(phone, vice) {
+  console.log(vice);
+  let consumption = getWeeklyConsumption(vice);
+  console.log("Weekly consumption", consumption);
+  if (consumption < vice.limit) {
+    let message = `Great work! You're doing well with your ${vice.name} consumption. Here's to a healthier life! The Vice Cracker.`;
+    twilio.sendTextMessage(message, phone);
+  } else {
+    sendHealthyAlternative(phone, vice);
+  }
+}
+
+function sendHealthyAlternative(phone, vice) {
+  switch(vice.betteroption) {
+    case "Recipe":
+      // Send recipe
+      console.log("Send recipe here");
+      break;
+    default:
+      // Hmmmmmm. Need to add some code to handle new betteroption
+      console.log("Unsupported betteroption type:", vice.betteroption);
+      break;
+  }
 }
 
 module.exports = { start, sendEntryReminders, sendStatusUpdates };
