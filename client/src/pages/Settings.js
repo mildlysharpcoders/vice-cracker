@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import API from "../utils/API";
+import ViceItem from "../components/ViceItem";
 
 class Settings extends Component {
   constructor(props) {
@@ -9,10 +10,29 @@ class Settings extends Component {
       name: "",
       betteroption: "",
       limit: "",
-      cost: ""
+      cost: "",
+      vices: []
     };
     console.log(this.props);
   }
+
+  componentDidMount = () => {
+    this.loadVices();
+  };
+
+  loadVices = () => {
+    const user = this.props.user.email;
+    if (user) {
+      API.getVicesForUser(user)
+        .then(response => {
+          console.log("Vices returned:", response.data);
+          this.setState({ vices: response.data });
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
+  };
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -47,6 +67,18 @@ class Settings extends Component {
           limit: "",
           cost: ""
         });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
+  handleDeleteButtonClick = vice => {
+    console.log("Delete Vice Button Clicked for vice:", vice.name);
+    API.deleteVice(vice._id)
+      .then(response => {
+        console.log(response.data);
+        this.loadVices();
       })
       .catch(error => {
         console.log(error);
@@ -142,6 +174,15 @@ class Settings extends Component {
             Submit
           </button>
         </div>
+        {this.state.vices.map(vice => {
+          return (
+            <ViceItem
+              key={vice.name}
+              vice={vice}
+              handleButtonClick={this.handleDeleteButtonClick}
+            />
+          );
+        })}
       </>
     );
   }
