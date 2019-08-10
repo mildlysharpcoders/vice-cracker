@@ -2,6 +2,12 @@ import React, { Component } from 'react'
 import API from '../utils/API'
 import ReactDOM from 'react-dom'
 import { Link } from 'react-router-dom'
+import CardHeader from "../components/Card/CardHeader.jsx";
+import Card from "../components/Card/Card.jsx"
+import CardBody from "../components/Card/CardBody.jsx"
+import Button from "../components/CustomButtons/Button.jsx";
+import GridItem from "../components/Grid/GridItem.jsx";
+import CustomInput from "../components/CustomInput/CustomInput.jsx";
 
 function validate (
   name,
@@ -128,100 +134,137 @@ class CreateUser extends Component {
   render () {
     const { errors } = this.state
     return (
-      <>
+      <Card>
+        <CardHeader>CREATE YOUR PROFILE</CardHeader>
+        <CardBody>
+        
         <form onSubmit={this.handleSubmit}>
           {errors.map(error => (
             <p key={error}>Error: {error}</p>
           ))}
-          First name:
-          <input
+            <GridItem xs={12} sm={12} md={4}>
+      
+          <CustomInput
             type='text'
+            labelText= "First Name"
+            id="float"
             name='firstname'
             ref={nameInput => (this._nameInput = nameInput)}
             value={this.state.firstname}
             onChange={this.handleInputChange}
           />
+          </GridItem>
           <br />
-          Last name:
-          <input
+          <GridItem xs={12} sm={12} md={4}>
+       
+          <CustomInput
             type='text'
+            labelText= "Last Name"
+            id="float"
             name='lastname'
             ref={lastnameInput => (this._lastnameInput = lastnameInput)}
             value={this.state.lastname}
             onChange={this.handleInputChange}
           />
+          </GridItem>
           <br />
-          Email:
-          <input
+          <GridItem xs={12} sm={12} md={4}>
+     
+          <CustomInput
             type='text'
+            labelText= "Email"
+            id="float"
             name='email'
             ref={emailInput => (this._emailInput = emailInput)}
             value={this.state.email}
             onChange={this.handleInputChange}
           />
+        </GridItem>
           <br />
-          Password:
-          <input
+          <GridItem xs={12} sm={12} md={4}>
+       
+          <CustomInput
             type='password'
+            labelText= "Password"
+            id="float"
             name='password'
             ref={passwordInput => (this._passwordInput = passwordInput)}
             value={this.state.password}
             onChange={this.handleInputChange}
           />
+          </GridItem>
           <br />
-          Address:
-          <input
+          <GridItem xs={12} sm={12} md={4}>
+       
+          <CustomInput
             type='text'
+            labelText= "Street Address"
+            id="float"
             name='address'
             ref={addressInput => (this._addressInput = addressInput)}
             value={this.state.address}
             onChange={this.handleInputChange}
           />
+          </GridItem>
           <br />
-          City:
-          <input
+          <GridItem xs={12} sm={12} md={4}>
+          
+          <CustomInput
             type='text'
+            labelText= "City"
+            id="float"
             name='city'
             ref={cityInput => (this._cityInput = cityInput)}
             value={this.state.city}
             onChange={this.handleInputChange}
           />
+          </GridItem>
           <br />
-          State:
-          <input
+          <GridItem xs={12} sm={12} md={4}>
+         
+          <CustomInput
             type='text'
+            labelText= "State"
+            id="float"
             name='state'
             ref={stateInput => (this._stateInput = stateInput)}
             value={this.state.state}
             onChange={this.handleInputChange}
           />
+        </GridItem>
           <br />
-          Zip:
-          <input
+          <GridItem xs={12} sm={12} md={4}>
+         
+          <CustomInput
             type='text'
+            labelText= "ZIP"
+            id="float"
             name='zip'
             ref={zipInput => (this._zipInput = zipInput)}
             value={this.state.zip}
             onChange={this.handleInputChange}
           />
+          </GridItem>
           <br />
-          Phone:
-          <input
+          <GridItem xs={12} sm={12} md={4}>
+          
+          <CustomInput
             type='text'
+            labelText= "Phone"
+            id="float"
             name='phone'
             ref={phoneInput => (this._phoneInput = phoneInput)}
             value={this.state.phone}
             onChange={this.handleInputChange}
           />
+          </GridItem>
           <br />
-          <input
-            type='submit'
-            value='Create User'
-            onClick={this.handleButtonClick}
-          />
+          <Button color="primary" round>Create User</Button>
         </form>
         <Link to='/'>Login</Link>
-      </>
+    
+      </CardBody>
+      </Card>
     )
   }
 }
