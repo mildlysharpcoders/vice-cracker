@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import API from "../utils/API";
 import Card from "../components/Card/Card.jsx";
 import CardHeader from "../components/Card/CardHeader.jsx";
-import CardBody, {infoCardHeader} from "../components/Card/CardBody.jsx";
+import CardBody from "../components/Card/CardBody.jsx";
+
 
 
 
@@ -55,7 +56,7 @@ class Login extends Component {
     return (
       
       <Card>
-        <CardHeader>VICE CRACKER U BETTER FUCKING WORK</CardHeader>
+        <CardHeader>VICE CRACKER</CardHeader>
       <CardBody>
       
         {this.renderRedirect()}
