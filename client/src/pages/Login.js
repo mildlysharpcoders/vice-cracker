@@ -81,6 +81,9 @@ class Login extends Component {
                   formControlProps={{
                       fullWidth: true
                   }}
+                  inputProps={{
+                    type: "password"
+                }}
               />
           </GridItem>
     
