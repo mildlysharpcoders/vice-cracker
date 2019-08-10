@@ -15,11 +15,14 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
+
+import { textAlign } from "@material-ui/system";
+
 const cardStyle = {
   card: {
     border: "0",
     marginBottom: "30px",
-    marginTop: "30px",
+    marginTop: "80px",
     borderRadius: "6px",
     color: "rgba(0, 0, 0, 0.87)",
     background: "#DCE1E1",
@@ -32,7 +35,8 @@ const cardStyle = {
     minWidth: "0",
     wordWrap: "break-word",
     fontSize: ".875rem",
-    transition: "all 300ms linear"
+    transition: "all 300ms linear",
+    textAlign: "center"
   },
   cardPlain: {
     background: "transparent",

@@ -16,6 +16,7 @@
 
 */
 
+
 const cardHeaderStyle = {
   cardHeader: {
     borderRadius: "3px",
@@ -27,13 +28,16 @@ const cardHeaderStyle = {
     marginBottom: "0",
     color: "rgba(0, 0, 0, 0.87)",
     background: "#D087E7",
-    align: "center"
+    
+    
   },
   cardHeaderPlain: {
     background: "transparent",
     marginLeft: "0px",
     marginRight: "0px"
   },
+
+ 
 
 };
 

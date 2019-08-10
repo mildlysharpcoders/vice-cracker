@@ -86,18 +86,6 @@ class Settings extends Component {
       });
   };
 
-  handleIncrementButtonClick = vice => {
-    console.log("Increment Vice Button Clicked for vice:", vice);
-    API.createViceEvent(vice)
-      .then(response => {
-        console.log(response.data);
-        this.loadVices();
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  };
-
   renderRedirect = () => {
     if (!this.props.user || !this.props.user.email) {
       return <Redirect to="/" />;
@@ -192,7 +180,7 @@ class Settings extends Component {
             <ViceItem
               key={vice.name}
               vice={vice}
-              handleButtonClick={this.handleIncrementButtonClick}
+              handleButtonClick={this.handleDeleteButtonClick}
             />
           );
         })}
