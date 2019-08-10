@@ -12,14 +12,8 @@ import CustomInput from '../components/CustomInput/CustomInput.jsx'
 
 
 class Login extends Component {
-<<<<<<< HEAD
-
-  constructor(props) {
-    super(props);
-=======
   constructor (props) {
     super(props)
->>>>>>> 04a9be8eb6053734f3859530389cb1b0555d4058
     this.state = {
       email: '',
       password: ''
@@ -60,14 +54,7 @@ class Login extends Component {
     }
   }
 
-<<<<<<< HEAD
-
-  render() {
-  
-    
-=======
   render () {
->>>>>>> 04a9be8eb6053734f3859530389cb1b0555d4058
     return (
       <Card>
         <CardHeader>VICE CRACKER</CardHeader>
@@ -120,9 +107,4 @@ class Login extends Component {
   }
 }
 
-<<<<<<< HEAD
-
-export default Login;
-=======
 export default Login
->>>>>>> 04a9be8eb6053734f3859530389cb1b0555d4058
