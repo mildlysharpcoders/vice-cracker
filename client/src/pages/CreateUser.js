@@ -10,7 +10,7 @@ import GridItem from "../components/Grid/GridItem.jsx";
 import CustomInput from "../components/CustomInput/CustomInput.jsx";
 import GridContainer from "../components/Grid/GridContainer.jsx"
 
-function validate(
+const errors = function validate(
   name,
   email,
   password,
