@@ -3,6 +3,7 @@ const accountSid = process.env.TWILIO_SID;
 const authToken = process.env.TWILIO_AUTH;
 const fromPhone = process.env.TWILIO_FROM_NUMBER;
 
+
 const client = require("twilio")(accountSid, authToken);
 
 const twilio = {
