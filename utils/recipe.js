@@ -19,7 +19,6 @@ req.headers({
 
 req.end(function (res) {
 	if (res.error) throw new Error(res.error);
-	console.log(res.body)
     console.log("Uh oh! You have hit your limit! Here is a recipe for '" + res.body.recipes[0].title + "' " + res.body.recipes[0].sourceUrl);
     console.log("random tag is: " + randomTag)
 });
