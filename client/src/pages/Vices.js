@@ -2,7 +2,7 @@ import React, { Component } from "react";
 // import { Col, Row, Container } from "../components/Grid";
 import Nav from "../components/Nav";
 import API from "../utils/API";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import ViceItem from "../components/ViceItem";
 
 class Vices extends Component {
@@ -73,6 +73,7 @@ class Vices extends Component {
             />
           );
         })}
+        <Link to="/settings">Settings</Link>
         {/* <Container fluid>
           <Row>
             <Col size="m6">

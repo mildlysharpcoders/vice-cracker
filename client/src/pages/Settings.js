@@ -1,137 +1,191 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
+import API from "../utils/API";
+import ViceItem from "../components/ViceItem";
 
 class Settings extends Component {
-  constructor (props) {
-    super(props)
+  constructor(props) {
+    super(props);
     this.state = {
-      vice: '',
-      betterOption: '',
-      consumption: '',
-      cost: ''
-    }
+      name: "",
+      betteroption: "Recipe",
+      limit: "",
+      cost: "",
+      vices: []
+    };
+    console.log(this.props);
   }
 
+  componentDidMount = () => {
+    this.loadVices();
+  };
+
+  loadVices = () => {
+    const user = this.props.user.email;
+    if (user) {
+      API.getVicesForUser(user)
+        .then(response => {
+          console.log("Vices returned:", response.data);
+          this.setState({ vices: response.data });
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
+  };
+
   handleInputChange = event => {
-    const { name, value } = event.target
+    const { name, value } = event.target;
 
     // Updating the input's state
     this.setState({
       [name]: value
-    })
-  }
+    });
+  };
 
   handleFormSubmit = event => {
-    // Preventing the default behavior of the form submit (which is to refresh the page)
-    event.preventDefault()
+    event.preventDefault();
+    console.log(this.props);
+    let vice = {
+      email: this.props.user.email,
+      name: this.state.name,
+      betteroption: this.state.betteroption,
+      limit: this.state.limit,
+      cost: this.state.cost,
+      weekly: [],
+      monthly: []
+    };
 
-    // Alert the user their first and last name, clear `this.state.firstName` and `this.state.lastName`, clearing the inputs
-    alert(`Your vice: ${this.state.vice}, a better option: ${this.state.betterOption}. Consumption: ${this.state.consumption} per week, cost: ${this.state.cost}`)
-    this.setState({
-      vice: '',
-      betterOption: '',
-      consumption: '',
-      cost: ''
-    })
-  }
+    console.log(vice);
 
-  // function Settings (props) {
-  render () {
+    API.createVice(vice)
+      .then(response => {
+        console.log("Vice Created:", response.data);
+        this.setState({
+          name: "",
+          betteroption: "",
+          limit: "",
+          cost: ""
+        });
+        this.loadVices();
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
+  handleDeleteButtonClick = vice => {
+    console.log("Delete Vice Button Clicked for vice:", vice.name);
+    API.deleteVice(vice._id)
+      .then(response => {
+        console.log(response.data);
+        this.loadVices();
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
+  renderRedirect = () => {
+    if (!this.props.user || !this.props.user.email) {
+      return <Redirect to="/" />;
+    }
+  };
+
+  render() {
     return (
       <>
+        {this.renderRedirect()}
         <div>
           <h1>Settings</h1>
-          <div className='NewVice'>
+          <div className="NewVice">
             <div>
-              <div className='input-group flex-nowrap'>
-                <div className='input-group-prepend'>
-                  <span className='input-group-text' id='addon-wrapping'>
+              <div className="input-group flex-nowrap">
+                <div className="input-group-prepend">
+                  <span className="input-group-text" id="addon-wrapping">
                     &#191;
                   </span>
                 </div>
                 <input
-                  type='text'
-                  name='vice'
-                  value={this.state.vice}
+                  type="text"
+                  name="name"
+                  value={this.state.name}
                   onChange={this.handleInputChange}
-                  className='form-control'
-                  placeholder='Your Vice'
-                  aria-label='Username'
-                  aria-describedby='addon-wrapping'
+                  className="form-control"
+                  placeholder="Your Vice"
+                  aria-label="Username"
+                  aria-describedby="addon-wrapping"
                 />
               </div>
             </div>
             <br />
             <div>
-              <div className='dropdown'>
-                <button
-                  className='btn btn-secondary dropdown-toggle'
-                  type='button'
-                  name='betterOption'
-                  value={this.state.betterOption}
-                  onChange={this.handleInputChange}
-                  id='dropdownMenuButton'
-                  data-toggle='dropdown'
-                  aria-haspopup='true'
-                  aria-expanded='false'
-                >
-                  Better Option
-                </button>
-                <div className='dropdown-menu' aria-labelledby='dropdownMenuButton'>
-                  <a className='dropdown-item' href='#'>
-                    Health Food Stuff
-                  </a>
-                  <a className='dropdown-item' href='#'>
-                    Gym
-                  </a>
-                  <a className='dropdown-item' href='#'>
-                    Walk
-                  </a>
+              <div className="dropdown">
+                <div>
+                  <select name="betteroption" value={this.state.betteroption} onChange={this.handleInputChange}>
+                    <option value="Recipe">Recipe</option>
+                    <option value="Gym">Gym</option>
+                  </select>
                 </div>
               </div>
             </div>
             <br />
-            <div className='input-group flex-nowrap'>
-              <div className='input-group-prepend'>
-                <span className='input-group-text' id='addon-wrapping'>
+            <div className="input-group flex-nowrap">
+              <div className="input-group-prepend">
+                <span className="input-group-text" id="addon-wrapping">
                   &#191;
                 </span>
               </div>
               <input
-                type='number'
-                name='consumption'
-                value={this.state.consumption}
+                type="number"
+                name="limit"
+                value={this.state.limit}
                 onChange={this.handleInputChange}
-                className='form-control'
-                placeholder='Consumption/Week'
-                aria-label='Username'
-                aria-describedby='addon-wrapping'
+                className="form-control"
+                placeholder="Consumption/Week"
+                aria-label="Username"
+                aria-describedby="addon-wrapping"
               />
             </div>
             <br />
-            <div className='input-group flex-nowrap'>
-              <div className='input-group-prepend'>
-                <span className='input-group-text' id='addon-wrapping'>
+            <div className="input-group flex-nowrap">
+              <div className="input-group-prepend">
+                <span className="input-group-text" id="addon-wrapping">
                   &#36;
                 </span>
               </div>
               <input
-                type='number'
-                name='cost'
+                type="number"
+                name="cost"
                 value={this.state.cost}
                 onChange={this.handleInputChange}
-                className='form-control'
-                placeholder='Cost'
-                aria-label='Username'
-                aria-describedby='addon-wrapping'
+                className="form-control"
+                placeholder="Cost"
+                aria-label="Username"
+                aria-describedby="addon-wrapping"
               />
             </div>
           </div>
           <br />
-          <button type="button" className="btn btn-secondary" onClick={this.handleFormSubmit}>Submit</button>
-
+          <button
+            type="button"
+            className="btn btn-secondary"
+            onClick={this.handleFormSubmit}
+          >
+            Submit
+          </button>
         </div>
+        {this.state.vices.map(vice => {
+          return (
+            <ViceItem
+              key={vice.name}
+              vice={vice}
+              handleButtonClick={this.handleDeleteButtonClick}
+            />
+          );
+        })}
       </>
-    )
+    );
   }
 }
 

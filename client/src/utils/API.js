@@ -20,7 +20,7 @@ export default {
   getVicesForUser: function(email) {
     return axios.get(`/api/vice/${email}`);
   },
-  
+
   createVice: function(vice) {
     return axios.post("/api/vice", vice);
   },
@@ -29,11 +29,20 @@ export default {
     return axios.put("/api/vice", vice);
   },
 
-  deleteVice: function(vice) {
-    return axios.delete("/api/vice", vice);
+  deleteVice: function(id) {
+    return axios.delete("/api/vice/" + id);
   },
 
   createViceEvent: function(vice) {
     return axios.post("/api/vice/event", vice);
+  },
+
+  sendEntryReminders: function() {
+    return axios.get("/api/reminder/entry");
+  },
+
+  sendStatusUpdates: function() {
+    return axios.get("/api/reminder/status");
   }
-}
+
+};

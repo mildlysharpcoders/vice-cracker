@@ -6,7 +6,7 @@ const viceController = {
     console.log("viceController.getVicesForUser ", request.params.email);
     db.Vice.find({ email: request.params.email })
       .then(result => {
-        console.log("Found vices: ", result);
+        console.log(`Found ${result.length} vices`);
         response.json(result);
       })
       .catch(err => {
@@ -20,7 +20,7 @@ const viceController = {
     // Check if vice exists. If it does, don't panic, just return object without creating
     db.Vice.findOne({ email: request.body.email, name: request.body.name })
       .then(result => {
-        if (result.email) {
+        if (result && result.email) {
           console.log("Found existing vice: ", result);
           response.sendStatus(409);
         } else {
@@ -57,9 +57,9 @@ const viceController = {
   },
 
   deleteVice: (request, response) => {
-    console.log("viceController.deleteVice ", request.body);
+    console.log("viceController.deleteVice ", request.params);
     db.Vice.findOneAndDelete({
-      _id: request.body._id
+      _id: request.params.id
     })
       .then(result => {
         console.log("Deleted vice: ", result);
