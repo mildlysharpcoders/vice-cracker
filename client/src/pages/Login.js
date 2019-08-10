@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import { Link } from "react-router-dom";
 import API from "../utils/API";
+import Card from "../components/Card/Card.jsx"
+import CardHeader from "../components/Card/CardHeader.jsx"
+
 
 class Login extends Component {
   constructor(props) {
@@ -47,7 +50,10 @@ class Login extends Component {
 
   render() {
     return (
-      <>
+      
+      <Card>
+        <CardHeader>VICE CRACKER U BETTER FUCKIN WORK </CardHeader>
+      
         {this.renderRedirect()}
         <form>
           Email:
@@ -69,7 +75,7 @@ class Login extends Component {
           <input type="submit" value="Login" onClick={this.handleButtonClick} />
           <Link to="/create">Create New User</Link>
         </form>
-      </>
+      </Card>
     );
   }
 }
