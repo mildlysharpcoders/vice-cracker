@@ -15,13 +15,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import {
-  warningCardHeader,
-  successCardHeader,
-  dangerCardHeader,
-  infoCardHeader,
-  primaryCardHeader
-} from "./../../material-kit-react.jsx";
+
 const cardHeaderStyle = {
   cardHeader: {
     borderRadius: "3px",
@@ -32,17 +26,15 @@ const cardHeaderStyle = {
     border: "0",
     marginBottom: "0",
     color: "rgba(0, 0, 0, 0.87)",
-    background: "CC3AB4"
+    background: "#D087E7",
+    align: "center"
   },
   cardHeaderPlain: {
+    background: "transparent",
     marginLeft: "0px",
     marginRight: "0px"
   },
-  warningCardHeader,
-  successCardHeader,
-  dangerCardHeader,
-  infoCardHeader,
-  primaryCardHeader
+
 };
 
 export default cardHeaderStyle;

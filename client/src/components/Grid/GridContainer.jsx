@@ -16,38 +16,38 @@
 
 */
 import React from "react";
-// nodejs library that concatenates classes
-import classNames from "classnames";
 // nodejs library to set properties for components
 import PropTypes from "prop-types";
+
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
-// @material-ui/icons
+import Grid from "@material-ui/core/Grid";
 
-// core components
-import cardHeaderStyle from "./../../assets/jss/material-kit-react/components/cardHeaderStyle";
+const style = {
+  grid: {
+    marginRight: "-15px",
+    marginLeft: "-15px",
+    width: "auto"
+  }
+};
 
-function CardHeader({ ...props }) {
-  const { classes, className, children, color, plain, ...rest } = props;
-  const cardHeaderClasses = classNames({
-    [classes.cardHeader]: true,
-    [classes[color + "CardHeader"]]: color,
-    [classes.cardHeaderPlain]: plain,
-    [className]: className !== undefined
-  });
+function GridContainer({ ...props }) {
+  const { classes, children, className, ...rest } = props;
   return (
-    <div className={cardHeaderClasses} {...rest}>
+    <Grid container {...rest} className={classes.grid + " " + className}>
       {children}
-    </div>
+    </Grid>
   );
 }
 
-CardHeader.propTypes = {
-  classes: PropTypes.object.isRequired,
-  className: PropTypes.string,
-  color: PropTypes.oneOf(["info"]),
-  plain: PropTypes.bool,
-  children: PropTypes.node
+GridContainer.defaultProps = {
+  className: ""
 };
 
-export default withStyles(cardHeaderStyle)(CardHeader);
+GridContainer.propTypes = {
+  classes: PropTypes.object.isRequired,
+  children: PropTypes.node,
+  className: PropTypes.string
+};
+
+export default withStyles(style)(GridContainer);

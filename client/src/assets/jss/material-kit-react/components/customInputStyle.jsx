@@ -20,7 +20,7 @@ import {
   dangerColor,
   successColor,
   defaultFont
-} from "assets/jss/material-kit-react.jsx";
+} from "./../../material-kit-react.jsx";
 
 const customInputStyle = {
   disabled: {

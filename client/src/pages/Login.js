@@ -4,7 +4,10 @@ import { Link } from "react-router-dom";
 import API from "../utils/API";
 import Card from "../components/Card/Card.jsx";
 import CardHeader from "../components/Card/CardHeader.jsx";
-import CardBody, {infoCardHeader} from "../components/Card/CardBody.jsx";
+import CardBody from "../components/Card/CardBody.jsx";
+import Button from "../components/CustomButtons/Button.jsx";
+import GridItem from "../components/Grid/GridItem.jsx";
+import CustomInput from "../components/CustomInput/CustomInput.jsx";
 
 
 
@@ -55,31 +58,38 @@ class Login extends Component {
     return (
       
       <Card>
-        <CardHeader>VICE CRACKER U BETTER FUCKING WORK</CardHeader>
+        <CardHeader>VICE CRACKER</CardHeader>
       <CardBody>
       
         {this.renderRedirect()}
-
-        <form>
-          Email:
-          <input
-            type="text"
-            name="email"
-            value={this.state.email}
-            onChange={this.handleInputChange}
-          />
+        
+  
+        <GridItem xs={12} sm={12} md={4}>
+              <CustomInput
+                  labelText="Username"
+                  id="float"
+                  formControlProps={{
+                      fullWidth: true
+                  }}
+              />
+          </GridItem>
           <br />
-          Password:
-          <input
-            type="password"
-            name="password"
-            value={this.state.password}
-            onChange={this.handleInputChange}
-          />
+          <GridItem xs={12} sm={12} md={4}>
+              <CustomInput
+                  labelText="Password"
+                  id="float"
+                  formControlProps={{
+                      fullWidth: true
+                  }}
+              />
+          </GridItem>
+    
+          
           <br />
-          <input type="submit" value="Login" onClick={this.handleButtonClick} />
+          <Button color="primary" round>Log In</Button>
+          <br />
           <Link to="/create">Create New User</Link>
-        </form>
+     
         </CardBody>
         </Card>
    
