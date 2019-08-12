@@ -10,11 +10,11 @@ import GridItem from "../components/Grid/GridItem.jsx";
 import CustomInput from "../components/CustomInput/CustomInput.jsx";
 import GridContainer from "../components/Grid/GridContainer.jsx"
 
-const errors = function validate(
+function validate(
   name,
   email,
   password,
-  lastName,
+  lastname,
   address,
   city,
   state,
@@ -31,7 +31,7 @@ const errors = function validate(
   if (name.length === 0) {
     errors.push("First name can't be empty")
   }
-  if (lastName.length === 0) {
+  if (lastname.length === 0) {
     errors.push("Last name can't be empty")
   }
 
@@ -114,21 +114,21 @@ class CreateUser extends Component {
       phone: this.state.phone.trim()
     }
 
-    // const errors = validate(
-    //   name,
-    //   email,
-    //   password,
-    //   lastName,
-    //   city,
-    //   state,
-    //   address,
-    //   zipcode,
-    //   phone
-    // )
-    // if (errors.length > 0) {
-    //   this.setState({ errors })
-    //   return
-    // }
+    const errors = validate(
+      name,
+      email,
+      password,
+      lastname,
+      city,
+      state,
+      address,
+      zipcode,
+      phone
+    )
+    if (errors.length > 0) {
+      this.setState({ errors })
+      return
+    }
 
     API.createUser(createUserInfo)
       .then(response => {
