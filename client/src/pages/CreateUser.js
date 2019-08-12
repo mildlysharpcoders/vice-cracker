@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import API from '../utils/API'
-import ReactDOM from 'react-dom'
+// import ReactDOM from 'react-dom'
 import { Link } from 'react-router-dom';
 import CardHeader from "../components/Card/CardHeader.jsx";
 import Card from "../components/Card/Card.jsx"
@@ -103,15 +103,15 @@ class CreateUser extends Component {
   handleButtonClick = event => {
     event.preventDefault();
     let createUserInfo = {
-      name: this.state.name,
-      lastname: this.state.lastname,
-      email: this.state.email,
-      city: this.state.city,
-      state: this.state.state,
-      address: this.state.address,
-      password: this.state.password,
-      zip: this.state.zip,
-      phone: this.state.phone
+      name: this.state.name.trim(),
+      lastname: this.state.lastname.trim(),
+      email: this.state.email.trim(),
+      city: this.state.city.trim(),
+      state: this.state.state.trim(),
+      address: this.state.address.trim(),
+      password: this.state.password.trim(),
+      zip: this.state.zip.trim(),
+      phone: this.state.phone.trim()
     }
 
     // const errors = validate(
