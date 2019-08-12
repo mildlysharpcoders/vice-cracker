@@ -28,6 +28,7 @@ const cardHeaderStyle = {
     marginBottom: "0",
     color: "rgba(0, 0, 0, 0.87)",
     background: "#D087E7",
+    fontFamily: "'Lexend Mega', sans-serif;"
     
     
   },

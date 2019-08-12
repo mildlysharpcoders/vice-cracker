@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import API from "../utils/API";
-// import ReactDOM from 'react-dom'
-import { Link } from "react-router-dom";
+import React, { Component } from 'react'
+import API from '../utils/API'
+import ReactDOM from 'react-dom'
+import { Link } from 'react-router-dom';
 import CardHeader from "../components/Card/CardHeader.jsx";
 import Card from "../components/Card/Card.jsx";
 import CardBody from "../components/Card/CardBody.jsx";
