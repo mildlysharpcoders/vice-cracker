@@ -33,8 +33,8 @@ class Login extends Component {
     event.preventDefault()
     console.log('Login Button Clicked')
     let loginInfo = {
-      username: this.state.email,
-      password: this.state.password
+      username: this.state.email.trim(),
+      password: this.state.password.trim()
     }
     console.log('Login info sent:', loginInfo)
     API.login(loginInfo)

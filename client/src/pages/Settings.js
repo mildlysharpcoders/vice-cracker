@@ -48,10 +48,10 @@ class Settings extends Component {
     console.log(this.props);
     let vice = {
       email: this.props.user.email,
-      name: this.state.name,
-      betteroption: this.state.betteroption,
-      limit: this.state.limit,
-      cost: this.state.cost,
+      name: this.state.name.trim(),
+      betteroption: this.state.betteroption.trim(),
+      limit: this.state.limit.trim(),
+      cost: this.state.cost.trim(),
       weekly: [],
       monthly: []
     };
