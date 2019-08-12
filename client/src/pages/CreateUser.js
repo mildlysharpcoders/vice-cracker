@@ -103,7 +103,7 @@ class CreateUser extends Component {
   handleButtonClick = event => {
     event.preventDefault();
     let createUserInfo = {
-      name: this.state.name.trim(),
+      firstname: this.state.firstname.trim(),
       lastname: this.state.lastname.trim(),
       email: this.state.email.trim(),
       city: this.state.city.trim(),
