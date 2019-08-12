@@ -114,21 +114,21 @@ class CreateUser extends Component {
       phone: this.state.phone.trim()
     }
 
-    const errors = validate(
-      name,
-      email,
-      password,
-      lastname,
-      city,
-      state,
-      address,
-      zipcode,
-      phone
-    )
-    if (errors.length > 0) {
-      this.setState({ errors })
-      return
-    }
+    // const errors = validate(
+    //   name,
+    //   email,
+    //   password,
+    //   lastname,
+    //   city,
+    //   state,
+    //   address,
+    //   zipcode,
+    //   phone
+    // )
+    // if (errors.length > 0) {
+    //   this.setState({ errors })
+    //   return
+    // }
 
     API.createUser(createUserInfo)
       .then(response => {
