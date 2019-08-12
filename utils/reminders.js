@@ -4,6 +4,7 @@ const db = require("../models");
 const twilio = require("./twilio");
 const { getWeeklyConsumption } = require("./viceUtils");
 const { sendRecipe } = require("./recipe");
+const { sendGym } = require("./yelp");
 
 const ENTRY_TIME_HOUR = process.env.ENTRY_TIME_HOUR || 20;
 const ENTRY_TIME_MINUTE = process.env.ENTRY_TIME_MINUTE || 0;
@@ -71,7 +72,7 @@ function sendStatusUpdate(user) {
     .then(result => {
       if (result) {
         result.forEach(vice => {
-          sendStatus(user.phone, vice);
+          sendStatus(vice, user);
         });
       }
     })
@@ -81,20 +82,25 @@ function sendStatusUpdate(user) {
     });
 }
 
-function sendStatus(phone, vice) {
+function sendStatus(vice, user) {
   let consumption = getWeeklyConsumption(vice);
   if (consumption < vice.limit) {
-    let message = `Great work! You're doing well with your ${vice.name} consumption. Here's to a healthier life! The Vice Cracker.`;
-    twilio.sendTextMessage(message, phone);
+    let message = `Great work! You're doing well with your ${
+      vice.name
+    } consumption. Here's to a healthier life! The Vice Cracker.`;
+    twilio.sendTextMessage(message, user.phone);
   } else {
-    sendHealthyAlternative(phone, vice);
+    sendHealthyAlternative(vice, user);
   }
 }
 
-function sendHealthyAlternative(phone, vice) {
-  switch(vice.betteroption) {
+function sendHealthyAlternative(vice, user) {
+  switch (vice.betteroption) {
     case "Recipe":
-      sendRecipe(phone, vice);
+      sendRecipe(vice, user);
+      break;
+    case "Gym":
+      sendGym(vice, user);
       break;
     default:
       // Hmmmmmm. Need to add some code to handle new betteroption

@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import API from '../utils/API'
+<<<<<<< HEAD
 import ReactDOM from 'react-dom'
+=======
+// import ReactDOM from 'react-dom'
+>>>>>>> d6bbc96c2f63bcf7474b6193bef28eec4895f7d1
 import { Link } from 'react-router-dom';
 import CardHeader from "../components/Card/CardHeader.jsx";
 import Card from "../components/Card/Card.jsx"
@@ -14,7 +18,7 @@ function validate(
   name,
   email,
   password,
-  lastName,
+  lastname,
   address,
   city,
   state,
@@ -31,7 +35,7 @@ function validate(
   if (name.length === 0) {
     errors.push("First name can't be empty")
   }
-  if (lastName.length === 0) {
+  if (lastname.length === 0) {
     errors.push("Last name can't be empty")
   }
 
@@ -87,7 +91,7 @@ class CreateUser extends Component {
     address: '',
     city: '',
     state: '',
-    zip: '',
+    zipcode: '',
     phone: '',
     errors: []
   }
@@ -103,22 +107,22 @@ class CreateUser extends Component {
   handleButtonClick = event => {
     event.preventDefault();
     let createUserInfo = {
-      name: this.state.name,
-      lastname: this.state.lastname,
-      email: this.state.email,
-      city: this.state.city,
-      state: this.state.state,
-      address: this.state.address,
-      password: this.state.password,
-      zip: this.state.zip,
-      phone: this.state.phone
+      firstname: this.state.firstname.trim(),
+      lastname: this.state.lastname.trim(),
+      email: this.state.email.trim(),
+      city: this.state.city.trim(),
+      state: this.state.state.trim(),
+      address: this.state.address.trim(),
+      password: this.state.password.trim(),
+      zipcode: this.state.zipcode.trim(),
+      phone: this.state.phone.trim()
     }
 
     // const errors = validate(
     //   name,
     //   email,
     //   password,
-    //   lastName,
+    //   lastname,
     //   city,
     //   state,
     //   address,
@@ -160,8 +164,14 @@ class CreateUser extends Component {
                   id="float"
                   name='firstname'
                   ref={nameInput => (this._nameInput = nameInput)}
-                  value={this.state.firstname}
-                  onChange={this.handleInputChange}
+                  // value={this.state.firstname}
+                // onChange={this.handleInputChange}
+                inputProps={{
+                  type: 'firstname',
+                  value: this.state.firstname,
+                  name: 'firstname',
+                  onChange: event => this.handleInputChange(event)
+                }}
                 />
               </GridItem>
 
@@ -172,8 +182,14 @@ class CreateUser extends Component {
                   id="float"
                   name='lastname'
                   ref={lastnameInput => (this._lastnameInput = lastnameInput)}
-                  value={this.state.lastname}
-                  onChange={this.handleInputChange}
+                 // value={this.state.lastname}
+                // onChange={this.handleInputChange}
+                inputProps={{
+                  type: 'lastname',
+                  value: this.state.lastname,
+                  name: 'lastname',
+                  onChange: event => this.handleInputChange(event)
+                }}
                 />
               </GridItem>
 
@@ -186,8 +202,14 @@ class CreateUser extends Component {
                   id="float"
                   name='email'
                   ref={emailInput => (this._emailInput = emailInput)}
-                  value={this.state.email}
-                  onChange={this.handleInputChange}
+                 // value={this.state.email}
+                // onChange={this.handleInputChange}
+                inputProps={{
+                  type: 'email',
+                  value: this.state.email,
+                  name: 'email',
+                  onChange: event => this.handleInputChange(event)
+                }}
                 />
               </GridItem>
 
@@ -198,8 +220,14 @@ class CreateUser extends Component {
                   id="float"
                   name='password'
                   ref={passwordInput => (this._passwordInput = passwordInput)}
-                  value={this.state.password}
-                  onChange={this.handleInputChange}
+                  // value={this.state.password}
+                // onChange={this.handleInputChange}
+                inputProps={{
+                  type: 'password',
+                  value: this.state.password,
+                  name: 'password',
+                  onChange: event => this.handleInputChange(event)
+                }}
                 />
               </GridItem>
 
@@ -210,8 +238,14 @@ class CreateUser extends Component {
                   id="float"
                   name='address'
                   ref={addressInput => (this._addressInput = addressInput)}
-                  value={this.state.address}
-                  onChange={this.handleInputChange}
+                 // value={this.state.address}
+                // onChange={this.handleInputChange}
+                inputProps={{
+                  type: 'text',
+                  value: this.state.address,
+                  name: 'address',
+                  onChange: event => this.handleInputChange(event)
+                }}
                 />
               </GridItem>
 
@@ -223,8 +257,14 @@ class CreateUser extends Component {
                   id="float"
                   name='city'
                   ref={cityInput => (this._cityInput = cityInput)}
-                  value={this.state.city}
-                  onChange={this.handleInputChange}
+                   // value={this.state.city}
+                // onChange={this.handleInputChange}
+                inputProps={{
+                  type: 'text',
+                  value: this.state.city,
+                  name: 'city',
+                  onChange: event => this.handleInputChange(event)
+                }}
                 />
               </GridItem>
 
@@ -236,8 +276,14 @@ class CreateUser extends Component {
                   id="float"
                   name='state'
                   ref={stateInput => (this._stateInput = stateInput)}
-                  value={this.state.state}
-                  onChange={this.handleInputChange}
+                 // value={this.state.state}
+                // onChange={this.handleInputChange}
+                inputProps={{
+                  type: 'text',
+                  value: this.state.state,
+                  name: 'state',
+                  onChange: event => this.handleInputChange(event)
+                }}
                 />
               </GridItem>
 
@@ -246,10 +292,16 @@ class CreateUser extends Component {
                   type='text'
                   labelText="ZIP"
                   id="float"
-                  name='zip'
+                  name='zipcode'
                   ref={zipInput => (this._zipInput = zipInput)}
-                  value={this.state.zip}
-                  onChange={this.handleInputChange}
+                   // value={this.state.zip}
+                // onChange={this.handleInputChange}
+                inputProps={{
+                  type: 'text',
+                  value: this.state.zipcode,
+                  name: 'zipcode',
+                  onChange: event => this.handleInputChange(event)
+                }}
                 />
               </GridItem>
 
@@ -260,14 +312,20 @@ class CreateUser extends Component {
                   id="float"
                   name='phone'
                   ref={phoneInput => (this._phoneInput = phoneInput)}
-                  value={this.state.phone}
-                  onChange={this.handleInputChange}
+                  // value={this.state.phone}
+                // onChange={this.handleInputChange}
+                inputProps={{
+                  type: 'text',
+                  value: this.state.phone,
+                  name: 'phone',
+                  onChange: event => this.handleInputChange(event)
+                }}
                 />
               </GridItem>
             </GridContainer>
 
 
-            <Button color="primary" round>Create User</Button>
+            <Button color="primary" round onClick={event => this.handleButtonClick(event)}>Create User</Button>
           </form>
           <Link to='/'>Login</Link>
 

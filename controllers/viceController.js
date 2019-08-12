@@ -5,6 +5,7 @@ const viceController = {
   getVicesForUser: (request, response) => {
     console.log("viceController.getVicesForUser ", request.params.email);
     db.Vice.find({ email: request.params.email })
+      .sort({ name: 1 })
       .then(result => {
         console.log(`Found ${result.length} vices`);
         response.json(result);

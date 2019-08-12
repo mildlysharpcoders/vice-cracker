@@ -13,7 +13,7 @@ const listOfTags = [
   "salad"
 ];
 
-function sendRecipe(phone, vice) {
+function sendRecipe(vice, user) {
   const randomTag = listOfTags[Math.floor(Math.random() * listOfTags.length)];
 
   let req = unirest(
@@ -42,7 +42,7 @@ function sendRecipe(phone, vice) {
         res.body.recipes[0].title +
         ": " +
         res.body.recipes[0].sourceUrl;
-        twilio.sendTextMessage(message, phone);
+        twilio.sendTextMessage(message, user.phone);
       }
   });
 }

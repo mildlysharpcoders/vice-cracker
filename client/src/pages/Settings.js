@@ -48,10 +48,10 @@ class Settings extends Component {
     console.log(this.props);
     let vice = {
       email: this.props.user.email,
-      name: this.state.name,
-      betteroption: this.state.betteroption,
-      limit: this.state.limit,
-      cost: this.state.cost,
+      name: this.state.name.trim(),
+      betteroption: this.state.betteroption.trim(),
+      limit: this.state.limit.trim(),
+      cost: this.state.cost.trim(),
       weekly: [],
       monthly: []
     };
@@ -77,6 +77,18 @@ class Settings extends Component {
   handleDeleteButtonClick = vice => {
     console.log("Delete Vice Button Clicked for vice:", vice.name);
     API.deleteVice(vice._id)
+      .then(response => {
+        console.log(response.data);
+        this.loadVices();
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
+  handleIncrementButtonClick = vice => {
+    console.log("Increment Vice Button Clicked for vice:", vice);
+    API.createViceEvent(vice)
       .then(response => {
         console.log(response.data);
         this.loadVices();
@@ -180,7 +192,7 @@ class Settings extends Component {
             <ViceItem
               key={vice.name}
               vice={vice}
-              handleButtonClick={this.handleDeleteButtonClick}
+              handleButtonClick={this.handleIncrementButtonClick}
             />
           );
         })}
