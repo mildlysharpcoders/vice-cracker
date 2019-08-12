@@ -87,7 +87,7 @@ class CreateUser extends Component {
     address: '',
     city: '',
     state: '',
-    zip: '',
+    zipcode: '',
     phone: '',
     errors: []
   }
@@ -110,7 +110,7 @@ class CreateUser extends Component {
       state: this.state.state.trim(),
       address: this.state.address.trim(),
       password: this.state.password.trim(),
-      zip: this.state.zip.trim(),
+      zipcode: this.state.zipcode.trim(),
       phone: this.state.phone.trim()
     }
 
@@ -288,14 +288,14 @@ class CreateUser extends Component {
                   type='text'
                   labelText="ZIP"
                   id="float"
-                  name='zip'
+                  name='zipcode'
                   ref={zipInput => (this._zipInput = zipInput)}
                    // value={this.state.zip}
                 // onChange={this.handleInputChange}
                 inputProps={{
                   type: 'text',
-                  value: this.state.zip,
-                  name: 'zip',
+                  value: this.state.zipcode,
+                  name: 'zipcode',
                   onChange: event => this.handleInputChange(event)
                 }}
                 />
