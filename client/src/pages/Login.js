@@ -116,7 +116,9 @@ class Login extends Component {
             </Button>
             <br />
             <br />
-            <Link to='/create'>Create New User</Link>
+            <Button color='info' round>
+              <Link to='/create'>Create New User</Link>
+            </Button>
           </form>
         </CardBody>
       </Card>
