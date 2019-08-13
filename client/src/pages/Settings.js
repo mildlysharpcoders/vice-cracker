@@ -218,6 +218,7 @@ class Settings extends Component {
                 key={vice.name}
                 vice={vice}
                 handleButtonClick={this.handleIncrementButtonClick}
+                handleDeleteButtonClick={this.handleDeleteButtonClick}
               />
             )
           })}
