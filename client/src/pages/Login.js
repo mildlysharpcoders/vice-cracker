@@ -9,8 +9,6 @@ import Button from '../components/CustomButtons/Button.jsx'
 import GridItem from '../components/Grid/GridItem.jsx'
 import CustomInput from '../components/CustomInput/CustomInput.jsx'
 
-
-
 class Login extends Component {
   constructor (props) {
     super(props)
@@ -19,7 +17,6 @@ class Login extends Component {
       password: ''
     }
   }
-
 
   handleInputChange = event => {
     const { name, value } = event.target
@@ -48,6 +45,14 @@ class Login extends Component {
       })
   }
 
+  submit = event => {
+    event.preventDefault()
+    this.props.saveData({
+      username: this.state.email.trim(),
+      password: this.state.password.trim()
+    })
+  }
+
   renderRedirect = () => {
     if (this.props.user.email) {
       return <Redirect to='/vices' />
@@ -60,47 +65,59 @@ class Login extends Component {
         <CardHeader>VICE CRACKER</CardHeader>
         <CardBody>
           {this.renderRedirect()}
+          <form onSubmit={this.submit}>
+            <GridItem xs={12} sm={12} md={4}>
+              <CustomInput
+                labelText='Username'
+                id='float'
+                formControlProps={{
+                  fullWidth: true
+                }}
+                // value={this.state.email}
+                inputProps={{
+                  type: 'username',
+                  value: this.state.email,
+                  name: 'email',
+                  onChange: event => this.handleInputChange(event)
+                }}
+              />
+            </GridItem>
+            <GridItem xs={12} sm={12} md={4}>
+              <CustomInput
+                labelText='Password'
+                id='float'
+                inputProps={{
+                  type: 'password',
+                  value: this.state.password,
+                  name: 'password',
+                  onChange: event => this.handleInputChange(event)
+                }}
+                formControlProps={{
+                  fullWidth: true
+                }}
+                // value={this.state.password}
+              />
+            </GridItem>
 
-          <GridItem xs={12} sm={12} md={4}>
-            <CustomInput
-              labelText='Username'
-              id='float'
-              formControlProps={{
-                fullWidth: true
-              }}
-              // value={this.state.email}
-              inputProps={{
-                type: 'username',
-                value: this.state.email,
-                name: 'email',
-                onChange: (event) => this.handleInputChange(event)
-              }}
-            />
-          </GridItem>
-          <GridItem xs={12} sm={12} md={4}>
-            <CustomInput
-              labelText='Password'
-              id='float'
-              inputProps={{
-                type: 'password',
-                value: this.state.password,
-                name: 'password',
-                onChange: (event) => this.handleInputChange(event)
-              }}
-              formControlProps={{
-                fullWidth: true
-              }}
-              // value={this.state.password}
-            />
-          </GridItem>
-
-          <br />
-          <Button color='primary' round onClick={(event) => this.handleButtonClick(event)}>
-            Log In
-          </Button>
-          <br />
-          <br />
-          <Link to='/create'>Create New User</Link>
+            <br />
+            <Button
+              type='submit'
+              label='YouSuck'
+              color='primary'
+              // inputProps={{
+              //   type: 'submit',
+              //   value: 'Submit',
+              //   name: 'submit'
+              // }}
+              round
+              onClick={event => this.handleButtonClick(event)}
+            >
+              Log In
+            </Button>
+            <br />
+            <br />
+            <Link to='/create'>Create New User</Link>
+          </form>
         </CardBody>
       </Card>
     )
