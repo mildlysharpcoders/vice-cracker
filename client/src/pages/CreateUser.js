@@ -103,18 +103,6 @@ class CreateUser extends Component {
   handleButtonClick = event => {
     event.preventDefault();
     let createUserInfo = {
-<<<<<<< HEAD
-      firstname: this.state.firstname.trim(),
-      lastname: this.state.lastname.trim(),
-      email: this.state.email.trim(),
-      city: this.state.city.trim(),
-      state: this.state.state.trim(),
-      address: this.state.address.trim(),
-      password: this.state.password.trim(),
-      zipcode: this.state.zipcode.trim(),
-      phone: this.state.phone.trim()
-    }
-=======
       firstname: this.state.firstname,
       lastname: this.state.lastname,
       email: this.state.email,
@@ -134,7 +122,6 @@ class CreateUser extends Component {
       // zipcode: this.state.zipcode.trim(),
       // phone: this.state.phone.trim()
         };
->>>>>>> c29d8e4c758528a2e08a9b4672fdeea0fbfee62d
 
     // const errors = validate(
     //   name,
