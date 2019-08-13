@@ -23,6 +23,7 @@ function ViceItem(props) {
   return (
     <div>
       <h3>Your Vice: {props.vice.name}</h3>
+      <p>Better Option: {props.vice.betteroption}</p>
       <p>Consumption this week: {weeklyCount}/{props.vice.limit}</p>
       <p>Consumption this month: {monthlyCount}</p>
       <p>Cost this month: ${(monthlyCount * props.vice.cost).toFixed(2)}</p>

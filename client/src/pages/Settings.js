@@ -147,7 +147,7 @@ class Settings extends Component {
             <GridItem xs={12} sm={12} md={12}>
               <Dropdown
                 buttonText={this.state.betteroption}
-                dropdownList={['Gym', 'Recipe']}
+                dropdownList={['Gym', 'Recipe', "Health Food Store"]}
                 onClick={this.handleMenuClick}
                 buttonProps={{
                   round: true,
@@ -217,8 +217,7 @@ class Settings extends Component {
               <ViceItem
                 key={vice.name}
                 vice={vice}
-                // handleButtonClick={this.handleIncrementButtonClick}
-                onClick={event => this.handleIncrementButtonClick(event)}
+                handleButtonClick={this.handleIncrementButtonClick}
               />
             )
           })}

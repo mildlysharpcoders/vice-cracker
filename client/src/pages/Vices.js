@@ -46,7 +46,7 @@ class Vices extends Component {
   };
 
   handleButtonClick = vice => {
-    console.log("Increment Vice Button Clicked for vice:", vice);
+    console.log("Increment Vice Button Clicked for vice:", vice.name);
     API.createViceEvent(vice)
       .then(response => {
         console.log(response.data);
