@@ -1,177 +1,163 @@
-import React, { Component } from 'react'
-import API from '../utils/API'
+import React, { Component } from "react";
+import API from "../utils/API";
 // import ReactDOM from 'react-dom'
-import { Link } from 'react-router-dom'
-import CardHeader from '../components/Card/CardHeader.jsx'
-import Card from '../components/Card/Card.jsx'
-import CardBody from '../components/Card/CardBody.jsx'
-import Button from '../components/CustomButtons/Button.jsx'
-import GridItem from '../components/Grid/GridItem.jsx'
-import CustomInput from '../components/CustomInput/CustomInput.jsx'
-import GridContainer from '../components/Grid/GridContainer.jsx'
+// import { Link } from "react-router-dom";
+import CardHeader from "../components/Card/CardHeader.jsx";
+import Card from "../components/Card/Card.jsx";
+import CardBody from "../components/Card/CardBody.jsx";
+import Button from "../components/CustomButtons/Button.jsx";
+import GridItem from "../components/Grid/GridItem.jsx";
+import CustomInput from "../components/CustomInput/CustomInput.jsx";
+import GridContainer from "../components/Grid/GridContainer.jsx";
 
-function validate (
-  name,
-  email,
-  password,
-  lastname,
-  address,
-  city,
-  state,
-  zipcode,
-  phone
-) {
-  // we are going to store errors for all fields
-  // in a signle array
-  const errors = []
-  var strongRegex = new RegExp(
-    '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})'
-  )
+//   var strongRegex = new RegExp(
+//     '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})'
+//   )
+//   if (!password.match(strongRegex)) {
+//     errors.push(
+//       'Email should be at least 8 charcters long, contain at least one uppercase letter, contain at least one lowercase letter, contain at least one special character, and contain at least one number.'
+//     )
+//   }
 
-  if (name.length === 0) {
-    errors.push("First name can't be empty")
-  }
-  if (lastname.length === 0) {
-    errors.push("Last name can't be empty")
-  }
-
-  if (address.length === 0) {
-    errors.push("Address can't be empty")
-  }
-
-  if (city.length === 0) {
-    errors.push("City can't be empty")
-  }
-
-  if (state.length === 0) {
-    errors.push("State can't be empty")
-  }
-
-  if (zipcode.length === 0) {
-    errors.push("Zipcode can't be empty")
-  }
-
-  if (phone.length === 0) {
-    errors.push("Phone can't be empty")
-  }
-
-  if (!password.match(strongRegex)) {
-    errors.push(
-      'Email should be at least 8 charcters long, contain at least one uppercase letter, contain at least one lowercase letter, contain at least one special character, and contain at least one number.'
-    )
-  }
-
-  if (email.length < 5) {
-    errors.push('Email should be at least 5 charcters long')
-  }
-  if (email.split('').filter(x => x === '@').length !== 1) {
-    errors.push('Email should contain a @')
-  }
-  if (email.indexOf('.') === -1) {
-    errors.push('Email should contain at least one dot')
-  }
-
-  // return errors
-  if (errors.length > 0) {
-    this.setState({ errors })
-  }
-}
+//   if (email.length < 5) {
+//     errors.push('Email should be at least 5 charcters long')
+//   }
+//   if (email.split('').filter(x => x === '@').length !== 1) {
+//     errors.push('Email should contain a @')
+//   }
+//   if (email.indexOf('.') === -1) {
+//     errors.push('Email should contain at least one dot')
+//   }
 
 class CreateUser extends Component {
   state = {
-    password: '',
-    email: '',
-    firstname: '',
-    lastname: '',
-    address: '',
-    city: '',
-    state: '',
-    zipcode: '',
-    phone: '',
-    errors: []
-  }
+    password: "",
+    email: "",
+    firstname: "",
+    lastname: "",
+    address: "",
+    city: "",
+    state: "",
+    zipcode: "",
+    phone: "",
+    error: ""
+  };
 
   handleInputChange = event => {
-    const { name, value } = event.target
+    const { name, value } = event.target;
     // console.log(name, value);
     this.setState({
       [name]: value
-    })
-  }
+    });
+  };
 
-  handleButtonClick = event => {
-    event.preventDefault()
-    let createUserInfo = {
-      firstname: this.state.firstname,
-      lastname: this.state.lastname,
-      email: this.state.email,
-      city: this.state.city,
-      state: this.state.state,
-      address: this.state.address,
-      password: this.state.password,
-      zipcode: this.state.zipcode,
-      phone: this.state.phone
-      // firstname: this.state.firstname.trim(),
-      // lastname: this.state.lastname.trim(),
-      // email: this.state.email.trim(),
-      // city: this.state.city.trim(),
-      // state: this.state.state.trim(),
-      // address: this.state.address.trim(),
-      // password: this.state.password.trim(),
-      // zipcode: this.state.zipcode.trim(),
-      // phone: this.state.phone.trim()
+  validate = () => {
+    // Validate stuff here!
+    if (this.state.firstname.length === 0) {
+      this.setState({ error: "First Name must not be blank" });
+      return false;
     }
 
-    // const errors = validate(
-    //   name,
-    //   email,
-    //   password,
-    //   lastname,
-    //   city,
-    //   state,
-    //   address,
-    //   zipcode,
-    //   phone
-    // )
-    // if (errors.length > 0) {
-    //   this.setState({ errors })
-    //   return
-    // }
+    if (this.state.lastname.length === 0) {
+      this.setState({ error: "Last Name must not be blank" });
+      return false;
+    }
 
-    API.createUser(createUserInfo)
-      .then(response => {
-        console.log('Created user info: ' + response.data)
-        // this.props.handleUserUpdate(response.data);
-      })
-      .catch(error => {
-        console.log(error)
-      })
-  }
+    if (this.state.email.length === 0) {
+      this.setState({ error: "Email must not be blank" });
+      return false;
+    }
 
-  render () {
-    const { errors } = this.state
+    if (this.state.password.length === 0) {
+      this.setState({ error: "Password must not be blank" });
+      return false;
+    }
+
+    if (this.state.address.length === 0) {
+      this.setState({ error: "Address must not be blank" });
+      return false;
+    }
+
+    if (this.state.city.length === 0) {
+      this.setState({ error: "City must not be blank" });
+      return false;
+    }
+
+    if (this.state.state.length === 0) {
+      this.setState({ error: "State must not be blank" });
+      return false;
+    }
+
+    if (this.state.zipcode.length === 0) {
+      this.setState({ error: "Zip Code must not be blank" });
+      return false;
+    }
+
+    if (this.state.phone.length === 0) {
+      this.setState({ error: "Phone must not be blank" });
+      return false;
+    }
+
+    this.setState({ error: "" });
+    return true;
+  };
+
+  handleButtonClick = event => {
+    event.preventDefault();
+
+    if (this.validate()) {
+      let createUserInfo = {
+        firstname: this.state.firstname,
+        lastname: this.state.lastname,
+        email: this.state.email,
+        city: this.state.city,
+        state: this.state.state,
+        address: this.state.address,
+        password: this.state.password,
+        zipcode: this.state.zipcode,
+        phone: this.state.phone
+        // firstname: this.state.firstname.trim(),
+        // lastname: this.state.lastname.trim(),
+        // email: this.state.email.trim(),
+        // city: this.state.city.trim(),
+        // state: this.state.state.trim(),
+        // address: this.state.address.trim(),
+        // password: this.state.password.trim(),
+        // zipcode: this.state.zipcode.trim(),
+        // phone: this.state.phone.trim()
+      };
+      API.createUser(createUserInfo)
+        .then(response => {
+          console.log("Created user info: " + response.data);
+          this.setState({ error: "User Created" });
+        })
+        .catch(error => {
+          console.log(error);
+          this.setState({ error: "Invalid username/password" });
+        });
+    }
+  };
+
+  render() {
     return (
       <Card>
         <CardHeader>CREATE YOUR PROFILE</CardHeader>
         <CardBody>
           <form onSubmit={this.handleSubmit}>
-            {errors.map(error => (
-              <p key={error}>Error: {error}</p>
-            ))}
             <GridContainer>
               <GridItem xs={12} sm={12} md={6}>
                 <CustomInput
-                  type='text'
-                  labelText='First Name'
-                  id='float'
-                  name='firstname'
+                  type="text"
+                  labelText="First Name"
+                  id="float"
+                  name="firstname"
                   ref={nameInput => (this._nameInput = nameInput)}
                   // value={this.state.firstname}
                   // onChange={this.handleInputChange}
                   inputProps={{
-                    type: 'firstname',
+                    type: "firstname",
                     value: this.state.firstname,
-                    name: 'firstname',
+                    name: "firstname",
                     onChange: event => this.handleInputChange(event)
                   }}
                 />
@@ -179,17 +165,17 @@ class CreateUser extends Component {
 
               <GridItem xs={12} sm={12} md={6}>
                 <CustomInput
-                  type='text'
-                  labelText='Last Name'
-                  id='float'
-                  name='lastname'
+                  type="text"
+                  labelText="Last Name"
+                  id="float"
+                  name="lastname"
                   ref={lastnameInput => (this._lastnameInput = lastnameInput)}
                   // value={this.state.lastname}
                   // onChange={this.handleInputChange}
                   inputProps={{
-                    type: 'lastname',
+                    type: "lastname",
                     value: this.state.lastname,
-                    name: 'lastname',
+                    name: "lastname",
                     onChange: event => this.handleInputChange(event)
                   }}
                 />
@@ -197,17 +183,17 @@ class CreateUser extends Component {
 
               <GridItem xs={12} sm={12} md={6}>
                 <CustomInput
-                  type='text'
-                  labelText='Email'
-                  id='float'
-                  name='email'
+                  type="text"
+                  labelText="Email"
+                  id="float"
+                  name="email"
                   ref={emailInput => (this._emailInput = emailInput)}
                   // value={this.state.email}
                   // onChange={this.handleInputChange}
                   inputProps={{
-                    type: 'email',
+                    type: "email",
                     value: this.state.email,
-                    name: 'email',
+                    name: "email",
                     onChange: event => this.handleInputChange(event)
                   }}
                 />
@@ -215,17 +201,17 @@ class CreateUser extends Component {
 
               <GridItem xs={12} sm={12} md={6}>
                 <CustomInput
-                  type='password'
-                  labelText='Password'
-                  id='float'
-                  name='password'
+                  type="password"
+                  labelText="Password"
+                  id="float"
+                  name="password"
                   ref={passwordInput => (this._passwordInput = passwordInput)}
                   // value={this.state.password}
                   // onChange={this.handleInputChange}
                   inputProps={{
-                    type: 'password',
+                    type: "password",
                     value: this.state.password,
-                    name: 'password',
+                    name: "password",
                     onChange: event => this.handleInputChange(event)
                   }}
                 />
@@ -233,17 +219,17 @@ class CreateUser extends Component {
 
               <GridItem xs={12} sm={12} md={6}>
                 <CustomInput
-                  type='text'
-                  labelText='Street Address'
-                  id='float'
-                  name='address'
+                  type="text"
+                  labelText="Street Address"
+                  id="float"
+                  name="address"
                   ref={addressInput => (this._addressInput = addressInput)}
                   // value={this.state.address}
                   // onChange={this.handleInputChange}
                   inputProps={{
-                    type: 'text',
+                    type: "text",
                     value: this.state.address,
-                    name: 'address',
+                    name: "address",
                     onChange: event => this.handleInputChange(event)
                   }}
                 />
@@ -251,17 +237,17 @@ class CreateUser extends Component {
 
               <GridItem xs={12} sm={12} md={6}>
                 <CustomInput
-                  type='text'
-                  labelText='City'
-                  id='float'
-                  name='city'
+                  type="text"
+                  labelText="City"
+                  id="float"
+                  name="city"
                   ref={cityInput => (this._cityInput = cityInput)}
                   // value={this.state.city}
                   // onChange={this.handleInputChange}
                   inputProps={{
-                    type: 'text',
+                    type: "text",
                     value: this.state.city,
-                    name: 'city',
+                    name: "city",
                     onChange: event => this.handleInputChange(event)
                   }}
                 />
@@ -269,17 +255,17 @@ class CreateUser extends Component {
 
               <GridItem xs={12} sm={12} md={6}>
                 <CustomInput
-                  type='text'
-                  labelText='State'
-                  id='float'
-                  name='state'
+                  type="text"
+                  labelText="State"
+                  id="float"
+                  name="state"
                   ref={stateInput => (this._stateInput = stateInput)}
                   // value={this.state.state}
                   // onChange={this.handleInputChange}
                   inputProps={{
-                    type: 'text',
+                    type: "text",
                     value: this.state.state,
-                    name: 'state',
+                    name: "state",
                     onChange: event => this.handleInputChange(event)
                   }}
                 />
@@ -287,17 +273,17 @@ class CreateUser extends Component {
 
               <GridItem xs={12} sm={12} md={6}>
                 <CustomInput
-                  type='text'
-                  labelText='ZIP'
-                  id='float'
-                  name='zipcode'
+                  type="text"
+                  labelText="ZIP"
+                  id="float"
+                  name="zipcode"
                   ref={zipInput => (this._zipInput = zipInput)}
                   // value={this.state.zip}
                   // onChange={this.handleInputChange}
                   inputProps={{
-                    type: 'text',
+                    type: "text",
                     value: this.state.zipcode,
-                    name: 'zipcode',
+                    name: "zipcode",
                     onChange: event => this.handleInputChange(event)
                   }}
                 />
@@ -305,30 +291,33 @@ class CreateUser extends Component {
 
               <GridItem xs={12} sm={12} md={6}>
                 <CustomInput
-                  type='text'
-                  labelText='Phone'
-                  id='float'
-                  name='phone'
+                  type="text"
+                  labelText="Phone"
+                  id="float"
+                  name="phone"
                   ref={phoneInput => (this._phoneInput = phoneInput)}
                   // value={this.state.phone}
                   // onChange={this.handleInputChange}
                   inputProps={{
-                    type: 'text',
+                    type: "text",
                     value: this.state.phone,
-                    name: 'phone',
+                    name: "phone",
                     onChange: event => this.handleInputChange(event)
                   }}
                 />
               </GridItem>
             </GridContainer>
 
+            {/* TODO: Replace this dull html with something more eye-grabbing */}
+            <p>{this.state.error}</p>
+
             <Button
-              color='primary'
+              color="primary"
               round
               onClick={event => this.handleButtonClick(event)}
             >
-              <Link to='/'>Create User</Link>
-              {/* Create User */}
+              {/* <Link to="/">Create User</Link> */}
+              Create User
             </Button>
           </form>
           {/* <Button color='info' round> */}
@@ -336,8 +325,8 @@ class CreateUser extends Component {
           {/* </Button> */}
         </CardBody>
       </Card>
-    )
+    );
   }
 }
 
-export default CreateUser
+export default CreateUser;
