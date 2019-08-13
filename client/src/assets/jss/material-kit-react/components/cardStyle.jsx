@@ -36,7 +36,8 @@ const cardStyle = {
     wordWrap: "break-word",
     fontSize: ".875rem",
     transition: "all 300ms linear",
-    textAlign: "center"
+    textAlign: "center",
+    
   },
   cardPlain: {
     background: "transparent",
