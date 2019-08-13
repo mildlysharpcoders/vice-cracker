@@ -21,7 +21,6 @@ class Settings extends Component {
       cost: '',
       vices: []
     }
-    console.log(this.props)
   }
 
   componentDidMount = () => {
@@ -33,7 +32,7 @@ class Settings extends Component {
     if (user) {
       API.getVicesForUser(user)
         .then(response => {
-          console.log('Vices returned:', response.data)
+          console.log(response.data.length, "vices returned");
           this.setState({ vices: response.data })
         })
         .catch(error => {

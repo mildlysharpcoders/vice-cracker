@@ -22,7 +22,7 @@ class Vices extends Component {
     if (user) {
       API.getVicesForUser(user)
         .then(response => {
-          console.log("Vices returned:", response.data);
+          console.log(response.data.length, "vices returned");
           this.setState({ vices: response.data });
         })
         .catch(error => {
