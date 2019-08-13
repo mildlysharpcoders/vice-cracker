@@ -2,6 +2,14 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import API from "../utils/API";
 import ViceItem from "../components/ViceItem";
+import Card from '../components/Card/Card.jsx'
+import CardHeader from '../components/Card/CardHeader.jsx'
+import CardBody from '../components/Card/CardBody.jsx'
+import Dropdown from "../components/CustomDropdown/CustomDropdown.jsx"
+import CustomInput from "../components/CustomInput/CustomInput.jsx";
+import GridContainer from "../components/Grid/GridContainer.jsx"
+import GridItem from "../components/Grid/GridItem.jsx";
+import Button from "../components/CustomButtons/Button.jsx";
 
 class Settings extends Component {
   constructor(props) {
@@ -106,20 +114,18 @@ class Settings extends Component {
 
   render() {
     return (
-      <>
-        {this.renderRedirect()}
-        <div>
-          <h1>Settings</h1>
-          <div className="NewVice">
-            <div>
-              <div className="input-group flex-nowrap">
-                <div className="input-group-prepend">
-                  <span className="input-group-text" id="addon-wrapping">
-                    &#191;
-                  </span>
-                </div>
-                <input
+      <Card>
+        {/* {this.renderRedirect()} */}
+        <CardHeader>Settings</CardHeader>
+        <CardBody>
+       
+  
+        <GridContainer>
+              <GridItem xs={12} sm={12} md={12}>
+            
+                <CustomInput
                   type="text"
+                  labelText="Name Your Vice"
                   name="name"
                   value={this.state.name}
                   onChange={this.handleInputChange}
@@ -128,28 +134,29 @@ class Settings extends Component {
                   aria-label="Username"
                   aria-describedby="addon-wrapping"
                 />
-              </div>
-            </div>
-            <br />
-            <div>
-              <div className="dropdown">
-                <div>
-                  <select name="betteroption" value={this.state.betteroption} onChange={this.handleInputChange}>
-                    <option value="Recipe">Recipe</option>
-                    <option value="Gym">Gym</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <br />
-            <div className="input-group flex-nowrap">
-              <div className="input-group-prepend">
-                <span className="input-group-text" id="addon-wrapping">
-                  &#191;
-                </span>
-              </div>
-              <input
+            
+           </GridItem>
+           </GridContainer>
+           
+           <GridContainer>
+              <GridItem xs={12} sm={12} md={12}>
+           
+            <Dropdown
+        buttonText="Select a Better Option"
+        dropdownList={[
+          "Gym",
+          "Recipe",
+        ]}
+      />
+      </GridItem>
+      </GridContainer>
+
+      <GridContainer>
+              <GridItem xs={12} sm={12} md={12}>
+            
+              <CustomInput
                 type="number"
+                labelText="Consumption"
                 name="limit"
                 value={this.state.limit}
                 onChange={this.handleInputChange}
@@ -158,16 +165,16 @@ class Settings extends Component {
                 aria-label="Username"
                 aria-describedby="addon-wrapping"
               />
-            </div>
-            <br />
-            <div className="input-group flex-nowrap">
-              <div className="input-group-prepend">
-                <span className="input-group-text" id="addon-wrapping">
-                  &#36;
-                </span>
-              </div>
-              <input
+
+    </GridItem>
+    </GridContainer>
+
+    <GridContainer>
+              <GridItem xs={12} sm={12} md={12}>
+       
+              <CustomInput
                 type="number"
+                labelText="Cost"
                 name="cost"
                 value={this.state.cost}
                 onChange={this.handleInputChange}
@@ -176,17 +183,19 @@ class Settings extends Component {
                 aria-label="Username"
                 aria-describedby="addon-wrapping"
               />
-            </div>
-          </div>
-          <br />
-          <button
+         </GridItem>
+         </GridContainer>
+         
+          <Button
+            color="primary"
+            round
             type="button"
             className="btn btn-secondary"
             onClick={this.handleFormSubmit}
           >
             Submit
-          </button>
-        </div>
+          </Button>
+     
         {this.state.vices.map(vice => {
           return (
             <ViceItem
@@ -196,7 +205,11 @@ class Settings extends Component {
             />
           );
         })}
-      </>
+      
+     
+        </CardBody>
+    </Card>
+    
     );
   }
 }
