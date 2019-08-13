@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import API from '../utils/API'
-import ReactDOM from 'react-dom'
+// import ReactDOM from 'react-dom'
 import { Link } from 'react-router-dom';
 import CardHeader from "../components/Card/CardHeader.jsx";
 import Card from "../components/Card/Card.jsx"
@@ -103,6 +103,7 @@ class CreateUser extends Component {
   handleButtonClick = event => {
     event.preventDefault();
     let createUserInfo = {
+<<<<<<< HEAD
       firstname: this.state.firstname.trim(),
       lastname: this.state.lastname.trim(),
       email: this.state.email.trim(),
@@ -113,6 +114,27 @@ class CreateUser extends Component {
       zipcode: this.state.zipcode.trim(),
       phone: this.state.phone.trim()
     }
+=======
+      firstname: this.state.firstname,
+      lastname: this.state.lastname,
+      email: this.state.email,
+      city: this.state.city,
+      state: this.state.state,
+      address: this.state.address,
+      password: this.state.password,
+      zipcode: this.state.zipcode,
+      phone: this.state.phone
+      // firstname: this.state.firstname.trim(),
+      // lastname: this.state.lastname.trim(),
+      // email: this.state.email.trim(),
+      // city: this.state.city.trim(),
+      // state: this.state.state.trim(),
+      // address: this.state.address.trim(),
+      // password: this.state.password.trim(),
+      // zipcode: this.state.zipcode.trim(),
+      // phone: this.state.phone.trim()
+        };
+>>>>>>> c29d8e4c758528a2e08a9b4672fdeea0fbfee62d
 
     // const errors = validate(
     //   name,
