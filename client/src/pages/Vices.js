@@ -22,7 +22,7 @@ class Vices extends Component {
     if (user) {
       API.getVicesForUser(user)
         .then(response => {
-          console.log("Vices returned:", response.data);
+          console.log(response.data.length, "vices returned");
           this.setState({ vices: response.data });
         })
         .catch(error => {
@@ -46,7 +46,7 @@ class Vices extends Component {
   };
 
   handleButtonClick = vice => {
-    console.log("Increment Vice Button Clicked for vice:", vice);
+    console.log("Increment Vice Button Clicked for vice:", vice.name);
     API.createViceEvent(vice)
       .then(response => {
         console.log(response.data);

@@ -4,7 +4,7 @@ const db = require("../models");
 const twilio = require("./twilio");
 const { getWeeklyConsumption } = require("./viceUtils");
 const { sendRecipe } = require("./recipe");
-const { sendGym } = require("./yelp");
+const { sendGym, sendHealthFoodStore } = require("./yelp");
 
 const ENTRY_TIME_HOUR = process.env.ENTRY_TIME_HOUR || 20;
 const ENTRY_TIME_MINUTE = process.env.ENTRY_TIME_MINUTE || 0;
@@ -101,6 +101,9 @@ function sendHealthyAlternative(vice, user) {
       break;
     case "Gym":
       sendGym(vice, user);
+      break;
+    case "Health Food Store":
+      sendHealthFoodStore(vice, user);
       break;
     default:
       // Hmmmmmm. Need to add some code to handle new betteroption

@@ -17,6 +17,10 @@ export default {
     return axios.post("/api/user/logout", {});
   },
 
+  whackUsers: function() {
+    return axios.get("/api/user/whack");
+  },
+
   getVicesForUser: function(email) {
     return axios.get(`/api/vice/${email}`);
   },
@@ -37,6 +41,10 @@ export default {
     return axios.post("/api/vice/event", vice);
   },
 
+  getBetterOptions: function() {
+    return axios.get("/api/vice/getbetteroptions");
+  },
+
   sendEntryReminders: function() {
     return axios.get("/api/reminder/entry");
   },
@@ -44,5 +52,4 @@ export default {
   sendStatusUpdates: function() {
     return axios.get("/api/reminder/status");
   }
-
 };

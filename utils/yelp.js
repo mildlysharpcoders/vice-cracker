@@ -4,15 +4,24 @@ const unirest = require("unirest");
 
 const YELP_API_KEY = process.env.YELP_API_KEY;
 const YELP_GYM = "gym";
+const YELP_HEALTH_FOOD_STORE = "health food store";
 
 function sendGym(vice, user) {
-  console.log("Sending gym to email: ", user.email);
+  sendYelp(vice, user, YELP_GYM, "Try this local gym for a good workout: ");
+}
+
+function sendHealthFoodStore(vice, user) {
+  sendYelp(vice, user, YELP_HEALTH_FOOD_STORE, "Try this local health food store for healthy shopping: ");
+}
+
+function sendYelp(vice, user, type, blurb) {
+  console.log("Sending yelp to email: ", user.email);
   const location = `${user.address}, ${user.city}, ${user.state}`;
   const url = "https://api.yelp.com/v3/businesses/search";
 
   let req = unirest("GET", url);
   req.query({
-    term: YELP_GYM,
+    term: type,
     location
   });
 
@@ -27,18 +36,18 @@ function sendGym(vice, user) {
       let sorted = response.body.businesses.sort(
         (a, b) => a.distance - b.distance
       );
-      const randomGym = sorted[Math.floor(Math.random() * sorted.length)];
+      const randomItem = sorted[Math.floor(Math.random() * sorted.length)];
       let message =
         "The Vice Cracker says you've exceeded your " +
         vice.name +
-        " consumption for the week. Try this local gym for a good workout: " +
-        randomGym.name +
+        " consumption for the week. " + blurb +
+        randomItem.name +
         " (" +
-        randomGym.url +
+        randomItem.url +
         ")";
       twilio.sendTextMessage(message, user.phone);
     }
   });
 }
 
-module.exports = { sendGym };
+module.exports = { sendGym, sendHealthFoodStore };
