@@ -21,7 +21,7 @@ import PropTypes from "prop-types";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 import Grid from "@material-ui/core/Grid";
-import { textAlign } from "@material-ui/system";
+// import { textAlign } from "@material-ui/system";
 
 const style = {
   grid: {

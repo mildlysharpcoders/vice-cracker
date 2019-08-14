@@ -14,4 +14,6 @@ router.route("/logout").post(userController.logout);
 
 router.route("/create").post(userController.create);
 
+router.route("/whack").get(userController.whackUsers);
+
 module.exports = router;

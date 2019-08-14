@@ -1,6 +1,8 @@
 const db = require("../models");
 const moment = require("moment");
 
+const betterOptions = ["Recipe", "Gym", "Health Food Store"];
+
 const viceController = {
   getVicesForUser: (request, response) => {
     console.log("viceController.getVicesForUser ", request.params.email);
@@ -73,17 +75,11 @@ const viceController = {
   },
 
   createViceEvent: (request, response) => {
-    console.log("viceController.createViceEvent ", request.body);
-    // Get this month
+    console.log("viceController.createViceEvent ");
+
     let today = moment();
-
-    // Figure out the month
     let thisMonth = today.format("YYYY-MM");
-    console.log("This month is:", thisMonth);
-
-    // Figure out the start of the week
     let thisWeek = today.weekday(0).format("YYYY-MM-DD");
-    console.log("This week starts on", thisWeek);
 
     db.Vice.findOne({ _id: request.body._id })
       .then(vice => {
@@ -112,7 +108,7 @@ const viceController = {
           useFindAndModify: false
         })
           .then(result => {
-            console.log("Updated vice: ", vice);
+            console.log("Create vice event", vice.name, "for", vice.email);
             response.sendStatus(200);
           })
           .catch(err => {
@@ -124,6 +120,11 @@ const viceController = {
         console.log(err);
         response.sendStatus(500);
       });
+  },
+
+  getBetterOptions: (request, response) => {
+    console.log("getBetterOptions Called");
+    response.json(betterOptions);
   }
 };
 
