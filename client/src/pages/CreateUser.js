@@ -1,10 +1,6 @@
 import React, { Component } from 'react'
 import API from '../utils/API'
-<<<<<<< HEAD
-import ReactDOM from 'react-dom'
-=======
 // import ReactDOM from 'react-dom'
->>>>>>> d6bbc96c2f63bcf7474b6193bef28eec4895f7d1
 import { Link } from 'react-router-dom';
 import CardHeader from "../components/Card/CardHeader.jsx";
 import Card from "../components/Card/Card.jsx"
