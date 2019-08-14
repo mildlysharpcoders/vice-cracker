@@ -1,4 +1,5 @@
 const db = require("../models");
+const bcrypt = require("bcrypt");
 
 const userController = {
   getAuthenticatedUser: (request, response) => {
@@ -41,15 +42,23 @@ const userController = {
           console.log("Found existing user: ", result.email);
           response.sendStatus(409);
         } else {
-          db.User.create(request.body)
-            .then(result => {
-              console.log("Created new user: ", result.email);
-              response.sendStatus(201);
-            })
-            .catch(err => {
+          bcrypt.hash(request.body.password, 10, (err, hash) => {
+            if (err) {
               console.log(err);
-              response.send(err);
-            });
+              response.send(500);
+            } else {
+              request.body.password = hash;
+              db.User.create(request.body)
+                .then(result => {
+                  console.log("Created new user: ", result.email);
+                  response.sendStatus(201);
+                })
+                .catch(err => {
+                  console.log(err);
+                  response.send(err);
+                });
+            }
+          });
         }
       })
       .catch(err => {
