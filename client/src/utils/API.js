@@ -43,6 +43,9 @@ export default {
 
   sendStatusUpdates: function() {
     return axios.get("/api/reminder/status");
-  }
+  },
 
+  getBetterOptions: function() {
+    return axios.get("/api/vice/getbetteroptions");
+  }
 };

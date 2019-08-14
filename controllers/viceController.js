@@ -1,6 +1,8 @@
 const db = require("../models");
 const moment = require("moment");
 
+const betterOptions = ["Recipe", "Gym", "Health Food Store"];
+
 const viceController = {
   getVicesForUser: (request, response) => {
     console.log("viceController.getVicesForUser ", request.params.email);
@@ -118,6 +120,11 @@ const viceController = {
         console.log(err);
         response.sendStatus(500);
       });
+  },
+
+  getBetterOptions: (request, response) => {
+    console.log("getBetterOptions Called");
+    response.json(betterOptions);
   }
 };
 

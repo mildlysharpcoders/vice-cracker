@@ -16,16 +16,18 @@ class Settings extends Component {
     super(props);
     this.state = {
       name: "",
-      betteroption: "Recipe",
+      betteroption: "",
       limit: "",
       cost: "",
       vices: [],
-      error: ""
+      error: "",
+      betteroptions: []
     };
   }
 
   componentDidMount = () => {
     this.loadVices();
+    this.loadBetterOptions();
   };
 
   loadVices = () => {
@@ -40,6 +42,16 @@ class Settings extends Component {
           console.log(error);
         });
     }
+  };
+
+  loadBetterOptions = () => {
+    API.getBetterOptions()
+      .then(response => {
+        this.setState({ betteroptions: response.data });
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 
   handleInputChange = event => {
@@ -64,7 +76,12 @@ class Settings extends Component {
       return false;
     }
 
-    if (this.isEmpty(this.state.betteroption, "Healthier Option must not be blank")) {
+    if (
+      this.isEmpty(
+        this.state.betteroption,
+        "Healthier Option must not be blank"
+      )
+    ) {
       return false;
     }
 
@@ -194,7 +211,7 @@ class Settings extends Component {
             <GridItem xs={12} sm={12} md={12}>
               <Dropdown
                 buttonText={this.state.betteroption}
-                dropdownList={["Gym", "Recipe", "Health Food Store"]}
+                dropdownList={this.state.betteroptions}
                 onClick={this.handleMenuClick}
                 buttonProps={{
                   round: true,
