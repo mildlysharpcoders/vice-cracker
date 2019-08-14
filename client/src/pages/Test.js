@@ -3,13 +3,17 @@ import API from "../utils/API";
 
 class Test extends Component {
   handleSendEntry = () => {
-      API.sendEntryReminders();
+    API.sendEntryReminders();
   };
 
   handleSendStatus = () => {
-      API.sendStatusUpdates();
+    API.sendStatusUpdates();
   };
 
+  handleWhackUsers = () => {
+    API.whackUsers();
+  }
+  
   render() {
     return (
       <>
@@ -22,6 +26,12 @@ class Test extends Component {
         <div>
           <button type="button" onClick={this.handleSendStatus}>
             Send Status Updates
+          </button>
+        </div>
+        <br />
+        <div>
+          <button type="button" onClick={this.handleWhackUsers}>
+            Whack Users
           </button>
         </div>
       </>

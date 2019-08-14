@@ -69,27 +69,45 @@ const userController = {
 
   createDefaultUser: () => {
     createDefault();
+  },
+
+  whackUsers: (request, response) => {
+    console.log("Whacking User Database!!!");
+    db.User.deleteMany({})
+      .then(result => {
+        response.sendStatus(200);
+      })
+      .catch(error => {
+        console.log(error);
+        response.sendStatus(500);
+      });
   }
 };
 
 function createDefault() {
-  db.User.findOne({ email: "admin@admin.com" }).then(result => {
-    if (!result) {
-      let defaultUser = {
-        password: "admin",
-        email: "admin@admin.com",
-        firstname: "Admin",
-        lastname: "Adminator",
-        address: "1234 Admin St.",
-        city: "Adminville",
-        state: "IL",
-        zip: "11111"
-      };
-      db.User.create(defaultUser).then(result => {
-        console.log("Create default Admin user");
-      });
+  bcrypt.hash("password", 10, (err, hash) => {
+    if (err) {
+      console.log(err);
     } else {
-      console.log("Admin User present");
+      db.User.findOne({ email: "admin@admin.com" }).then(result => {
+        if (!result) {
+          let defaultUser = {
+            password: hash,
+            email: "admin@admin.com",
+            firstname: "Admin",
+            lastname: "Adminator",
+            address: "1234 Admin St.",
+            city: "Adminville",
+            state: "IL",
+            zip: "11111"
+          };
+          db.User.create(defaultUser).then(result => {
+            console.log("Created default admin@admin.com user");
+          });
+        } else {
+          console.log("admin@admin.com User present");
+        }
+      });
     }
   });
 }
