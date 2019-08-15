@@ -40,7 +40,8 @@ const userController = {
   logout: (request, response) => {
     console.log("userController.logout");
     request.logout();
-    response.send("user logged out");
+    response.clearCookie("email");
+    response.sendStatus(200);
   },
 
   create: (request, response) => {

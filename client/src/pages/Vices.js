@@ -1,12 +1,10 @@
 import React, { Component } from "react";
-// import { Col, Row, Container } from "../components/Grid";
-import Nav from "../components/Nav";
 import API from "../utils/API";
-import { Redirect, Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import ViceItem from "../components/ViceItem";
 import Card from "../components/Card/Card.jsx";
-import CardHeader from "../components/Card/CardHeader.jsx";
-import CardBody from "../components/Card/CardBody.jsx";
+// import CardHeader from "../components/Card/CardHeader.jsx";
+// import CardBody from "../components/Card/CardBody.jsx";
 
 class Vices extends Component {
   constructor(props) {
@@ -20,11 +18,11 @@ class Vices extends Component {
     this.loadVices();
   };
 
-  componentDidUpdate = (prevProps) => {
+  componentDidUpdate = prevProps => {
     if (this.props.user.email !== prevProps.user.email) {
       this.loadVices();
     }
-  }
+  };
 
   loadVices = () => {
     const user = this.props.user.email;
@@ -70,22 +68,16 @@ class Vices extends Component {
     return (
       <>
         {/* {this.renderRedirect()} */}
-        <div>
-          <Nav />
-        </div>
         {this.state.vices.map(vice => {
           return (
-            <Card>
-            <ViceItem
-              key={vice.name}
-              vice={vice}
-              handleButtonClick={this.handleButtonClick}
-            />
+            <Card key={vice.name}>
+              <ViceItem
+                vice={vice}
+                handleButtonClick={this.handleButtonClick}
+              />
             </Card>
           );
         })}
-        <Link to="/settings">Settings</Link>
-        
       </>
     );
   }

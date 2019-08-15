@@ -5,7 +5,7 @@ import Vices from "./Vices";
 function VicesWrapper(props) {
   return (
     <>
-      <UserConsumer>{user => <Vices {...props} user={user} />}</UserConsumer>
+      <UserConsumer>{identity => <Vices {...props} user={identity.user} />}</UserConsumer>
     </>
   );
 }

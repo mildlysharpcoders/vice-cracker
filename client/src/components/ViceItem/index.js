@@ -1,8 +1,8 @@
 import React from "react";
 import moment from "moment";
 import Card from "./../Card/Card.jsx";
-import CardHeader from "./../Card/CardHeader.jsx";
-import CardBody from "./../Card/CardBody.jsx";
+// import CardHeader from "./../Card/CardHeader.jsx";
+// import CardBody from "./../Card/CardBody.jsx";
 
 function DeleteButton(props) {
   if (props.handleDeleteButtonClick) {
