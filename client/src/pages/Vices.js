@@ -17,6 +17,12 @@ class Vices extends Component {
     this.loadVices();
   };
 
+  componentDidUpdate = (prevProps) => {
+    if (this.props.user.email !== prevProps.user.email) {
+      this.loadVices();
+    }
+  }
+
   loadVices = () => {
     const user = this.props.user.email;
     if (user) {
@@ -60,7 +66,7 @@ class Vices extends Component {
   render() {
     return (
       <>
-        {this.renderRedirect()}
+        {/* {this.renderRedirect()} */}
         <div>
           <Nav />
         </div>

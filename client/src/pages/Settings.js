@@ -30,6 +30,12 @@ class Settings extends Component {
     this.loadBetterOptions();
   };
 
+  componentDidUpdate = (prevProps) => {
+    if (this.props.user.email !== prevProps.user.email) {
+      this.loadVices();
+    }
+  }
+
   loadVices = () => {
     const user = this.props.user.email;
     if (user) {

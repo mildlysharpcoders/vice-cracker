@@ -3,12 +3,17 @@ const bcrypt = require("bcrypt");
 
 const userController = {
   getAuthenticatedUser: (request, response) => {
-    console.log("userController.getAuthenticatedUser", request.user);
-    if (request.user) {
+    if (request.isAuthenticated()) {
+      console.log(request.user.email, "is authorized");
       response.json(request.user);
     } else {
-      console.log("No authenticated user");
-      response.json({ result: "false" });
+      if (request.cookies.email) {
+        console.log(request.cookies.email, "is authorized by cookie");
+        response.json({ email: request.cookies.email });
+      } else {
+        console.log("No authenticated user");
+        response.sendStatus(401);
+      }
     }
   },
 
@@ -26,7 +31,10 @@ const userController = {
 
   login: (request, response) => {
     console.log("UserController.login");
-    response.json(request.user);
+    if (request.user) {
+      response.cookie("email", request.user.email);
+      response.json(request.user);
+    }
   },
 
   logout: (request, response) => {

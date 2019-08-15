@@ -9,6 +9,7 @@ import NoMatch from "./pages/NoMatch";
 import CreateUser from "./pages/CreateUser";
 import Test from "./pages/Test";
 import { UserProvider } from "./UserContext";
+import API from "./utils/API";
 
 class App extends Component {
   state = {
@@ -17,6 +18,19 @@ class App extends Component {
 
   updateUser = user => {
     this.setState({ user });
+  };
+
+  componentDidMount = () => {
+    API.getAuthenticatedUser()
+      .then(response => {
+        console.log("getAuthenticatedUser returned: ", response.data);
+        this.setState({ user: response.data });
+      })
+      .catch(error => {
+        if (error) {
+          console.log(error.response);
+        }
+      });
   };
 
   render() {
