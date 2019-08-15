@@ -1,6 +1,7 @@
 require("dotenv").config();
 const moment = require("moment");
 const db = require("../models");
+const betteroptions = require("../models/BetterOptions");
 const twilio = require("./twilio");
 const { getWeeklyConsumption } = require("./viceUtils");
 const { sendRecipe } = require("./recipe");
@@ -95,7 +96,13 @@ function sendStatus(vice, user) {
 }
 
 function sendHealthyAlternative(vice, user) {
-  switch (vice.betteroption) {
+  let betteroption = vice.betteroption;
+  while (betteroption == "Random") {
+    const index = Math.floor(Math.random() * betteroptions.length);
+    betteroption = betteroptions[index];
+  }
+
+  switch (betteroption) {
     case "Recipe":
       sendRecipe(vice, user);
       break;
@@ -107,7 +114,7 @@ function sendHealthyAlternative(vice, user) {
       break;
     default:
       // Hmmmmmm. Need to add some code to handle new betteroption
-      console.log("Unsupported betteroption type:", vice.betteroption);
+      console.log("Unsupported betteroption type:", betteroption);
       break;
   }
 }
