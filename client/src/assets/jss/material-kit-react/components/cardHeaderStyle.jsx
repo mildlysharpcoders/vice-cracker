@@ -17,7 +17,10 @@
 */
 
 
+
 const cardHeaderStyle = {
+
+
   cardHeader: {
     borderRadius: "3px",
     padding: "1rem 15px",
@@ -28,7 +31,9 @@ const cardHeaderStyle = {
     marginBottom: "0",
     color: "rgba(0, 0, 0, 0.87)",
     background: "#D087E7",
-    fontFamily: "'Lexend Mega', sans-serif;"
+    fontSize: "xx-large",
+    textShadow: "3px 3px cyan",
+    fontFamily: "Lazer"
     
     
   },

@@ -7,9 +7,10 @@ import CardHeader from "../components/Card/CardHeader.jsx";
 import CardBody from "../components/Card/CardBody.jsx";
 import Dropdown from "../components/CustomDropdown/CustomDropdown.jsx";
 import CustomInput from "../components/CustomInput/CustomInput.jsx";
-import GridContainer from "../components/Grid/GridContainer.jsx";
+import Container from "../components/Grid/GridContainer.jsx";
 import GridItem from "../components/Grid/GridItem.jsx";
 import Button from "../components/CustomButtons/Button.jsx";
+
 
 class Settings extends Component {
   constructor(props) {
@@ -181,11 +182,12 @@ class Settings extends Component {
 
   render() {
     return (
+      <Container>
       <Card>
         {/* {this.renderRedirect()} */}
         <CardHeader>Settings</CardHeader>
         <CardBody>
-          <GridContainer>
+          <Container>
             <GridItem xs={12} sm={12} md={12}>
               <CustomInput
                 // type='text'
@@ -205,9 +207,9 @@ class Settings extends Component {
                 }}
               />
             </GridItem>
-          </GridContainer>
+          </Container>
 
-          <GridContainer>
+          <Container>
             <GridItem xs={12} sm={12} md={12}>
               <Dropdown
                 buttonText={this.state.betteroption}
@@ -219,9 +221,9 @@ class Settings extends Component {
                 }}
               />
             </GridItem>
-          </GridContainer>
+          </Container>
 
-          <GridContainer>
+          <Container>
             <GridItem xs={12} sm={12} md={12}>
               <CustomInput
                 // type='number'
@@ -241,9 +243,9 @@ class Settings extends Component {
                 }}
               />
             </GridItem>
-          </GridContainer>
+          </Container>
 
-          <GridContainer>
+          <Container>
             <GridItem xs={12} sm={12} md={12}>
               <CustomInput
                 // type='number'
@@ -263,7 +265,7 @@ class Settings extends Component {
                 }}
               />
             </GridItem>
-          </GridContainer>
+          </Container>
 
           {/* TODO: Replace this dull html with something more eye-grabbing */}
           <p>{this.state.error}</p>
@@ -291,6 +293,7 @@ class Settings extends Component {
           })}
         </CardBody>
       </Card>
+      </Container>
     );
   }
 }

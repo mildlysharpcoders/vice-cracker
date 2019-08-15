@@ -38,6 +38,7 @@ const buttonStyle = {
     position: "relative",
     padding: "12px 30px",
     margin: ".3125rem 1px",
+    fontFamily: "Lazer",
     fontSize: "12px",
     fontWeight: "400",
     textTransform: "uppercase",

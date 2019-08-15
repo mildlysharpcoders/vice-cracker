@@ -4,6 +4,9 @@ import Nav from "../components/Nav";
 import API from "../utils/API";
 import { Redirect, Link } from "react-router-dom";
 import ViceItem from "../components/ViceItem";
+import Card from "../components/Card/Card.jsx";
+import CardHeader from "../components/Card/CardHeader.jsx";
+import CardBody from "../components/Card/CardBody.jsx";
 
 class Vices extends Component {
   constructor(props) {
@@ -60,46 +63,23 @@ class Vices extends Component {
   render() {
     return (
       <>
-        {this.renderRedirect()}
+        {/* {this.renderRedirect()} */}
         <div>
           <Nav />
         </div>
         {this.state.vices.map(vice => {
           return (
+            <Card>
             <ViceItem
               key={vice.name}
               vice={vice}
               handleButtonClick={this.handleButtonClick}
             />
+            </Card>
           );
         })}
         <Link to="/settings">Settings</Link>
-        {/* <Container fluid>
-          <Row>
-            <Col size="m6">
-              <div className="card blue-grey darken-1">
-                <div className="card-content white-text">
-                  <SelectVice />
-                  <br />
-                  <br />
-                  <p>
-                    I am a very simple card. I am good at containing small bits
-                    of information. I am convenient because I require little
-                    markup to use effectively.
-                  </p>
-                </div>
-                <a className="btn-floating halfway-fab waves-effect waves-light red">
-                  <i className="material-icons">add</i>
-                </a>
-                <div className="card-action">
-                  <a className="waves-effect waves-teal btn-flat">
-                    Delete Vice
-                  </a>
-                </div>
-              </div>
-            </Col>
-          </Row>
-        </Container> */}
+        
       </>
     );
   }

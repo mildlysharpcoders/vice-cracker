@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'Lazer';
+  src: local('Lazer'), url(./assets/fonts//Lazer84.woff) format('woff');
+}
+
+
+
 body {
   margin: 0;
   padding: 0;
