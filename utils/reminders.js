@@ -1,11 +1,11 @@
 require("dotenv").config();
-const moment = require("moment");
 const db = require("../models");
 const betteroptions = require("../models/BetterOptions");
 const twilio = require("./twilio");
 const { getWeeklyConsumption } = require("./viceUtils");
 const { sendRecipe } = require("./recipe");
 const { sendGym, sendHealthFoodStore } = require("./yelp");
+const CronJob = require("cron").CronJob;
 
 const ENTRY_TIME_HOUR = process.env.ENTRY_TIME_HOUR || 20;
 const ENTRY_TIME_MINUTE = process.env.ENTRY_TIME_MINUTE || 0;
@@ -14,20 +14,12 @@ const STATUS_TIME_HOUR = process.env.STATUS_TIME_HOUR || 8;
 const STATUS_TIME_MINUTE = process.env.STATUS_TIME_MINUTE || 0;
 
 function start() {
-  console.log("Starting reminder timer");
-  // Call the callback once per minute
-  setInterval(reminderCallback, 60000);
+  createCronJob(STATUS_TIME_HOUR, STATUS_TIME_MINUTE, sendStatusUpdates);
+  createCronJob(ENTRY_TIME_HOUR, ENTRY_TIME_MINUTE, sendEntryReminders);
 }
 
-function checkReminder(hour, minute, callback) {
-  if (moment().hour() == hour && moment().minute() == minute) {
-    callback();
-  }
-}
-
-function reminderCallback() {
-  checkReminder(STATUS_TIME_HOUR, STATUS_TIME_MINUTE, sendStatusUpdates);
-  checkReminder(ENTRY_TIME_HOUR, ENTRY_TIME_MINUTE, sendEntryReminders);
+function createCronJob(hour, minute, callback) {
+  new CronJob(`0 ${minute} ${hour} * * *`, callback, null, true, "America/Chicago");
 }
 
 function sendEntryReminders() {
