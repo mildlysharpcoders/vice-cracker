@@ -51,5 +51,9 @@ export default {
 
   sendStatusUpdates: function() {
     return axios.get("/api/reminder/status");
+  },
+
+  sendStreakUpdates: function() {
+    return axios.get("/api/reminder/streaks");
   }
 };

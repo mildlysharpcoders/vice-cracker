@@ -2,7 +2,7 @@ require("dotenv").config();
 const db = require("../models");
 const betteroptions = require("../models/BetterOptions");
 const twilio = require("./twilio");
-const { getWeeklyConsumption } = require("./viceUtils");
+const { getWeeklyConsumption, getStreakLength } = require("./viceUtils");
 const { sendRecipe } = require("./recipe");
 const { sendGym, sendHealthFoodStore } = require("./yelp");
 const CronJob = require("cron").CronJob;
@@ -14,12 +14,13 @@ const STATUS_TIME_HOUR = process.env.STATUS_TIME_HOUR || 8;
 const STATUS_TIME_MINUTE = process.env.STATUS_TIME_MINUTE || 0;
 
 function start() {
-  createCronJob(STATUS_TIME_HOUR, STATUS_TIME_MINUTE, sendStatusUpdates);
-  createCronJob(ENTRY_TIME_HOUR, ENTRY_TIME_MINUTE, sendEntryReminders);
+  createCronJob(STATUS_TIME_HOUR, STATUS_TIME_MINUTE, "0", sendStreakStatusUpdates);
+  createCronJob(STATUS_TIME_HOUR, STATUS_TIME_MINUTE, "*", sendStatusUpdates);
+  createCronJob(ENTRY_TIME_HOUR, ENTRY_TIME_MINUTE, "*", sendEntryReminders);
 }
 
-function createCronJob(hour, minute, callback) {
-  new CronJob(`0 ${minute} ${hour} * * *`, callback, null, true, "America/Chicago");
+function createCronJob(hour, minute, dayOfWeek, callback) {
+  new CronJob(`0 ${minute} ${hour} * * ${dayOfWeek}`, callback, null, true, "America/Chicago");
 }
 
 function sendEntryReminders() {
@@ -111,4 +112,44 @@ function sendHealthyAlternative(vice, user) {
   }
 }
 
-module.exports = { start, sendEntryReminders, sendStatusUpdates };
+function sendStreakStatusUpdates() {
+  db.User.find({})
+    .then(result => {
+      result.forEach(user => {
+        sendStreakStatusUpdate(user);
+      });
+    })
+    .catch(err => {
+      console.log("sendStreakStatusUpdates failed, here's why:");
+      console.log(err);
+    });
+}
+
+function sendStreakStatusUpdate(user) {
+  console.log("sendStreakStatusUpdate for", user.email);
+  // Get Vices for user here
+  db.Vice.find({ email: user.email })
+    .then(result => {
+      if (result) {
+        result.forEach(vice => {
+          sendStreakStatus(vice, user);
+        });
+      }
+    })
+    .catch(err => {
+      console.log("sendStreakStatusUpdate failed, here's why:");
+      console.log(err);
+    });
+}
+
+function sendStreakStatus(vice, user) {
+  let length = getStreakLength(vice);
+  if (length > 1) {
+    let message = `Great work! You're on a streak of ${length} weeks below your limit with your ${
+      vice.name
+    } consumption. Keep it up! The Vice Cracker.`;
+    twilio.sendTextMessage(message, user.phone);
+  } 
+}
+
+module.exports = { start, sendEntryReminders, sendStatusUpdates, sendStreakStatusUpdates };

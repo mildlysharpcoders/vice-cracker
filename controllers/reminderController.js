@@ -1,4 +1,4 @@
-const { sendEntryReminders, sendStatusUpdates } = require("../utils/reminders");
+const { sendEntryReminders, sendStatusUpdates, sendStreakStatusUpdates } = require("../utils/reminders");
 
 const reminderController = {
   sendEntryReminders: (request, response) => {
@@ -10,6 +10,12 @@ const reminderController = {
   sendStatusReminders: (request, response) => {
     console.log("reminderController.sendStatusReminders");
     sendStatusUpdates();
+    response.sendStatus(200);
+  },
+
+  sendStreakStatusReminders: (request, response) => {
+    console.log("reminderController.sendStreakStatusUpdates");
+    sendStreakStatusUpdates();
     response.sendStatus(200);
   }
 };

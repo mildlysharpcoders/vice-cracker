@@ -12,8 +12,12 @@ class Test extends Component {
 
   handleWhackUsers = () => {
     API.whackUsers();
-  }
-  
+  };
+
+  handleSendStreak = () => {
+    API.sendStreakUpdates();
+  };
+
   render() {
     return (
       <>
@@ -26,6 +30,12 @@ class Test extends Component {
         <div>
           <button type="button" onClick={this.handleSendStatus}>
             Send Status Updates
+          </button>
+        </div>
+        <br />
+        <div>
+          <button type="button" onClick={this.handleSendStreak}>
+            Send Streak Updates
           </button>
         </div>
         <br />
