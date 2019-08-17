@@ -19,8 +19,15 @@ var apiUrl = "https://www.google.apis.com/youtube/v3"
 let req = unirest("GET", apiUrl);
 
 req.query({
-    
+    "part": "snippet",
+    "q": "exercise",
+    "maxResults" : 1
 })
 
+req.headers({
+    Authorization: "Bearer " + YOUTUBE_API_KEY
+        
+    });
+    
 //this will add the video ID and the youtube link together to be used. 
 var videoUrl = youtubeLink + videoId
