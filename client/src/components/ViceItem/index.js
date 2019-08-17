@@ -8,7 +8,10 @@ import Container from "./../Grid/GridContainer.jsx"
 
 function DeleteButton(props) {
   if (props.handleDeleteButtonClick) {
-    return <Button type="button" onClick={() => props.handleDeleteButtonClick(props.vice)}>
+    return <Button  
+    color= "rose"
+    round
+    type="button" onClick={() => props.handleDeleteButtonClick(props.vice)}>
       X
     </Button>
   } else {
@@ -36,16 +39,9 @@ function ViceItem(props) {
   }
 
   return (
-<<<<<<< HEAD
 <Card style={{width: "max-content"}}>
   
 <CardHeader style={{width: "fit-content"}}>Your Vice: {props.vice.name}</CardHeader>
-=======
-   
-   <Card style={{width: "max-content"}}>
-  
-      <CardHeader>Your Vice: {props.vice.name}</CardHeader>
->>>>>>> 73fce9078534c16c6aea9a4104487aa76db86d77
       <CardBody>
       <p>Better Option: {props.vice.betteroption}</p>
       <p>
@@ -53,10 +49,14 @@ function ViceItem(props) {
       </p>
       <p>Consumption this month: {monthlyCount}</p>
       <p>Cost this month: ${(monthlyCount * props.vice.cost).toFixed(2)}</p>
-      <Button type="button" onClick={() => props.handleButtonClick(props.vice)}>
+      <Button 
+      color="primary"
+      round
+      type="button" onClick={() => props.handleButtonClick(props.vice)}>
         +
       </Button>
-      <DeleteButton {...props} />
+      <DeleteButton
+      {...props} />
     
    </CardBody>
       </Card>

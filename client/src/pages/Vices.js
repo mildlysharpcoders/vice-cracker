@@ -68,33 +68,26 @@ class Vices extends Component {
 
   render() {
     return (
-<<<<<<< HEAD
-   
       <Container>
-        {/* {{this.renderRedirect()} } */}
-=======
-      
-      <Container>
+  
         {/* {this.renderRedirect()} */}
->>>>>>> 73fce9078534c16c6aea9a4104487aa76db86d77
+       
         {this.state.vices.map(vice => {
+       
           return (
-      
+  
             <div key={vice.name}>
               <ViceItem
                 vice={vice}
                 handleButtonClick={this.handleButtonClick}
               />
             </div>
-        
+       
           );
-        })}
       
-      </Container>
-<<<<<<< HEAD
+        })}
+    </Container>
     
-=======
->>>>>>> 73fce9078534c16c6aea9a4104487aa76db86d77
     );
   }
 }

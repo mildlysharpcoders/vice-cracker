@@ -12,7 +12,7 @@ body {
   font-family: sans-serif;
   background: url("assets/img/neonbg1.jpg");
  
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
 }
