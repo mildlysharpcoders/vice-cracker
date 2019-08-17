@@ -33,7 +33,8 @@ const cardHeaderStyle = {
     background: "#D087E7",
     fontSize: "xx-large",
     textShadow: "3px 3px cyan",
-    fontFamily: "Lazer"
+    fontFamily: "Lazer",
+  
     
     
   },

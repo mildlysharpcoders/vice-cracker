@@ -144,7 +144,11 @@ class CreateUser extends Component {
   render() {
     return (
       <Container>
+<<<<<<< HEAD
      <Card style={{width: "max-content", margin: "30px" }}>
+=======
+      <Card style={{width: "max-content", margin: "30px" }}>
+>>>>>>> 73fce9078534c16c6aea9a4104487aa76db86d77
         <CardHeader>CREATE YOUR PROFILE</CardHeader>
         <CardBody>
           <form onSubmit={this.handleSubmit}>

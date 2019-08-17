@@ -68,9 +68,15 @@ class Vices extends Component {
 
   render() {
     return (
+<<<<<<< HEAD
    
       <Container>
         {/* {{this.renderRedirect()} } */}
+=======
+      
+      <Container>
+        {/* {this.renderRedirect()} */}
+>>>>>>> 73fce9078534c16c6aea9a4104487aa76db86d77
         {this.state.vices.map(vice => {
           return (
       
@@ -85,7 +91,10 @@ class Vices extends Component {
         })}
       
       </Container>
+<<<<<<< HEAD
     
+=======
+>>>>>>> 73fce9078534c16c6aea9a4104487aa76db86d77
     );
   }
 }
