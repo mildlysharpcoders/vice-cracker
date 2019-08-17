@@ -1,7 +1,6 @@
 const db = require("../models");
 const moment = require("moment");
-
-const betterOptions = ["Recipe", "Gym", "Health Food Store"];
+const betterOptions = require("../models/BetterOptions");
 
 const viceController = {
   getVicesForUser: (request, response) => {

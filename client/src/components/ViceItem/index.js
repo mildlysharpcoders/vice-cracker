@@ -1,5 +1,8 @@
 import React from "react";
 import moment from "moment";
+import Card from "./../Card/Card.jsx";
+// import CardHeader from "./../Card/CardHeader.jsx";
+// import CardBody from "./../Card/CardBody.jsx";
 
 function DeleteButton(props) {
   if (props.handleDeleteButtonClick) {
@@ -31,7 +34,8 @@ function ViceItem(props) {
   }
 
   return (
-    <div>
+   <Card>
+  
       <h3>Your Vice: {props.vice.name}</h3>
       <p>Better Option: {props.vice.betteroption}</p>
       <p>
@@ -43,7 +47,9 @@ function ViceItem(props) {
         +
       </button>
       <DeleteButton {...props} />
-    </div>
+    
+   
+      </Card>
   );
 }
 

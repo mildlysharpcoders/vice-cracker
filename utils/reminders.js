@@ -1,10 +1,11 @@
 require("dotenv").config();
-const moment = require("moment");
 const db = require("../models");
+const betteroptions = require("../models/BetterOptions");
 const twilio = require("./twilio");
-const { getWeeklyConsumption } = require("./viceUtils");
+const { getWeeklyConsumption, getStreakLength } = require("./viceUtils");
 const { sendRecipe } = require("./recipe");
 const { sendGym, sendHealthFoodStore } = require("./yelp");
+const CronJob = require("cron").CronJob;
 
 const ENTRY_TIME_HOUR = process.env.ENTRY_TIME_HOUR || 20;
 const ENTRY_TIME_MINUTE = process.env.ENTRY_TIME_MINUTE || 0;
@@ -13,20 +14,29 @@ const STATUS_TIME_HOUR = process.env.STATUS_TIME_HOUR || 8;
 const STATUS_TIME_MINUTE = process.env.STATUS_TIME_MINUTE || 0;
 
 function start() {
-  console.log("Starting reminder timer");
-  // Call the callback once per minute
-  setInterval(reminderCallback, 60000);
+  createCronJob(
+    STATUS_TIME_HOUR,
+    STATUS_TIME_MINUTE,
+    "0",
+    sendStreakStatusUpdates
+  );
+  createCronJob(
+    STATUS_TIME_HOUR,
+    STATUS_TIME_MINUTE,
+    "*",
+    sendConsumptionStatusUpdates
+  );
+  createCronJob(ENTRY_TIME_HOUR, ENTRY_TIME_MINUTE, "*", sendEntryReminders);
 }
 
-function checkReminder(hour, minute, callback) {
-  if (moment().hour() == hour && moment().minute() == minute) {
-    callback();
-  }
-}
-
-function reminderCallback() {
-  checkReminder(STATUS_TIME_HOUR, STATUS_TIME_MINUTE, sendStatusUpdates);
-  checkReminder(ENTRY_TIME_HOUR, ENTRY_TIME_MINUTE, sendEntryReminders);
+function createCronJob(hour, minute, dayOfWeek, callback) {
+  new CronJob(
+    `0 ${minute} ${hour} * * ${dayOfWeek}`,
+    callback,
+    null,
+    true,
+    "America/Chicago"
+  );
 }
 
 function sendEntryReminders() {
@@ -52,11 +62,19 @@ function sendEntryReminder(user) {
   }
 }
 
-function sendStatusUpdates() {
+function sendConsumptionStatusUpdates() {
+  sendStatusUpdates(sendConsumptionStatus);
+}
+
+function sendStreakStatusUpdates() {
+  sendStatusUpdates(sendStreakStatus);
+}
+
+function sendStatusUpdates(sendStatus) {
   db.User.find({})
     .then(result => {
       result.forEach(user => {
-        sendStatusUpdate(user);
+        sendStatusUpdate(user, sendStatus);
       });
     })
     .catch(err => {
@@ -65,9 +83,7 @@ function sendStatusUpdates() {
     });
 }
 
-function sendStatusUpdate(user) {
-  console.log("sendStatusUpdates for", user.email);
-  // Get Vices for user here
+function sendStatusUpdate(user, sendStatus) {
   db.Vice.find({ email: user.email })
     .then(result => {
       if (result) {
@@ -77,12 +93,12 @@ function sendStatusUpdate(user) {
       }
     })
     .catch(err => {
-      console.log("sendStatusUpdates failed, here's why:");
+      console.log("sendStatusUpdate failed, here's why:");
       console.log(err);
     });
 }
 
-function sendStatus(vice, user) {
+function sendConsumptionStatus(vice, user) {
   let consumption = getWeeklyConsumption(vice);
   if (consumption < vice.limit) {
     let message = `Great work! You're doing well with your ${
@@ -95,7 +111,13 @@ function sendStatus(vice, user) {
 }
 
 function sendHealthyAlternative(vice, user) {
-  switch (vice.betteroption) {
+  let betteroption = vice.betteroption;
+  while (betteroption == "Random") {
+    const index = Math.floor(Math.random() * betteroptions.length);
+    betteroption = betteroptions[index];
+  }
+
+  switch (betteroption) {
     case "Recipe":
       sendRecipe(vice, user);
       break;
@@ -107,9 +129,24 @@ function sendHealthyAlternative(vice, user) {
       break;
     default:
       // Hmmmmmm. Need to add some code to handle new betteroption
-      console.log("Unsupported betteroption type:", vice.betteroption);
+      console.log("Unsupported betteroption type:", betteroption);
       break;
   }
 }
 
-module.exports = { start, sendEntryReminders, sendStatusUpdates };
+function sendStreakStatus(vice, user) {
+  let length = getStreakLength(vice);
+  if (length > 1) {
+    let message = `Great work! You're on a streak of ${length} weeks below your limit with your ${
+      vice.name
+    } consumption. Keep it up! The Vice Cracker.`;
+    twilio.sendTextMessage(message, user.phone);
+  }
+}
+
+module.exports = {
+  start,
+  sendEntryReminders,
+  sendConsumptionStatusUpdates,
+  sendStreakStatusUpdates
+};

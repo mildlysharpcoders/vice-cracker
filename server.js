@@ -7,7 +7,8 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 const passport = require("./controllers/passportController");
 const users = require("./controllers/userController");
-const {start} = require("./utils/reminders");
+const { start } = require("./utils/reminders");
+const cookieParser = require("cookie-parser");
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -17,11 +18,13 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
+app.use(cookieParser());
 app.use(session({ secret: "miw", resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/vicecracker";
+const MONGODB_URI =
+  process.env.MONGODB_URI || "mongodb://localhost/vicecracker";
 
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 

@@ -6,6 +6,7 @@ import Card from "../components/Card/Card.jsx";
 import CardHeader from "../components/Card/CardHeader.jsx";
 import CardBody from "../components/Card/CardBody.jsx";
 import Button from "../components/CustomButtons/Button.jsx";
+import Container from "../components/Grid/GridContainer.jsx"
 import GridItem from "../components/Grid/GridItem.jsx";
 import CustomInput from "../components/CustomInput/CustomInput.jsx";
 
@@ -63,6 +64,8 @@ class Login extends Component {
 
   render() {
     return (
+      <Container>
+  
       <Card>
         <CardHeader>VICE CRACKER</CardHeader>
         <CardBody>
@@ -124,6 +127,8 @@ class Login extends Component {
           </form>
         </CardBody>
       </Card>
+      </Container>
+      
     );
   }
 }
