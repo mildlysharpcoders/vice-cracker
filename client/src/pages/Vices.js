@@ -3,6 +3,8 @@ import API from "../utils/API";
 import { Redirect } from "react-router-dom";
 import ViceItem from "../components/ViceItem";
 import Card from "../components/Card/Card.jsx";
+import Container from "../components/Grid/GridContainer.jsx"
+
 // import CardHeader from "../components/Card/CardHeader.jsx";
 // import CardBody from "../components/Card/CardBody.jsx";
 
@@ -66,19 +68,23 @@ class Vices extends Component {
 
   render() {
     return (
-      <>
+      
+      <Container>
         {/* {this.renderRedirect()} */}
         {this.state.vices.map(vice => {
           return (
-            <Card key={vice.name}>
+      
+            <div key={vice.name}>
               <ViceItem
                 vice={vice}
                 handleButtonClick={this.handleButtonClick}
               />
-            </Card>
+            </div>
+        
           );
         })}
-      </>
+      
+      </Container>
     );
   }
 }
