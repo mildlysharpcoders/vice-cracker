@@ -189,7 +189,7 @@ class Settings extends Component {
   render() {
     return (
       <Container>
-      <Card>
+    <Card style={{width: "max-content", margin: "30px"}}>
         {/* {this.renderRedirect()} */}
         <CardHeader>Settings</CardHeader>
         <CardBody>
@@ -286,7 +286,7 @@ class Settings extends Component {
           >
             Submit
           </Button>
-
+<Container>
           {this.state.vices.map(vice => {
             return (
               <ViceItem
@@ -297,8 +297,10 @@ class Settings extends Component {
               />
             );
           })}
+          </Container>
         </CardBody>
       </Card>
+      
       </Container>
     );
   }

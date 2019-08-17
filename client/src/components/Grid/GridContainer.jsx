@@ -25,7 +25,7 @@ import Grid from "@material-ui/core/Grid";
 
 const style = {
   grid: {
-    justifyContent: "center",
+    justifyContent: "space-around",
     width: "auto"
   }
 };
