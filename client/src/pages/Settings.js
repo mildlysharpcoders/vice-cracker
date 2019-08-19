@@ -11,7 +11,6 @@ import Container from "../components/Grid/GridContainer.jsx";
 import GridItem from "../components/Grid/GridItem.jsx";
 import Button from "../components/CustomButtons/Button.jsx";
 
-
 class Settings extends Component {
   constructor(props) {
     super(props);
@@ -22,7 +21,8 @@ class Settings extends Component {
       cost: "",
       vices: [],
       error: "",
-      betteroptions: []
+      betteroptions: [],
+      redirect: false
     };
   }
 
@@ -31,11 +31,16 @@ class Settings extends Component {
     this.loadBetterOptions();
   };
 
-  componentDidUpdate = (prevProps) => {
+  componentDidUpdate = prevProps => {
     if (this.props.user.email !== prevProps.user.email) {
       this.loadVices();
+      if (this.props.user.email) {
+        this.setState({ redirect: false });
+      } else {
+        this.setState({ redirect: true });
+      }
     }
-  }
+  };
 
   loadVices = () => {
     const user = this.props.user.email;
@@ -177,10 +182,11 @@ class Settings extends Component {
   };
 
   renderRedirect = () => {
-    if (!this.props.user || !this.props.user.email) {
+    if (this.state.redirect) {
       return <Redirect to="/" />;
     }
   };
+
 
   handleMenuClick = betteroption => {
     this.setState({ betteroption });
@@ -189,8 +195,8 @@ class Settings extends Component {
   render() {
     return (
       <Container>
-      <Card style={{width: "max-content", margin: "30px"}}>
-          {/* {this.renderRedirect()} */}
+        <Card style={{ width: "max-content", margin: "30px" }}>
+          {this.renderRedirect()}
           <CardHeader>Settings</CardHeader>
           <CardBody>
             <Container>
@@ -285,23 +291,21 @@ class Settings extends Component {
               onClick={event => this.handleFormSubmit(event)}
             >
               Submit
-          </Button>
-        
+            </Button>
 
-          <Container>
-
-            {this.state.vices.map(vice => {
-              return (
-                <ViceItem
-                  key={vice.name}
-                  vice={vice}
-                  handleButtonClick={this.handleIncrementButtonClick}
-                  handleDeleteButtonClick={this.handleDeleteButtonClick}
-                />
-              );
-            })}
+            <Container>
+              {this.state.vices.map(vice => {
+                return (
+                  <ViceItem
+                    key={vice.name}
+                    vice={vice}
+                    handleButtonClick={this.handleIncrementButtonClick}
+                    handleDeleteButtonClick={this.handleDeleteButtonClick}
+                  />
+                );
+              })}
             </Container>
-        </CardBody>
+          </CardBody>
         </Card>
       </Container>
     );

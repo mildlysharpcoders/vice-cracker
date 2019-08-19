@@ -2,17 +2,14 @@ import React, { Component } from "react";
 import API from "../utils/API";
 import { Redirect } from "react-router-dom";
 import ViceItem from "../components/ViceItem";
-import Card from "../components/Card/Card.jsx";
-import Container from "../components/Grid/GridContainer.jsx"
-
-// import CardHeader from "../components/Card/CardHeader.jsx";
-// import CardBody from "../components/Card/CardBody.jsx";
+import Container from "../components/Grid/GridContainer.jsx";
 
 class Vices extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      vices: []
+      vices: [],
+      redirect: false
     };
   }
 
@@ -23,6 +20,11 @@ class Vices extends Component {
   componentDidUpdate = prevProps => {
     if (this.props.user.email !== prevProps.user.email) {
       this.loadVices();
+      if (this.props.user.email) {
+        this.setState({ redirect: false });
+      } else {
+        this.setState({ redirect: true });
+      }
     }
   };
 
@@ -41,7 +43,7 @@ class Vices extends Component {
   };
 
   renderRedirect = () => {
-    if (!this.props.user || !this.props.user.email) {
+    if (this.state.redirect) {
       return <Redirect to="/" />;
     }
   };
@@ -69,25 +71,19 @@ class Vices extends Component {
   render() {
     return (
       <Container>
-  
-        {/* {this.renderRedirect()} */}
-       
+        {this.renderRedirect()}
+
         {this.state.vices.map(vice => {
-       
           return (
-  
             <div key={vice.name}>
               <ViceItem
                 vice={vice}
                 handleButtonClick={this.handleButtonClick}
               />
             </div>
-       
           );
-      
         })}
-    </Container>
-    
+      </Container>
     );
   }
 }
