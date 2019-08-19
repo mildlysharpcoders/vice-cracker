@@ -46,6 +46,7 @@ function sendYelp(vice, user, type, blurb) {
         randomItem.url +
         ")";
       twilio.sendTextMessage(message, user.phone);
+      //this needs to also send the message to a page to be displayed
     }
   });
 }

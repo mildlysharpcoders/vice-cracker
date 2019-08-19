@@ -43,6 +43,7 @@ function sendRecipe(vice, user) {
         ": " +
         res.body.recipes[0].sourceUrl;
         twilio.sendTextMessage(message, user.phone);
+        //another line to send this message to a page to display
       }
   });
 }
