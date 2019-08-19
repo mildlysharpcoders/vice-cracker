@@ -1,4 +1,6 @@
 module.exports = {
     User: require("./User"),
-    Vice: require("./Vice")
+    Vice: require("./Vice"),
+    Status: require("./Status")
   };
+  

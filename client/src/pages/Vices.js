@@ -1,20 +1,31 @@
 import React, { Component } from "react";
-// import { Col, Row, Container } from "../components/Grid";
-import Nav from "../components/Nav";
 import API from "../utils/API";
-import { Redirect, Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import ViceItem from "../components/ViceItem";
+import Container from "../components/Grid/GridContainer.jsx";
 
 class Vices extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      vices: []
+      vices: [],
+      redirect: false
     };
   }
 
   componentDidMount = () => {
     this.loadVices();
+  };
+
+  componentDidUpdate = prevProps => {
+    if (this.props.user.email !== prevProps.user.email) {
+      this.loadVices();
+      if (this.props.user.email) {
+        this.setState({ redirect: false });
+      } else {
+        this.setState({ redirect: true });
+      }
+    }
   };
 
   loadVices = () => {
@@ -32,7 +43,7 @@ class Vices extends Component {
   };
 
   renderRedirect = () => {
-    if (!this.props.user || !this.props.user.email) {
+    if (this.state.redirect) {
       return <Redirect to="/" />;
     }
   };
@@ -59,48 +70,20 @@ class Vices extends Component {
 
   render() {
     return (
-      <>
+      <Container>
         {this.renderRedirect()}
-        <div>
-          <Nav />
-        </div>
+
         {this.state.vices.map(vice => {
           return (
-            <ViceItem
-              key={vice.name}
-              vice={vice}
-              handleButtonClick={this.handleButtonClick}
-            />
+            <div key={vice.name}>
+              <ViceItem
+                vice={vice}
+                handleButtonClick={this.handleButtonClick}
+              />
+            </div>
           );
         })}
-        <Link to="/settings">Settings</Link>
-        {/* <Container fluid>
-          <Row>
-            <Col size="m6">
-              <div className="card blue-grey darken-1">
-                <div className="card-content white-text">
-                  <SelectVice />
-                  <br />
-                  <br />
-                  <p>
-                    I am a very simple card. I am good at containing small bits
-                    of information. I am convenient because I require little
-                    markup to use effectively.
-                  </p>
-                </div>
-                <a className="btn-floating halfway-fab waves-effect waves-light red">
-                  <i className="material-icons">add</i>
-                </a>
-                <div className="card-action">
-                  <a className="waves-effect waves-teal btn-flat">
-                    Delete Vice
-                  </a>
-                </div>
-              </div>
-            </Col>
-          </Row>
-        </Container> */}
-      </>
+      </Container>
     );
   }
 }

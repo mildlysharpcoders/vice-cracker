@@ -27,7 +27,7 @@ import {
   transition,
   boxShadow,
   drawerWidth
-} from "assets/jss/material-kit-react.jsx";
+} from  "../../../../assets/jss/material-kit-react.jsx";
 
 const headerStyle = {
   appBar: {
@@ -36,9 +36,9 @@ const headerStyle = {
     borderRadius: "3px",
     padding: "0.625rem 0",
     marginBottom: "20px",
-    color: "#555",
+    color: primaryColor,
     width: "100%",
-    backgroundColor: "#fff",
+    backgroundColor: infoColor,
     boxShadow:
       "0 4px 18px 0px rgba(0, 0, 0, 0.12), 0 7px 10px -5px rgba(0, 0, 0, 0.15)",
     transition: "all 150ms ease 0s",
@@ -58,7 +58,7 @@ const headerStyle = {
   },
   container: {
     ...container,
-    minHeight: "50px",
+    minHeight: "20px",
     flex: "1",
     alignItems: "center",
     justifyContent: "space-between",
@@ -70,7 +70,7 @@ const headerStyle = {
   },
   title: {
     ...defaultFont,
-    lineHeight: "30px",
+    lineHeight: "20px",
     fontSize: "18px",
     borderRadius: "3px",
     textTransform: "none",

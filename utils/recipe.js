@@ -2,6 +2,7 @@ require("dotenv").config();
 
 const unirest = require("unirest");
 const twilio = require("./twilio");
+const { storeStatusUpdate } = require("./status");
 const SPOONACULAR_API_KEY = process.env.SPOONACULAR_API_KEY;
 
 const listOfTags = [
@@ -43,6 +44,7 @@ function sendRecipe(vice, user) {
         ": " +
         res.body.recipes[0].sourceUrl;
         twilio.sendTextMessage(message, user.phone);
+        storeStatusUpdate(message, user);
       }
   });
 }

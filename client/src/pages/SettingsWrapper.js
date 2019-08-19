@@ -5,7 +5,7 @@ import Settings from "./Settings";
 function SettingsWrapper(props) {
   return (
     <>
-      <UserConsumer>{user => <Settings {...props} user={user} />}</UserConsumer>
+      <UserConsumer>{identity => <Settings {...props} user={identity.user} />}</UserConsumer>
     </>
   );
 }

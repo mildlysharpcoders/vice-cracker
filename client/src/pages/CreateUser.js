@@ -8,7 +8,7 @@ import CardBody from "../components/Card/CardBody.jsx";
 import Button from "../components/CustomButtons/Button.jsx";
 import GridItem from "../components/Grid/GridItem.jsx";
 import CustomInput from "../components/CustomInput/CustomInput.jsx";
-import GridContainer from "../components/Grid/GridContainer.jsx";
+import Container from "../components/Grid/GridContainer.jsx";
 
 //   var strongRegex = new RegExp(
 //     '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})'
@@ -143,11 +143,12 @@ class CreateUser extends Component {
 
   render() {
     return (
-      <Card>
+      <Container>
+      <Card style={{width: "max-content", margin: "30px" }}>
         <CardHeader>CREATE YOUR PROFILE</CardHeader>
         <CardBody>
           <form onSubmit={this.handleSubmit}>
-            <GridContainer>
+            <Container>
               <GridItem xs={12} sm={12} md={6}>
                 <CustomInput
                   type="text"
@@ -309,7 +310,7 @@ class CreateUser extends Component {
                   }}
                 />
               </GridItem>
-            </GridContainer>
+            </Container>
 
             {/* TODO: Replace this dull html with something more eye-grabbing */}
             <p>{this.state.error}</p>
@@ -328,6 +329,7 @@ class CreateUser extends Component {
           {/* </Button> */}
         </CardBody>
       </Card>
+      </Container>
     );
   }
 }
