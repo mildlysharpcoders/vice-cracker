@@ -11,7 +11,6 @@ import Container from "../components/Grid/GridContainer.jsx";
 import GridItem from "../components/Grid/GridItem.jsx";
 import Button from "../components/CustomButtons/Button.jsx";
 
-
 class Settings extends Component {
   constructor(props) {
     super(props);
@@ -22,7 +21,8 @@ class Settings extends Component {
       cost: "",
       vices: [],
       error: "",
-      betteroptions: []
+      betteroptions: [],
+      redirect: false
     };
   }
 
@@ -31,11 +31,16 @@ class Settings extends Component {
     this.loadBetterOptions();
   };
 
-  componentDidUpdate = (prevProps) => {
+  componentDidUpdate = prevProps => {
     if (this.props.user.email !== prevProps.user.email) {
       this.loadVices();
+      if (this.props.user.email) {
+        this.setState({ redirect: false });
+      } else {
+        this.setState({ redirect: true });
+      }
     }
-  }
+  };
 
   loadVices = () => {
     const user = this.props.user.email;
@@ -177,10 +182,11 @@ class Settings extends Component {
   };
 
   renderRedirect = () => {
-    if (!this.props.user || !this.props.user.email) {
+    if (this.state.redirect) {
       return <Redirect to="/" />;
     }
   };
+
 
   handleMenuClick = betteroption => {
     this.setState({ betteroption });
@@ -189,116 +195,118 @@ class Settings extends Component {
   render() {
     return (
       <Container>
-      <Card>
-        {/* {this.renderRedirect()} */}
-        <CardHeader>Settings</CardHeader>
-        <CardBody>
-          <Container>
-            <GridItem xs={12} sm={12} md={12}>
-              <CustomInput
-                // type='text'
-                labelText="Name Your Vice"
-                // name='name'
-                // value={this.state.name}
-                // onChange={this.handleInputChange}
-                className="form-control"
-                placeholder="Your Vice"
-                aria-label="Username"
-                aria-describedby="addon-wrapping"
-                inputProps={{
-                  type: "text",
-                  value: this.state.name,
-                  name: "name",
-                  onChange: event => this.handleInputChange(event)
-                }}
-              />
-            </GridItem>
-          </Container>
+        <Card style={{ width: "max-content", margin: "30px" }}>
+          {this.renderRedirect()}
+          <CardHeader>Settings</CardHeader>
+          <CardBody>
+            <Container>
+              <GridItem xs={12} sm={12} md={12}>
+                <CustomInput
+                  // type='text'
+                  labelText="Name Your Vice"
+                  // name='name'
+                  // value={this.state.name}
+                  // onChange={this.handleInputChange}
+                  className="form-control"
+                  placeholder="Your Vice"
+                  aria-label="Username"
+                  aria-describedby="addon-wrapping"
+                  inputProps={{
+                    type: "text",
+                    value: this.state.name,
+                    name: "name",
+                    onChange: event => this.handleInputChange(event)
+                  }}
+                />
+              </GridItem>
+            </Container>
 
-          <Container>
-            <GridItem xs={12} sm={12} md={12}>
-              <Dropdown
-                buttonText={this.state.betteroption}
-                dropdownList={this.state.betteroptions}
-                onClick={this.handleMenuClick}
-                buttonProps={{
-                  round: true,
-                  color: "info"
-                }}
-              />
-            </GridItem>
-          </Container>
+            <Container>
+              <GridItem xs={12} sm={12} md={12}>
+                <Dropdown
+                  buttonText={this.state.betteroption}
+                  dropdownList={this.state.betteroptions}
+                  onClick={this.handleMenuClick}
+                  buttonProps={{
+                    round: true,
+                    color: "info"
+                  }}
+                />
+              </GridItem>
+            </Container>
 
-          <Container>
-            <GridItem xs={12} sm={12} md={12}>
-              <CustomInput
-                // type='number'
-                labelText="Consumption"
-                // name='limit'
-                // value={this.state.limit}
-                // onChange={this.handleInputChange}
-                className="form-control"
-                placeholder="Consumption/Week"
-                aria-label="Username"
-                aria-describedby="addon-wrapping"
-                inputProps={{
-                  type: "number",
-                  value: this.state.limit,
-                  name: "limit",
-                  onChange: event => this.handleInputChange(event)
-                }}
-              />
-            </GridItem>
-          </Container>
+            <Container>
+              <GridItem xs={12} sm={12} md={12}>
+                <CustomInput
+                  // type='number'
+                  labelText="Consumption"
+                  // name='limit'
+                  // value={this.state.limit}
+                  // onChange={this.handleInputChange}
+                  className="form-control"
+                  placeholder="Consumption/Week"
+                  aria-label="Username"
+                  aria-describedby="addon-wrapping"
+                  inputProps={{
+                    type: "number",
+                    value: this.state.limit,
+                    name: "limit",
+                    onChange: event => this.handleInputChange(event)
+                  }}
+                />
+              </GridItem>
+            </Container>
 
-          <Container>
-            <GridItem xs={12} sm={12} md={12}>
-              <CustomInput
-                // type='number'
-                labelText="Cost"
-                // name='cost'
-                // value={this.state.cost}
-                // onChange={this.handleInputChange}
-                className="form-control"
-                placeholder="Cost"
-                aria-label="Username"
-                aria-describedby="addon-wrapping"
-                inputProps={{
-                  type: "number",
-                  value: this.state.cost,
-                  name: "cost",
-                  onChange: event => this.handleInputChange(event)
-                }}
-              />
-            </GridItem>
-          </Container>
+            <Container>
+              <GridItem xs={12} sm={12} md={12}>
+                <CustomInput
+                  // type='number'
+                  labelText="Cost"
+                  // name='cost'
+                  // value={this.state.cost}
+                  // onChange={this.handleInputChange}
+                  className="form-control"
+                  placeholder="Cost"
+                  aria-label="Username"
+                  aria-describedby="addon-wrapping"
+                  inputProps={{
+                    type: "number",
+                    value: this.state.cost,
+                    name: "cost",
+                    onChange: event => this.handleInputChange(event)
+                  }}
+                />
+              </GridItem>
+            </Container>
 
-          {/* TODO: Replace this dull html with something more eye-grabbing */}
-          <p>{this.state.error}</p>
+            {/* TODO: Replace this dull html with something more eye-grabbing */}
+            <p>{this.state.error}</p>
 
-          <Button
-            color="primary"
-            round
-            type="button"
-            className="btn btn-secondary"
-            // onClick={this.handleFormSubmit}
-            onClick={event => this.handleFormSubmit(event)}
-          >
-            Submit
-          </Button>
+            <Button
+              color="primary"
+              round
+              type="button"
+              className="btn btn-secondary"
+              // onClick={this.handleFormSubmit}
+              onClick={event => this.handleFormSubmit(event)}
+            >
+              Submit
+            </Button>
 
-          {this.state.vices.map(vice => {
-            return (
-              <ViceItem
-                key={vice.name}
-                vice={vice}
-                handleButtonClick={this.handleIncrementButtonClick}
-                handleDeleteButtonClick={this.handleDeleteButtonClick}
-              />
-            );
-          })}
-        </CardBody>
-      </Card>
+            <Container>
+              {this.state.vices.map(vice => {
+                return (
+                  <ViceItem
+                    key={vice.name}
+                    vice={vice}
+                    handleButtonClick={this.handleIncrementButtonClick}
+                    handleDeleteButtonClick={this.handleDeleteButtonClick}
+                  />
+                );
+              })}
+            </Container>
+          </CardBody>
+        </Card>
       </Container>
     );
   }

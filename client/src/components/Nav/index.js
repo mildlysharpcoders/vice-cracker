@@ -1,15 +1,18 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import NavPills from "./../NavPills/NavPills.jsx"
+
+
 
 function LoggedIn(props) {
   return (
-    <>
+<>
       <Link to="/vices">Vices</Link>
       <Link to="/settings">Settings</Link>
       <button type="button" onClick={props.handleButtonClick}>
         Logout
       </button>
-    </>
+</>
   );
 }
 

@@ -15,9 +15,9 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import { defaultFont } from "assets/jss/material-kit-react.jsx";
+import { defaultFont } from "./../../material-kit-react.jsx";
 
-import tooltip from "assets/jss/material-kit-react/tooltipsStyle.jsx";
+import tooltip from "./../tooltipsStyle.jsx";
 
 const headerLinksStyle = theme => ({
   list: {

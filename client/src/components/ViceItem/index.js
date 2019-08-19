@@ -1,14 +1,19 @@
 import React from "react";
 import moment from "moment";
 import Card from "./../Card/Card.jsx";
-// import CardHeader from "./../Card/CardHeader.jsx";
-// import CardBody from "./../Card/CardBody.jsx";
+import CardHeader from "./../Card/CardHeader.jsx";
+import CardBody from "./../Card/CardBody.jsx";
+import Button from "./../CustomButtons/Button.jsx";
+import Container from "./../Grid/GridContainer.jsx"
 
 function DeleteButton(props) {
   if (props.handleDeleteButtonClick) {
-    return <button type="button" onClick={() => props.handleDeleteButtonClick(props.vice)}>
+    return <Button  
+    color= "rose"
+    round
+    type="button" onClick={() => props.handleDeleteButtonClick(props.vice)}>
       X
-    </button>
+    </Button>
   } else {
     return <></>
   }
@@ -34,22 +39,28 @@ function ViceItem(props) {
   }
 
   return (
-   <Card>
+<Card style={{width: "max-content"}}>
   
-      <h3>Your Vice: {props.vice.name}</h3>
+<CardHeader style={{width: "fit-content"}}>Your Vice: {props.vice.name}</CardHeader>
+      <CardBody>
       <p>Better Option: {props.vice.betteroption}</p>
       <p>
         Consumption this week: {weeklyCount}/{props.vice.limit}
       </p>
       <p>Consumption this month: {monthlyCount}</p>
       <p>Cost this month: ${(monthlyCount * props.vice.cost).toFixed(2)}</p>
-      <button type="button" onClick={() => props.handleButtonClick(props.vice)}>
+      <Button 
+      color="primary"
+      round
+      type="button" onClick={() => props.handleButtonClick(props.vice)}>
         +
-      </button>
-      <DeleteButton {...props} />
+      </Button>
+      <DeleteButton
+      {...props} />
     
-   
+   </CardBody>
       </Card>
+    
   );
 }
 
