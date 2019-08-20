@@ -102,25 +102,44 @@ function storeToken(token) {
  * @param {google.auth.OAuth2} auth An authorized OAuth2 client.
  */
 function getChannel(auth) {
+  var workOuts = ["Yoga", "Cardio", "Zumba", "Tae Bo", "Richard Simmons", "Work out"]
+  var randomWorkOut = workOuts[Math.floor(Math.random() * 6)]
+  
   var service = google.youtube('v3');
-  service.channels.list({
+  service.search.list({
     auth: auth,
-    part: 'snippet,contentDetails,statistics',
-    forUsername: 'GoogleDevelopers'
+    part: 'snippet,id',
+    q: randomWorkOut,
+    maxResults: '49'
   }, function(err, response) {
     if (err) {
       console.log('The API returned an error: ' + err);
       return;
     }
-    var channels = response.data.items;
-    if (channels.length == 0) {
-      console.log('No channel found.');
+    var search = response.data.items;
+    var setofNumbers = []
+
+    for (i = 0; i < 50; i++){
+      setofNumbers.push(i);
+    } 
+
+    var randomId = setofNumbers[Math.floor(Math.random() * 50)]
+    if (search.length == 0) {
+      console.log('No search results found.');
     } else {
-      console.log('This channel\'s ID is %s. Its title is \'%s\', and ' +
-                  'it has %s views.',
-                  channels[0].id,
-                  channels[0].snippet.title,
-                  channels[0].statistics.viewCount);
+      //for(i = 0; i < 10; i++)
+      console.log('Oh no! You have gone over your consumptions! Here is workout from \'%s\', and ' +
+                  '%s' + ' Visit our page at https://www.youtube.com/watch?v=%s' + 
+                  ' We have a total of %s videos on our page. I am viewing ID ' + randomId,
+                  //channels[0].id,
+                  search[randomId].snippet.title,
+                  search[randomId].snippet.description,
+                  search[randomId].id.videoId,
+                  );
+                  
+                  
     }
+
+    
   });
 }
