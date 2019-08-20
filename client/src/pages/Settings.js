@@ -197,7 +197,7 @@ class Settings extends Component {
   render() {
     return (
       <>
-     <Header />
+     <Header brand=""/>
       <Container>
         <Card style={{minWidth: "fit-content", margin: "30px" }}>
           {this.renderRedirect()}

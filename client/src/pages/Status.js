@@ -49,7 +49,7 @@ class Status extends Component {
   render() {
     return (
       <>
-        <Header />
+        <Header brand="" />
         <Container>
           {/* {this.renderRedirect()} */}
           {this.state.statusMessages.map(status => {
