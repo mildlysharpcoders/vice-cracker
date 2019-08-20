@@ -58,7 +58,7 @@ class App extends Component {
       <UserProvider value={this.state}>
         <Router>
           <div>
-            <NavWrapper />
+            {/* <NavWrapper /> */}
             <Switch>
               <Route
                 exact

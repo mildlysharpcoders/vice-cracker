@@ -65,70 +65,74 @@ class Login extends Component {
   render() {
     return (
       <Container>
-  
-      <Card>
-        <CardHeader>VICE CRACKER</CardHeader>
-        <CardBody>
-          {this.renderRedirect()}
-          <form onSubmit={this.submit}>
-            <GridItem xs={12} sm={12} md={4}>
-              <CustomInput
-                labelText="Username"
-                id="float"
-                formControlProps={{
-                  fullWidth: true
-                }}
-                // value={this.state.email}
-                inputProps={{
-                  type: "username",
-                  value: this.state.email,
-                  name: "email",
-                  onChange: event => this.handleInputChange(event)
-                }}
-              />
-            </GridItem>
-            <GridItem xs={12} sm={12} md={4}>
-              <CustomInput
-                labelText="Password"
-                id="float"
-                inputProps={{
-                  type: "password",
-                  value: this.state.password,
-                  name: "password",
-                  onChange: event => this.handleInputChange(event)
-                }}
-                formControlProps={{
-                  fullWidth: true
-                }}
+
+        <Card>
+          <CardHeader>VICE CRACKER</CardHeader>
+          <CardBody>
+            {this.renderRedirect()}
+            <form onSubmit={this.submit}>
+              <GridItem xs={12} sm={12} md={4}>
+                <CustomInput
+                  labelText="Username"
+                  id="float"
+                  formControlProps={{
+                    fullWidth: true
+                  }}
+                  // value={this.state.email}
+                  inputProps={{
+                    type: "username",
+                    value: this.state.email,
+                    name: "email",
+                    onChange: event => this.handleInputChange(event)
+                  }}
+                />
+              </GridItem>
+              <GridItem xs={12} sm={12} md={4}>
+                <CustomInput
+                  labelText="Password"
+                  id="float"
+                  inputProps={{
+                    type: "password",
+                    value: this.state.password,
+                    name: "password",
+                    onChange: event => this.handleInputChange(event)
+                  }}
+                  formControlProps={{
+                    fullWidth: true
+                  }}
                 // value={this.state.password}
-              />
-            </GridItem>
-            <p>{this.state.error}</p>
-            <br />
-            <Button
-              type="submit"
-              label="YouSuck"
-              color="primary"
-              // inputProps={{
-              //   type: 'submit',
-              //   value: 'Submit',
-              //   name: 'submit'
-              // }}
-              round
-              onClick={event => this.handleButtonClick(event)}
-            >
-              Log In
+                />
+              </GridItem>
+              <p>{this.state.error}</p>
+
+              <br />
+
+              <Button
+                type="submit"
+                label="YouSuck"
+                color="primary"
+                // inputProps={{
+                //   type: 'submit',
+                //   value: 'Submit',
+                //   name: 'submit'
+                // }}
+                round
+                onClick={event => this.handleButtonClick(event)}
+              >
+                Log In
             </Button>
-            <br />
-            <br />
-            <Button color="info" round>
-              <Link to="/create">Create New User</Link>
-            </Button>
-          </form>
-        </CardBody>
-      </Card>
+
+              <br />
+              <br />
+
+              <Button color="info" round>
+                <Link to="/create">Create New User</Link>
+              </Button>
+            </form>
+          </CardBody>
+        </Card>
       </Container>
-      
+
     );
   }
 }
