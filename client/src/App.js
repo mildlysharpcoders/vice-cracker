@@ -60,7 +60,7 @@ class App extends Component {
     return (
       <UserProvider value={this.state}>
         <Router>
-          <Header />
+          {/* <Header /> */}
           <Switch>
             <Route
               exact
