@@ -3,7 +3,7 @@ import API from "../utils/API";
 import { Redirect } from "react-router-dom";
 import ViceItem from "../components/ViceItem";
 import Container from "../components/Grid/GridContainer.jsx";
-import NavWrapper from "./../components/NavWrapper/index";
+import Header from "./../components/Header/Header"
 
 
 class Vices extends Component {
@@ -73,7 +73,7 @@ class Vices extends Component {
   render() {
     return (
       <>
-      <NavWrapper />
+      <Header />
       <Container>
         {this.renderRedirect()}
 
