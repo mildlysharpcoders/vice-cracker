@@ -5,9 +5,9 @@ import Header from "./../Header/Header.jsx"
 
 function NavWrapper(props) {
     return (
-
+<Header>
         <UserConsumer>{identity => <Nav {...props} user={identity.user} logout={identity.logout}/>}</UserConsumer>
-       
+       </Header>
     );
   }
   
