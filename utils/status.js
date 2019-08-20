@@ -1,13 +1,15 @@
 const db = require("../models");
 const moment = require("moment");
 
-function storeStatusUpdate(message, user) {
-  const timestamp = moment().format("YYYY-MM-DD HH:MM:SS");
+function storeStatusUpdate(message, hrefName, href, user) {
+  const timestamp = moment().format("YYYY-MM-DD HH:mm:ss");
 
   let status = {
     email: user.email,
     timestamp,
-    message
+    message,
+    hrefName,
+    href
   };
 
   db.Status.create(status)

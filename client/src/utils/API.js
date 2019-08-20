@@ -55,5 +55,9 @@ export default {
 
   sendStreakUpdates: function() {
     return axios.get("/api/reminder/streaks");
+  },
+
+  getStatusMessagesForUser: function(email) {
+    return axios.get("/api/status/" + email);
   }
 };
