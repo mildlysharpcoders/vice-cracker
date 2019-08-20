@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import NavPills from "./../NavPills/NavPills.jsx"
+import Button from "./../CustomButtons/Button.jsx"
 
 
 
@@ -9,9 +9,9 @@ function LoggedIn(props) {
 <>
       <Link to="/vices">Vices</Link>
       <Link to="/settings">Settings</Link>
-      <button type="button" onClick={props.handleButtonClick}>
+      <Button type="button" onClick={props.handleButtonClick}>
         Logout
-      </button>
+      </Button>
 </>
   );
 }

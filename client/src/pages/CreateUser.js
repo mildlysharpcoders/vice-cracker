@@ -133,6 +133,7 @@ class CreateUser extends Component {
         .then(response => {
           console.log("Created user info: " + response.data);
           this.setState({ error: "User Created" });
+          this.props.history.push("/");
         })
         .catch(error => {
           console.log(error);
@@ -144,7 +145,7 @@ class CreateUser extends Component {
   render() {
     return (
       <Container>
-      <Card style={{width: "max-content", margin: "30px" }}>
+      <Card style={{margin: "30px"}}>
         <CardHeader>CREATE YOUR PROFILE</CardHeader>
         <CardBody>
           <form onSubmit={this.handleSubmit}>
