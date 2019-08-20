@@ -8,8 +8,11 @@ import LoginWrapper from "./pages/LoginWrapper";
 import NoMatch from "./pages/NoMatch";
 import CreateUser from "./pages/CreateUser";
 import Test from "./pages/Test";
+import StatusWrapper from "./pages/StatusWrapper";
 import { UserProvider } from "./UserContext";
 import API from "./utils/API";
+import HeaderLinks from "./components/Header/HeaderLinks.jsx"
+import Header from "./components/Header/Header.jsx"
 
 class App extends Component {
   state = {
@@ -57,8 +60,13 @@ class App extends Component {
     return (
       <UserProvider value={this.state}>
         <Router>
-          <div>
-            <NavWrapper />
+         
+          
+            
+            <Header />
+             
+            
+           
             <Switch>
               <Route
                 exact
@@ -69,11 +77,12 @@ class App extends Component {
               />
               <Route exact path="/vices" component={VicesWrapper} />} />
               <Route exact path="/settings" component={SettingsWrapper} />} />
+              <Route exact path="/status" component={StatusWrapper} />} />
               <Route exact path="/create" component={CreateUser} />
               <Route exact path="/test" component={Test} />
               <Route component={NoMatch} />
             </Switch>
-          </div>
+          
         </Router>
       </UserProvider>
     );

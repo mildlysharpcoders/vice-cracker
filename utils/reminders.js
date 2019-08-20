@@ -107,7 +107,7 @@ function sendConsumptionStatus(vice, user) {
       vice.name
     } consumption. Here's to a healthier life! The Vice Cracker.`;
     twilio.sendTextMessage(message, user.phone);
-    storeStatusUpdate(message, user);
+    storeStatusUpdate(message, "", "", user);
   } else {
     sendHealthyAlternative(vice, user);
   }
@@ -147,7 +147,7 @@ function sendStreakStatus(vice, user) {
       vice.name
     } consumption. Keep it up! The Vice Cracker.`;
     twilio.sendTextMessage(message, user.phone);
-    storeStatusUpdate(message, user);
+    storeStatusUpdate(message, "", "", user);
   }
 }
 

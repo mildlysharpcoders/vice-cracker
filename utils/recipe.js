@@ -36,15 +36,15 @@ function sendRecipe(vice, user) {
     if (res.error) {
       console.log(res.error);
     } else {
-      let message =
+      const hrefName = res.body.recipes[0].title;
+      const href = res.body.recipes[0].sourceUrl;
+      const message =
         "The Vice Cracker says you've exceeded your " +
         vice.name +
-        " consumption for the week. Here is a recipe for " +
-        res.body.recipes[0].title +
-        ": " +
-        res.body.recipes[0].sourceUrl;
-        twilio.sendTextMessage(message, user.phone);
-        storeStatusUpdate(message, user);
+        " consumption for the week. Here is a recipe for ";
+        const textMessage = message + hrefName + " (" + href + ")";
+        twilio.sendTextMessage(textMessage, user.phone);
+        storeStatusUpdate(message, hrefName, href, user);
       }
   });
 }

@@ -36,7 +36,7 @@ const headerStyle = {
     borderRadius: "3px",
     padding: "0.625rem 0",
     marginBottom: "20px",
-    color: primaryColor,
+    color: roseColor,
     width: "100%",
     backgroundColor: infoColor,
     boxShadow:
