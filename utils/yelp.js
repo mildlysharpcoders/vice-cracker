@@ -12,7 +12,12 @@ function sendGym(vice, user) {
 }
 
 function sendHealthFoodStore(vice, user) {
-  sendYelp(vice, user, YELP_HEALTH_FOOD_STORE, "Try this local health food store for healthy shopping: ");
+  sendYelp(
+    vice,
+    user,
+    YELP_HEALTH_FOOD_STORE,
+    "Try this local health food store for healthy shopping: "
+  );
 }
 
 function sendYelp(vice, user, type, blurb) {
@@ -41,13 +46,11 @@ function sendYelp(vice, user, type, blurb) {
       let message =
         "The Vice Cracker says you've exceeded your " +
         vice.name +
-        " consumption for the week. " + blurb +
-        randomItem.name +
-        " (" +
-        randomItem.url +
-        ")";
-      twilio.sendTextMessage(message, user.phone);
-      storeStatusUpdate(message, user);
+        " consumption for the week. " +
+        blurb;
+      let textMessage = message + randomItem.name + " (" + randomItem.url + ")";
+      twilio.sendTextMessage(textMessage, user.phone);
+      storeStatusUpdate(message, randomItem.name, randomItem.url, user);
     }
   });
 }

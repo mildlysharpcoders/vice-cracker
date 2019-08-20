@@ -1,23 +1,28 @@
+require("dotenv").config();
 var fs = require('fs');
 var readline = require('readline');
 var {google} = require('googleapis');
+const twilio = require("./twilio");
+const { storeStatusUpdate } = require("./status");
+
+
 var OAuth2 = google.auth.OAuth2;
 
 // If modifying these scopes, delete your previously saved credentials
 // at ~/.credentials/youtube-nodejs-quickstart.json
-var SCOPES = ['https://www.googleapis.com/auth/youtube.readonly'];
+var SCOPES = ['https://www.googleapis.com/auth/youtube'];
 var TOKEN_DIR = (process.env.HOME || process.env.HOMEPATH ||
     process.env.USERPROFILE) + '/.credentials/';
 var TOKEN_PATH = TOKEN_DIR + 'youtube-nodejs-quickstart.json';
 
 // Load client secrets from a local file.
-fs.readFile('client_secret.json', function processClientSecrets(err, content) {
+fs.readFile('utils/client_secret.json', function processClientSecrets(err, content) {
   if (err) {
     console.log('Error loading client secret file: ' + err);
     return;
   }
   // Authorize a client with the loaded credentials, then call the YouTube API.
-  authorize(JSON.parse(content), getChannel);
+  authorize(JSON.parse(content), sendWorkout);
 });
 
 /**
@@ -101,26 +106,57 @@ function storeToken(token) {
  *
  * @param {google.auth.OAuth2} auth An authorized OAuth2 client.
  */
-function getChannel(auth) {
+function sendWorkout(auth) {
+  var workOuts = ["Yoga", "Cardio", "Zumba", "Tae Bo", "Richard Simmons", "Work out"]
+  var randomWorkOut = workOuts[Math.floor(Math.random() * 6)]
+  
   var service = google.youtube('v3');
-  service.channels.list({
+  service.search.list({
     auth: auth,
-    part: 'snippet,contentDetails,statistics',
-    forUsername: 'GoogleDevelopers'
+    part: 'snippet,id',
+    q: randomWorkOut,
+    maxResults: '49'
   }, function(err, response) {
     if (err) {
       console.log('The API returned an error: ' + err);
       return;
     }
-    var channels = response.data.items;
-    if (channels.length == 0) {
-      console.log('No channel found.');
+    var search = response.data.items;
+    var setofNumbers = []
+
+    for (i = 0; i < 50; i++){
+      setofNumbers.push(i);
+    } 
+
+    var randomId = setofNumbers[Math.floor(Math.random() * 50)]
+    if (search.length == 0) {
+      console.log('No search results found.');
     } else {
-      console.log('This channel\'s ID is %s. Its title is \'%s\', and ' +
-                  'it has %s views.',
-                  channels[0].id,
-                  channels[0].snippet.title,
-                  channels[0].statistics.viewCount);
+      //for(i = 0; i < 10; i++)
+      console.log('Oh no! You have gone over your consumptions! Here is workout from \'%s\', and ' +
+                  '%s' + ' Visit our page at https://www.youtube.com/watch?v=%s' + 
+                  ' We have a total of %s videos on our page. I am viewing ID ' + randomId,
+                  //channels[0].id,
+                  search[randomId].snippet.title,
+                  search[randomId].snippet.description,
+                  search[randomId].id.videoId,
+                  );
+    let message =
+    "The Vice Cracker says you've exceeded your " +
+    vice.name +
+    " consumption for the week. Here is a workout from Youtube, " +
+    search[randomId].snippet.title +
+    ": " + "https://www.youtube.com/watch?v=" +
+    search[randomId].id.videoId + "" +
+    search[randomId].snippet.description;
+    twilio.sendTextMessage(message, user.phone);
+    storeStatusUpdate(message, user);            
+                  
+                  
     }
+
+    
   });
 }
+
+module.exports = { sendWorkout };
