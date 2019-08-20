@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import Card from "./../components/Card/Card.jsx";
+import CardBody from "./../components/Card/CardBody.jsx";
+import Container from "./../components/Grid/GridContainer.jsx";
 import API from "../utils/API";
 
 class Status extends Component {
@@ -45,20 +48,27 @@ class Status extends Component {
   render() {
     return (
       <>
-        {/* {this.renderRedirect()} */}
-
-        {this.state.statusMessages.map(status => {
-          return (
-            <div key={status._id}>
-              <p>
-                {status.timestamp}: {status.message}{" "}
-                <a target="_blank" href={status.href}>
-                  {status.hrefName}
-                </a>
-              </p>
-            </div>
-          );
-        })}
+        <Container>
+          {/* {this.renderRedirect()} */}
+          {this.state.statusMessages.map(status => {
+            return (
+              <Card style={{ width: "max-content" }} key={status._id}>
+                <CardBody>
+                  <p>
+                    {status.timestamp}: {status.message}{" "}
+                    <a
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href={status.href}
+                    >
+                      {status.hrefName}
+                    </a>
+                  </p>
+                </CardBody>
+              </Card>
+            );
+          })}
+        </Container>
       </>
     );
   }

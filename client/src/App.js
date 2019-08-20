@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 import SettingsWrapper from "./pages/SettingsWrapper";
 import VicesWrapper from "./pages/VicesWrapper";
-import NavWrapper from "./components/NavWrapper";
 import LoginWrapper from "./pages/LoginWrapper";
 import NoMatch from "./pages/NoMatch";
 import CreateUser from "./pages/CreateUser";
@@ -11,7 +10,6 @@ import Test from "./pages/Test";
 import StatusWrapper from "./pages/StatusWrapper";
 import { UserProvider } from "./UserContext";
 import API from "./utils/API";
-import HeaderLinks from "./components/Header/HeaderLinks.jsx"
 import Header from "./components/Header/Header.jsx"
 
 class App extends Component {
