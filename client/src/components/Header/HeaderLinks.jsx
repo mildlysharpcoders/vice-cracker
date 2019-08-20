@@ -17,8 +17,8 @@
 */
 /*eslint-disable*/
 import React, { Component } from "react";
-import DeleteIcon from "@material-ui/icons/Delete";
-import IconButton from "@material-ui/core/IconButton";
+// import DeleteIcon from "@material-ui/icons/Delete";
+// import IconButton from "@material-ui/core/IconButton";
 // react components for routing our app without refresh
 import { Link } from "react-router-dom";
 
@@ -26,7 +26,7 @@ import { Link } from "react-router-dom";
 import withStyles from "@material-ui/core/styles/withStyles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
-import Tooltip from "@material-ui/core/Tooltip";
+import { UserConsumer } from "../../UserContext";
 
 // @material-ui/icons
 import { Apps, CloudDownload } from "@material-ui/icons";
@@ -37,53 +37,54 @@ import Button from "./../CustomButtons/Button.jsx";
 
 import headerLinksStyle from "./../../assets/jss/material-kit-react/components/headerLinksStyle.jsx";
 
-
 class HeaderLinks extends Component {
   constructor(props) {
     super(props);
   }
 
-  handleButtonClick = (event) => {
-    // this.props.logout();
-    console.log("CLICKY CLICKY")
+  render() {
+    const { classes } = this.props;
+    return (
+      <List className={classes.list}>
+        <ListItem className={classes.listItem}>
+          <CustomDropdown
+            noLiPadding
+            buttonText="Vice Cracker"
+            buttonProps={{
+              className: classes.navLink,
+              color: "transparent"
+            }}
+            buttonIcon={Apps}
+            dropdownList={[
+              <Link to="/Vices" className={classes.dropdownLink}>
+                Vices
+              </Link>,
+              <Link to="/Settings" className={classes.dropdownLink}>
+                Settings
+              </Link>,
+              <Link to="/Status" className={classes.dropdownLink}>
+                Status
+              </Link>
+            ]}
+          />
+        </ListItem>
+        <ListItem className={classes.listItem}>
+          <UserConsumer>
+            {identity => (
+              <Button
+                type="button"
+                onClick={identity.logout}
+                color="transparent"
+                className={classes.navLink}
+              >
+                Log Out
+              </Button>
+            )}
+          </UserConsumer>
+        </ListItem>
+      </List>
+    );
   }
-  render () {
-  const { classes } = this.props;
-  return (
-    <List className={classes.list}>
-      <ListItem className={classes.listItem}>
-        <CustomDropdown
-          noLiPadding
-          buttonText="Vice Cracker"
-          buttonProps={{
-            className: classes.navLink,
-            color: "transparent"
-          }}
-          buttonIcon={Apps}
-          dropdownList={[
-            <Link to="/Vices" className={classes.dropdownLink}>
-              Vices
-            </Link>,
-            <Link to="/Settings" className={classes.dropdownLink}>
-            Settings
-          </Link>,
-          ]}
-        />
-      </ListItem>
-      <ListItem className={classes.listItem}>
-        <Button
-          type="button" onClick={this.handleButtonClick}
-          color="transparent"
-          className={classes.navLink}
-        >
-       Log Out
-        </Button>
-      </ListItem>
-
-</List>
-  );
-}}
-
-
+}
 
 export default withStyles(headerLinksStyle)(HeaderLinks);
