@@ -10,6 +10,7 @@ import CreateUser from "./pages/CreateUser";
 import Test from "./pages/Test";
 import { UserProvider } from "./UserContext";
 import API from "./utils/API";
+import HeaderLinks from "./components/Header/HeaderLinks.jsx"
 
 class App extends Component {
   state = {
@@ -58,7 +59,7 @@ class App extends Component {
       <UserProvider value={this.state}>
         <Router>
           <div>
-            <NavWrapper />
+            <HeaderLinks />
             <Switch>
               <Route
                 exact

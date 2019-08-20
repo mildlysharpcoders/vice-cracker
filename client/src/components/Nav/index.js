@@ -9,7 +9,9 @@ function LoggedIn(props) {
 <>
       <Link to="/vices">Vices</Link>
       <Link to="/settings">Settings</Link>
-      <Button type="button" onClick={props.handleButtonClick}>
+      <Button 
+      color="rose"
+      type="button" onClick={props.handleButtonClick}>
         Logout
       </Button>
 </>
