@@ -5,7 +5,9 @@ let Schema = mongoose.Schema;
 let StatusSchema = new Schema({
   email: String,
   timestamp: String,
-  message: String
+  message: String,
+  hrefName: String,
+  href: String
 });
 
 let Status = mongoose.model("Status", StatusSchema);

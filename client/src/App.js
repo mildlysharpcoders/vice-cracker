@@ -8,6 +8,7 @@ import LoginWrapper from "./pages/LoginWrapper";
 import NoMatch from "./pages/NoMatch";
 import CreateUser from "./pages/CreateUser";
 import Test from "./pages/Test";
+import StatusWrapper from "./pages/StatusWrapper";
 import { UserProvider } from "./UserContext";
 import API from "./utils/API";
 import HeaderLinks from "./components/Header/HeaderLinks.jsx"
@@ -24,15 +25,15 @@ class App extends Component {
 
   logout = () => {
     if (this.state.user.email) {
-    console.log("Logging out user", this.state.user);
-    API.logout()
-      .then(result => {
-        this.setState({ user: {} });
-        // Redirect to login screen somehow???
-      })
-      .catch(error => {
-        console.log(error);
-      });
+      console.log("Logging out user", this.state.user);
+      API.logout()
+        .then(result => {
+          this.setState({ user: {} });
+          // Redirect to login screen somehow???
+        })
+        .catch(error => {
+          console.log(error);
+        });
     } else {
       console.log("User is already logged out!");
     }
@@ -59,28 +60,23 @@ class App extends Component {
     return (
       <UserProvider value={this.state}>
         <Router>
-         
-          
-            
-            <Header />
-             
-            
-           
-            <Switch>
-              <Route
-                exact
-                path="/"
-                render={props => (
-                  <LoginWrapper {...props} updateUser={this.updateUser} />
-                )}
-              />
-              <Route exact path="/vices" component={VicesWrapper} />} />
+          <Header />
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={props => (
+                <LoginWrapper {...props} updateUser={this.updateUser} />
+              )}
+            />
+            <Route exact path="/vices" component={VicesWrapper} />} />
               <Route exact path="/settings" component={SettingsWrapper} />} />
+              <Route exact path="/status" component={StatusWrapper} />} />
               <Route exact path="/create" component={CreateUser} />
-              <Route exact path="/test" component={Test} />
-              <Route component={NoMatch} />
-            </Switch>
-          
+            <Route exact path="/test" component={Test} />
+            <Route component={NoMatch} />
+          </Switch>
+
         </Router>
       </UserProvider>
     );

@@ -10,6 +10,8 @@ import CustomInput from "../components/CustomInput/CustomInput.jsx";
 import Container from "../components/Grid/GridContainer.jsx";
 import GridItem from "../components/Grid/GridItem.jsx";
 import Button from "../components/CustomButtons/Button.jsx";
+import NavWrapper from "./../components/NavWrapper/index";
+
 
 class Settings extends Component {
   constructor(props) {
@@ -194,6 +196,8 @@ class Settings extends Component {
 
   render() {
     return (
+      <>
+      <NavWrapper />
       <Container>
         <Card style={{minWidth: "fit-content", margin: "30px" }}>
           {this.renderRedirect()}
@@ -308,6 +312,7 @@ class Settings extends Component {
           </CardBody>
         </Card>
       </Container>
+      </>
     );
   }
 }
