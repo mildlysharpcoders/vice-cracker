@@ -133,6 +133,7 @@ class CreateUser extends Component {
         .then(response => {
           console.log("Created user info: " + response.data);
           this.setState({ error: "User Created" });
+          this.props.history.push("/");
         })
         .catch(error => {
           console.log(error);
