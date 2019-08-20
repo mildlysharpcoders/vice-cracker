@@ -195,9 +195,9 @@ class Settings extends Component {
   render() {
     return (
       <Container>
-        <Card style={{ width: "max-content", margin: "30px" }}>
+        <Card style={{minWidth: "fit-content", margin: "30px" }}>
           {this.renderRedirect()}
-          <CardHeader>Settings</CardHeader>
+          <CardHeader style={{width: "fit-content", justifyContent: "center"}}>Settings</CardHeader>
           <CardBody>
             <Container>
               <GridItem xs={12} sm={12} md={12}>
@@ -293,7 +293,7 @@ class Settings extends Component {
               Submit
             </Button>
 
-            <Container>
+            {/* <Container>
               {this.state.vices.map(vice => {
                 return (
                   <ViceItem
@@ -304,7 +304,7 @@ class Settings extends Component {
                   />
                 );
               })}
-            </Container>
+            </Container> */}
           </CardBody>
         </Card>
       </Container>
