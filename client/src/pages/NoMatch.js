@@ -56,7 +56,7 @@ class noMatch extends Component {
       this.state.photo_y = this.state.myCanvas.height - this.state.photo_height;
       this.state.ctx.clearRect(0, 0, this.state.myCanvas.width, this.state.myCanvas.height);
 
-      this.state.ctx.fillStyle = "blue";
+      this.state.ctx.fillStyle = "white";
       this.state.ctx.font = "20px Arial";
       this.state.ctx.fillText("Score: " + this.state.score, 0, 20);
 
@@ -100,7 +100,7 @@ class noMatch extends Component {
 
   render() {
     return (
-      <div height="100% - 40px" width="100%" class="FourPage">
+      <div height="100% - 40px" width="100%" className="FourPage">
         <canvas id="myCanvas" width={window.innerWidth} height={window.innerHeight - 45} style={this.thingy}>
 
         </canvas>
