@@ -25,14 +25,15 @@ class Status extends Component {
   };
 
   loadStatusMessages = () => {
-    console.log("loadStatusMessages");
     const user = this.props.user.email;
     if (user) {
       API.getStatusMessagesForUser(user)
         .then(response => {
-          console.log(response.data.length, "status messages returned");
-          console.log(response.data);
-          let sortedMessages = response.data.sort( (a,b) => a.timestamp < b.timestamp);
+          let sortedMessages = response.data.sort((a, b) => {
+            if (a.timestamp < b.timestamp) return 1;
+            if (a.timestamp > b.timestamp) return -1;
+            return 0;
+          });
           this.setState({ statusMessages: sortedMessages });
         })
         .catch(error => {
@@ -49,7 +50,12 @@ class Status extends Component {
         {this.state.statusMessages.map(status => {
           return (
             <div key={status._id}>
-                <p>{status.timestamp}: {status.message} <a target="_blank" href={status.href}>{status.hrefName}</a></p>
+              <p>
+                {status.timestamp}: {status.message}{" "}
+                <a target="_blank" href={status.href}>
+                  {status.hrefName}
+                </a>
+              </p>
             </div>
           );
         })}
