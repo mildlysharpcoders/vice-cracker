@@ -201,7 +201,7 @@ class Settings extends Component {
       <Container>
         <Card style={{minWidth: "fit-content", margin: "30px" }}>
           {this.renderRedirect()}
-          <CardHeader style={{width: "fit-content", justifyContent: "center"}}>Settings</CardHeader>
+          <CardHeader>Settings</CardHeader>
           <CardBody>
             <Container>
               <GridItem xs={12} sm={12} md={12}>
