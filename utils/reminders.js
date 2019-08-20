@@ -7,6 +7,7 @@ const { sendRecipe } = require("./recipe");
 const { sendGym, sendHealthFoodStore } = require("./yelp");
 const { storeStatusUpdate } = require("./status");
 const CronJob = require("cron").CronJob;
+const { sendWorkout } = require("./youtube");
 
 const ENTRY_TIME_HOUR = process.env.ENTRY_TIME_HOUR || 20;
 const ENTRY_TIME_MINUTE = process.env.ENTRY_TIME_MINUTE || 0;
@@ -128,6 +129,9 @@ function sendHealthyAlternative(vice, user) {
       break;
     case "Health Food Store":
       sendHealthFoodStore(vice, user);
+      break;
+    case "Youtube":
+      sendWorkout(vice, user);
       break;
     default:
       // Hmmmmmm. Need to add some code to handle new betteroption
