@@ -30,7 +30,6 @@ class noMatch extends Component {
       melon_y: 0,
       melonImg: Meloninfo,
       score: 0,
-      photo_height: Photoinfo.height,
       melon_width: Meloninfo.width
     };
   }
@@ -42,7 +41,7 @@ class noMatch extends Component {
   };
 
   Do_a_Frame = () => {
-    this.state.photo_y = this.state.myCanvas.height - this.state.photo_height;
+    this.state.photo_y = this.state.myCanvas.height - this.state.PhotoImg.height;
     this.state.ctx.clearRect(
       0,
       0,
@@ -50,7 +49,7 @@ class noMatch extends Component {
       this.state.myCanvas.height
     );
 
-    this.state.ctx.fillText("Score: " + this.state.score, 0, 20);
+    this.state.ctx.fillText("Score: " + this.state.score, 10, 35);
 
     this.state.ctx.drawImage(
       this.state.PhotoImg,
@@ -58,7 +57,7 @@ class noMatch extends Component {
       this.state.photo_y
     );
 
-    this.state.melon_y = this.state.melon_y + 3;
+    this.state.melon_y = this.state.melon_y + 5;
     if (this.state.melon_y > this.state.myCanvas.height) {
       this.state.melon_y = 0;
       this.state.melon_x =
@@ -117,8 +116,8 @@ class noMatch extends Component {
     document.addEventListener("keydown", this.MyKeyDownHandler);
     let myCanvas = document.getElementById("myCanvas");
     let ctx = myCanvas.getContext("2d");
-    ctx.fillStyle = "white";
-    ctx.font = "20px Arial";
+    ctx.fillStyle = "aqua";
+    ctx.font = "23px Arial";
     this.setState({ myCanvas, ctx });
     setTimeout(this.startAnimation(), 5000);
   };
@@ -129,7 +128,7 @@ class noMatch extends Component {
         <canvas
           id="myCanvas"
           width={window.innerWidth}
-          height={window.innerHeight - 45}
+          height={window.innerHeight - 48}
           style={this.thingy}
         />
 
