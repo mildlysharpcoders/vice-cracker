@@ -25,7 +25,7 @@ fs.readFile("utils/client_secret.json", function processClientSecrets(
     return;
   }
   // Authorize a client with the loaded credentials, then call the YouTube API.
-  authorize(JSON.parse(content), sendWorkout);
+  authorize(JSON.parse(content), getChannel);
 });
 
 /**
@@ -109,7 +109,7 @@ function storeToken(token) {
  *
  * @param {google.auth.OAuth2} auth An authorized OAuth2 client.
  */
-function sendWorkout(auth) {
+function getChannel(auth) {
   var workOuts = [
     "Yoga",
     "Cardio",
@@ -156,22 +156,28 @@ function sendWorkout(auth) {
           search[randomId].snippet.description,
           search[randomId].id.videoId
         );
-        let message =
-          "The Vice Cracker says you've exceeded your " +
-          vice.name +
-          " consumption for the week. Here is a workout from Youtube: ";
-        let hrefName = search[randomId].snippet.title;
-        let href =
-          "https://www.youtube.com/watch?v=" +
-          search[randomId].id.videoId +
-          "" +
-          search[randomId].snippet.description;
-        let textMessage = message + hrefName + "(" + href + ")";
-        twilio.sendTextMessage(textMessage, user.phone);
-        storeStatusUpdate(message, hrefName, href, user);
+
+      
       }
+      // function sendWorkout(vice, user) {
+      //   let message =
+      //     "The Vice Cracker says you've exceeded your " +
+      //     vice.name +
+      //     " consumption for the week. Here is a workout from Youtube: ";
+      //   let hrefName = search[randomId].snippet.title;
+      //   let href =
+      //     "https://www.youtube.com/watch?v=" +
+      //     search[randomId].id.videoId +
+      //     "" +
+      //     search[randomId].snippet.description;
+      //   let textMessage = message + hrefName + "(" + href + ")";
+      //   twilio.sendTextMessage(textMessage, user.phone);
+      //   storeStatusUpdate(message, hrefName, href, user);
+
+      //   return sendWorkout;
+      // }
     }
   );
 }
 
-module.exports = { sendWorkout };
+// module.exports = { sendWorkout };
