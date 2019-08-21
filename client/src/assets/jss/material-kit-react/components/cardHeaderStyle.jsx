@@ -34,6 +34,7 @@ const cardHeaderStyle = {
     fontSize: "xx-large",
     textShadow: "3px 3px cyan",
     fontFamily: "Lazer",
+    overflowWrap: "normal"
   
     
     
