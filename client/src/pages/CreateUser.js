@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import API from "../utils/API";
-// import ReactDOM from 'react-dom'
-// import { Link } from "react-router-dom";
 import CardHeader from "../components/Card/CardHeader.jsx";
 import Card from "../components/Card/Card.jsx";
 import CardBody from "../components/Card/CardBody.jsx";
@@ -9,8 +7,6 @@ import Button from "../components/CustomButtons/Button.jsx";
 import GridItem from "../components/Grid/GridItem.jsx";
 import CustomInput from "../components/CustomInput/CustomInput.jsx";
 import Container from "../components/Grid/GridContainer.jsx";
-import Nav from "../components/Nav/index";
-
 
 class CreateUser extends Component {
   state = {

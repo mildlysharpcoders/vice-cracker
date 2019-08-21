@@ -4,7 +4,6 @@ import Card from "./../Card/Card.jsx";
 import CardHeader from "./../Card/CardHeader.jsx";
 import CardBody from "./../Card/CardBody.jsx";
 import Button from "./../CustomButtons/Button.jsx";
-import Container from "./../Grid/GridContainer.jsx"
 
 function DeleteButton(props) {
   if (props.handleDeleteButtonClick) {

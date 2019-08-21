@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import API from "../utils/API";
-import ViceItem from "../components/ViceItem";
+// import ViceItem from "../components/ViceItem";
 import Card from "../components/Card/Card.jsx";
 import CardHeader from "../components/Card/CardHeader.jsx";
 import CardBody from "../components/Card/CardBody.jsx";
@@ -197,7 +197,7 @@ class Settings extends Component {
   render() {
     return (
       <>
-     <Header />
+     <Header brand=""/>
       <Container>
         <Card style={{minWidth: "fit-content", margin: "30px" }}>
           {this.renderRedirect()}

@@ -3,8 +3,7 @@ import API from "../utils/API";
 import { Redirect } from "react-router-dom";
 import ViceItem from "../components/ViceItem";
 import Container from "../components/Grid/GridContainer.jsx";
-import Header from "./../components/Header/Header"
-
+import Header from "./../components/Header/Header";
 
 class Vices extends Component {
   constructor(props) {
@@ -73,21 +72,21 @@ class Vices extends Component {
   render() {
     return (
       <>
-      <Header />
-      <Container>
-        {this.renderRedirect()}
+        <Header brand="" />
+        <Container>
+          {this.renderRedirect()}
 
-        {this.state.vices.map(vice => {
-          return (
-            <div key={vice.name}>
-              <ViceItem
-                vice={vice}
-                handleButtonClick={this.handleButtonClick}
-              />
-            </div>
-          );
-        })}
-      </Container>
+          {this.state.vices.map(vice => {
+            return (
+              <div key={vice.name}>
+                <ViceItem
+                  vice={vice}
+                  handleButtonClick={this.handleButtonClick}
+                />
+              </div>
+            );
+          })}
+        </Container>
       </>
     );
   }
