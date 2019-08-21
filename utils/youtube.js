@@ -106,7 +106,7 @@ function storeToken(token) {
  *
  * @param {google.auth.OAuth2} auth An authorized OAuth2 client.
  */
-function sendWorkout(auth) {
+function getChannel(auth) {
   var workOuts = ["Yoga", "Cardio", "Zumba", "Tae Bo", "Richard Simmons", "Work out"]
   var randomWorkOut = workOuts[Math.floor(Math.random() * 6)]
   
@@ -141,7 +141,9 @@ function sendWorkout(auth) {
                   search[randomId].snippet.description,
                   search[randomId].id.videoId,
                   );
-    let message =
+    
+    function sendWorkout(vice, user) { 
+      let message =
     "The Vice Cracker says you've exceeded your " +
     vice.name +
     " consumption for the week. Here is a workout from Youtube, " +
@@ -152,7 +154,7 @@ function sendWorkout(auth) {
     twilio.sendTextMessage(message, user.phone);
     storeStatusUpdate(message, user);            
                   
-                  
+    }             
     }
 
     
