@@ -30,7 +30,6 @@ class noMatch extends Component {
       melon_y: 0,
       melonImg: Meloninfo,
       score: 0,
-      photo_height: Photoinfo.height,
       melon_width: Meloninfo.width
     };
   }
@@ -42,7 +41,7 @@ class noMatch extends Component {
   };
 
   Do_a_Frame = () => {
-    this.state.photo_y = this.state.myCanvas.height - this.state.photo_height;
+    this.state.photo_y = this.state.myCanvas.height - this.state.PhotoImg.height;
     this.state.ctx.clearRect(
       0,
       0,
