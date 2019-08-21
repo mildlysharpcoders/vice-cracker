@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import API from "../utils/API";
-// import ReactDOM from 'react-dom'
-// import { Link } from "react-router-dom";
 import CardHeader from "../components/Card/CardHeader.jsx";
 import Card from "../components/Card/Card.jsx";
 import CardBody from "../components/Card/CardBody.jsx";
@@ -10,21 +8,12 @@ import GridItem from "../components/Grid/GridItem.jsx";
 import CustomInput from "../components/CustomInput/CustomInput.jsx";
 import Container from "../components/Grid/GridContainer.jsx";
 
-//   var strongRegex = new RegExp(
-//     '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})'
-//   )
-//   if (!password.match(strongRegex)) {
-//     errors.push(
-//       'Email should be at least 8 charcters long, contain at least one uppercase letter, contain at least one lowercase letter, contain at least one special character, and contain at least one number.'
-//     )
-//   }
-
 class CreateUser extends Component {
   state = {
-    password: "",
-    email: "",
     firstname: "",
     lastname: "",
+    email: "",
+    password: "",
     address: "",
     city: "",
     state: "",
@@ -35,7 +24,6 @@ class CreateUser extends Component {
 
   handleInputChange = event => {
     const { name, value } = event.target;
-    // console.log(name, value);
     this.setState({
       [name]: value
     });
@@ -156,11 +144,9 @@ class CreateUser extends Component {
                   labelText="First Name"
                   id="float"
                   name="firstname"
-                  ref={nameInput => (this._nameInput = nameInput)}
-                  // value={this.state.firstname}
-                  // onChange={this.handleInputChange}
+                  // ref={nameInput => (this._nameInput = nameInput)}
                   inputProps={{
-                    type: "firstname",
+                    type: "text",
                     value: this.state.firstname,
                     name: "firstname",
                     onChange: event => this.handleInputChange(event)
@@ -174,11 +160,9 @@ class CreateUser extends Component {
                   labelText="Last Name"
                   id="float"
                   name="lastname"
-                  ref={lastnameInput => (this._lastnameInput = lastnameInput)}
-                  // value={this.state.lastname}
-                  // onChange={this.handleInputChange}
+                  // ref={lastnameInput => (this._lastnameInput = lastnameInput)}
                   inputProps={{
-                    type: "lastname",
+                    type: "text",
                     value: this.state.lastname,
                     name: "lastname",
                     onChange: event => this.handleInputChange(event)
@@ -192,7 +176,7 @@ class CreateUser extends Component {
                   labelText="Email"
                   id="float"
                   name="email"
-                  ref={emailInput => (this._emailInput = emailInput)}
+                  // ref={emailInput => (this._emailInput = emailInput)}
                   // value={this.state.email}
                   // onChange={this.handleInputChange}
                   inputProps={{
@@ -210,7 +194,7 @@ class CreateUser extends Component {
                   labelText="Password"
                   id="float"
                   name="password"
-                  ref={passwordInput => (this._passwordInput = passwordInput)}
+                  // ref={passwordInput => (this._passwordInput = passwordInput)}
                   // value={this.state.password}
                   // onChange={this.handleInputChange}
                   inputProps={{
@@ -264,7 +248,7 @@ class CreateUser extends Component {
                   labelText="State"
                   id="float"
                   name="state"
-                  ref={stateInput => (this._stateInput = stateInput)}
+                  // ref={stateInput => (this._stateInput = stateInput)}
                   // value={this.state.state}
                   // onChange={this.handleInputChange}
                   inputProps={{
@@ -282,7 +266,7 @@ class CreateUser extends Component {
                   labelText="ZIP"
                   id="float"
                   name="zip"
-                  ref={zipInput => (this._zipInput = zipInput)}
+                  // ref={zipInput => (this._zipInput = zipInput)}
                   // value={this.state.zip}
                   // onChange={this.handleInputChange}
                   inputProps={{
@@ -300,7 +284,7 @@ class CreateUser extends Component {
                   labelText="Phone"
                   id="float"
                   name="phone"
-                  ref={phoneInput => (this._phoneInput = phoneInput)}
+                  // ref={phoneInput => (this._phoneInput = phoneInput)}
                   // value={this.state.phone}
                   // onChange={this.handleInputChange}
                   inputProps={{
