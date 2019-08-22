@@ -39,14 +39,14 @@ const headerLinksStyle = theme => ({
     margin: "0",
     padding: "0",
     [theme.breakpoints.down("sm")]: {
-      width: "100%",
+      width: "50%",
       "&:after": {
         width: "calc(100% - 30px)",
         content: '""',
         display: "block",
         height: "1px",
         marginLeft: "15px",
-        backgroundColor: "#e5e5e5"
+        
       }
     }
   },
@@ -129,6 +129,8 @@ const headerLinksStyle = theme => ({
   marginRight5: {
     marginRight: "5px"
   }
+
+  
 });
 
 export default headerLinksStyle;

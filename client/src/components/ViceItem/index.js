@@ -38,7 +38,7 @@ function ViceItem(props) {
   }
 
   return (
-<Card style={{width: "max-content"}}>
+<Card style={{width: "max-content", margin: "30px"}}>
   
 <CardHeader style={{width: "fit-content"}}>Your Vice: {props.vice.name}</CardHeader>
       <CardBody>

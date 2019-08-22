@@ -93,7 +93,7 @@ class Header extends React.Component {
     return (
       <AppBar className={appBarClasses}>
         <HeaderLinks />
-        <Toolbar className={classes.container}>
+        {/* <Toolbar className={classes.container}>
           {leftLinks !== undefined ? brandComponent : null}
           <div className={classes.flex}>
             {leftLinks !== undefined ? (
@@ -132,7 +132,7 @@ class Header extends React.Component {
               {rightLinks}
             </div>
           </Drawer>
-        </Hidden>
+        </Hidden> */}
       </AppBar>
     );
   }
