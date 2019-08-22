@@ -228,7 +228,7 @@ class Settings extends Component {
             <Container>
               <GridItem xs={12} sm={12} md={12}>
                 <Dropdown
-                  buttonText={this.state.betteroption}
+                  buttonText="Choose a Better Option"
                   dropdownList={this.state.betteroptions}
                   onClick={this.handleMenuClick}
                   buttonProps={{

@@ -54,10 +54,15 @@ class Status extends Component {
           {/* {this.renderRedirect()} */}
           {this.state.statusMessages.map(status => {
             return (
-              <Card style={{ width: "max-content" }} key={status._id}>
+              <Card style={{ width: "fit-content", margin: "30px" }} key={status._id}>
                 <CardBody>
                   <p>
-                    {status.timestamp}: {status.message}{" "}
+                    {status.timestamp}: 
+                    </p>
+                    <p>
+                    {status.message}{" "}
+                    </p>
+                    <p>
                     <a
                       target="_blank"
                       rel="noopener noreferrer"
