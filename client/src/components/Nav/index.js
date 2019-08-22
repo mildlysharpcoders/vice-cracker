@@ -7,13 +7,7 @@ import Button from "./../CustomButtons/Button.jsx"
 function LoggedIn(props) {
   return (
 <>
-      <Link to="/vices">Vices</Link>
-      <Link to="/settings">Settings</Link>
-      <Button 
-      color="rose"
-      type="button" onClick={props.handleButtonClick}>
-        Logout
-      </Button>
+
 </>
   );
 }
