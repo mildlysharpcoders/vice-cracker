@@ -36,11 +36,11 @@ const headerStyle = {
     borderRadius: "3px",
     padding: "0.625rem 0",
     marginBottom: "20px",
-    color: primaryColor,
+    color: roseColor,
     width: "100%",
     backgroundColor: infoColor,
     boxShadow:
-      "0 4px 18px 0px rgba(0, 0, 0, 0.12), 0 7px 10px -5px rgba(0, 0, 0, 0.15)",
+      "0 4px 18px 0px rgba(0, 0, 0, 0.12),",
     transition: "all 150ms ease 0s",
     alignItems: "center",
     flexFlow: "row nowrap",

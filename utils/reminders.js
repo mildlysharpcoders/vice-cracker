@@ -7,6 +7,7 @@ const { sendRecipe } = require("./recipe");
 const { sendGym, sendHealthFoodStore } = require("./yelp");
 const { storeStatusUpdate } = require("./status");
 const CronJob = require("cron").CronJob;
+const { sendWorkout } = require("./youtube");
 
 const ENTRY_TIME_HOUR = process.env.ENTRY_TIME_HOUR || 20;
 const ENTRY_TIME_MINUTE = process.env.ENTRY_TIME_MINUTE || 0;
@@ -106,7 +107,7 @@ function sendConsumptionStatus(vice, user) {
       vice.name
     } consumption. Here's to a healthier life! The Vice Cracker.`;
     twilio.sendTextMessage(message, user.phone);
-    storeStatusUpdate(message, user);
+    storeStatusUpdate(message, "", "", user);
   } else {
     sendHealthyAlternative(vice, user);
   }
@@ -129,6 +130,9 @@ function sendHealthyAlternative(vice, user) {
     case "Health Food Store":
       sendHealthFoodStore(vice, user);
       break;
+    case "Youtube":
+      sendWorkout(vice, user);
+      break;
     default:
       // Hmmmmmm. Need to add some code to handle new betteroption
       console.log("Unsupported betteroption type:", betteroption);
@@ -143,7 +147,7 @@ function sendStreakStatus(vice, user) {
       vice.name
     } consumption. Keep it up! The Vice Cracker.`;
     twilio.sendTextMessage(message, user.phone);
-    storeStatusUpdate(message, user);
+    storeStatusUpdate(message, "", "", user);
   }
 }
 

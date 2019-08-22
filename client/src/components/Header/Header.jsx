@@ -31,7 +31,8 @@ import Drawer from "@material-ui/core/Drawer";
 // @material-ui/icons
 import Menu from "@material-ui/icons/Menu";
 // core components
-import headerStyle from "../../assets/jss/material-kit-react/components/headerStyle.jsx"
+import headerStyle from "./../../assets/jss/material-kit-react/components/headerStyle.jsx";
+import HeaderLinks from "./HeaderLinks.jsx"
 
 class Header extends React.Component {
   constructor(props) {
@@ -91,6 +92,7 @@ class Header extends React.Component {
     const brandComponent = <Button className={classes.title}>{brand}</Button>;
     return (
       <AppBar className={appBarClasses}>
+        <HeaderLinks />
         <Toolbar className={classes.container}>
           {leftLinks !== undefined ? brandComponent : null}
           <div className={classes.flex}>

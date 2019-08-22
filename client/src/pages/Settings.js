@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import API from "../utils/API";
-import ViceItem from "../components/ViceItem";
+// import ViceItem from "../components/ViceItem";
 import Card from "../components/Card/Card.jsx";
 import CardHeader from "../components/Card/CardHeader.jsx";
 import CardBody from "../components/Card/CardBody.jsx";
@@ -10,6 +10,8 @@ import CustomInput from "../components/CustomInput/CustomInput.jsx";
 import Container from "../components/Grid/GridContainer.jsx";
 import GridItem from "../components/Grid/GridItem.jsx";
 import Button from "../components/CustomButtons/Button.jsx";
+import Header from "./../components/Header/Header"
+
 
 class Settings extends Component {
   constructor(props) {
@@ -194,8 +196,10 @@ class Settings extends Component {
 
   render() {
     return (
+      <>
+     <Header brand=""/>
       <Container>
-        <Card style={{ width: "max-content", margin: "30px" }}>
+        <Card style={{minWidth: "fit-content", margin: "30px" }}>
           {this.renderRedirect()}
           <CardHeader>Settings</CardHeader>
           <CardBody>
@@ -293,7 +297,7 @@ class Settings extends Component {
               Submit
             </Button>
 
-            <Container>
+            {/* <Container>
               {this.state.vices.map(vice => {
                 return (
                   <ViceItem
@@ -304,10 +308,11 @@ class Settings extends Component {
                   />
                 );
               })}
-            </Container>
+            </Container> */}
           </CardBody>
         </Card>
       </Container>
+      </>
     );
   }
 }
