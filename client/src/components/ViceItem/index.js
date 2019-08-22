@@ -53,16 +53,10 @@ function ViceItem(props) {
 
 
   return (
-<<<<<<< HEAD
-<Card style={{width: "max-content", margin: "30px"}}>
-  
-<CardHeader style={{width: "fit-content"}}>Your Vice: {props.vice.name}</CardHeader>
-=======
     <Card style={{ width: "max-content" }}>
       <div style={{ display: "flex", justifyContent: "center" }}>
         <CardHeader style={{ width: "fit-content" }}>{props.vice.name}</CardHeader>
       </div>
->>>>>>> c31e2455b014a26be129ecd6d2c6d03377f04e9b
       <CardBody>
         <p> <span style={fontFamily4}>Better Option:</span> <span style={fontWeight}> {props.vice.betteroption}
           </span>
