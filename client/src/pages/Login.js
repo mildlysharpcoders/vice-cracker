@@ -66,7 +66,7 @@ class Login extends Component {
     return (
       <Container>
 
-        <Card>
+        <Card style={{width: "max-content"}}>
           <CardHeader>VICE CRACKER</CardHeader>
           <CardBody>
             {this.renderRedirect()}
