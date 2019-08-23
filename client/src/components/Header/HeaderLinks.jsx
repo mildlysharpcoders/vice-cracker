@@ -63,7 +63,7 @@ class HeaderLinks extends Component {
                 Settings
               </Link>,
               <Link to="/Status" className={classes.dropdownLink}>
-                Status
+                Past Notifications
               </Link>
             ]}
           />
