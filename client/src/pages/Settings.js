@@ -10,6 +10,7 @@ import Container from "../components/Grid/GridContainer.jsx";
 import GridItem from "../components/Grid/GridItem.jsx";
 import Button from "../components/CustomButtons/Button.jsx";
 import Header from "./../components/Header/Header"
+import Modal from "./../components/modal/index.js"
 
 
 class Settings extends Component {
@@ -251,7 +252,13 @@ class Settings extends Component {
             </Button>
           </CardBody>
         </Card>
+      
+        <GridItem xs={12} sm={12} md={12}>
+<Modal />
+
+</GridItem>
       </Container>
+      
       </>
     );
   }
