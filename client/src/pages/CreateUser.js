@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 import API from "../utils/API";
 import CardHeader from "../components/Card/CardHeader.jsx";
 import Card from "../components/Card/Card.jsx";
@@ -128,12 +129,27 @@ class CreateUser extends Component {
           this.setState({ error: "Email address already in use" });
         });
     }
+    
   };
+
+  // submit = event => {
+  //   event.preventDefault();
+  //   this.props.saveData({
+  //     username: this.state.email.trim(),
+  //     password: this.state.password.trim()
+  //   });
+  // };
+
+  // renderRedirect = () => {
+  //   if (this.props.user.email) {
+  //     return <Redirect to="/settings" />;
+  //   }
+  // };
 
   render() {
     return (
       <Container>
-      <Card style={{ width: "fit-content", margin: "30px"}}>
+      <Card style={{ width: "fit-content", marginRight: "20px", marginLeft: "20px"}}>
         <CardHeader>CREATE YOUR PROFILE</CardHeader>
         <CardBody>
           <form onSubmit={this.handleSubmit}>
@@ -303,15 +319,14 @@ class CreateUser extends Component {
             <Button
               color="primary"
               round
+              type="submit"
               onClick={event => this.handleButtonClick(event)}
             >
               {/* <Link to="/">Create User</Link> */}
               Create User
             </Button>
           </form>
-          {/* <Button color='info' round> */}
-          {/* <Link to='/'>Login</Link> */}
-          {/* </Button> */}
+      
         </CardBody>
       </Card>
       </Container>

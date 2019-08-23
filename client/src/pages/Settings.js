@@ -154,7 +154,7 @@ class Settings extends Component {
 
   renderRedirect = () => {
     if (this.state.redirect) {
-      return <Redirect to="/" />;
+      return <Redirect to="/Vices" />;
     }
   };
 
@@ -169,7 +169,7 @@ class Settings extends Component {
       <Container>
         <Card style={{minWidth: "fit-content", margin: "30px" }}>
           {this.renderRedirect()}
-          <CardHeader>Settings</CardHeader>
+          <CardHeader>Create Your Vice</CardHeader>
           <CardBody>
             <Container>
               <GridItem xs={12} sm={12} md={12}>

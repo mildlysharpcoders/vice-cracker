@@ -71,7 +71,7 @@ class Login extends Component {
           <CardBody>
             {this.renderRedirect()}
             <form onSubmit={this.submit}>
-              <GridItem xs={12} sm={12} md={4}>
+              <GridItem xs={12} sm={12}>
                 <CustomInput
                   labelText="E-Mail"
                   id="float"
@@ -87,7 +87,7 @@ class Login extends Component {
                   }}
                 />
               </GridItem>
-              <GridItem xs={12} sm={12} md={4}>
+              <GridItem xs={12} sm={12}>
                 <CustomInput
                   labelText="Password"
                   id="float"

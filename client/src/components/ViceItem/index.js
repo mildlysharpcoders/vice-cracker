@@ -75,29 +75,6 @@ function ViceItem(props) {
             {" "}
             {weeklyCount}/{props.vice.limit}
           </span>
-<<<<<<< HEAD
-          </p>
-          <hr />
-          <p>
-            <span style={fontFamily4}> Weekly Consumption: </span> <span style={fontWeight}>  {weeklyCount}/{props.vice.limit}
-            </span>
-          </p>
-          <p>
-            <span style={fontWeight}>aka </span> <span style={percentageWeight}> {((weeklyCount / props.vice.limit) * 100).toFixed(1)}% </span>
-          </p>
-          <hr />
-          <p><span style={fontFamily4}>Monthly Consumption:</span><span style={fontWeight}> {monthlyCount}</span></p>
-          <p><span style={fontFamily4}>Monthly Cost: </span>  <span style={fontWeight}>  ${(monthlyCount * props.vice.cost).toFixed(2)}</span></p>
-          <Button
-            color="primary"
-            round
-            type="button" onClick={() => props.handleButtonClick(props.vice)}>
-            +
-      </Button>
-          <DeleteButton
-            {...props} />
-        </CardBody>
-=======
         </p>
         <p>
           <span style={fontWeight}>aka </span>{" "}
@@ -125,10 +102,10 @@ function ViceItem(props) {
           onClick={() => props.handleButtonClick(props.vice)}
         >
           +
-        </Button>
+        </Button>  
+        <br />     
         <DeleteButton {...props} />
       </CardBody>
->>>>>>> aa063206ecbca0faaf799f9fa2dbd6e9258a44fe
     </Card>
   );
 }

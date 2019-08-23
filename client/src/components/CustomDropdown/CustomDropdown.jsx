@@ -29,7 +29,7 @@ import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import Paper from "@material-ui/core/Paper";
 import Grow from "@material-ui/core/Grow";
 import Divider from "@material-ui/core/Divider";
-import Icon from "@material-ui/core/Icon";
+import Icon from "./../PalmIcon/index.js";
 import Popper from "@material-ui/core/Popper";
 
 // core components

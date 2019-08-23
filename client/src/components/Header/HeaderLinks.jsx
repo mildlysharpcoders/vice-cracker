@@ -30,6 +30,8 @@ import { UserConsumer } from "../../UserContext";
 
 // @material-ui/icons
 import { Apps, CloudDownload } from "@material-ui/icons";
+import PalmIcon from "./../../assets/img/palm.png"
+
 
 // core components
 import CustomDropdown from "./../CustomDropdown/CustomDropdown.jsx";
@@ -54,13 +56,13 @@ class HeaderLinks extends Component {
               className: classes.navLink,
               color: "transparent"
             }}
-            buttonIcon={Apps}
+            buttonIcon= {PalmIcon}
             dropdownList={[
               <Link to="/Vices" className={classes.dropdownLink}>
                 Vices
               </Link>,
               <Link to="/Settings" className={classes.dropdownLink}>
-                Settings
+                Create A Vice
               </Link>,
               <Link to="/Status" className={classes.dropdownLink}>
                 Past Notifications
@@ -73,8 +75,8 @@ class HeaderLinks extends Component {
             {identity => (
               <Button
                 type="button"
+               color= "transparent"
                 onClick={identity.logout}
-                color="transparent"
                 className={classes.navLink}
               >
                 Log Out
