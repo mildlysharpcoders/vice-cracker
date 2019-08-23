@@ -53,35 +53,39 @@ function ViceItem(props) {
 
 
   return (
-    <Card style={{ width: "fit-content" }}>
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <CardHeader style={{ width: "fit-content" }}>{props.vice.name}</CardHeader>
-      </div>
-      <CardBody>
-        <p> <span style={fontFamily4}>Better Option:</span> <span style={fontWeight}> {props.vice.betteroption}
-          </span>
-        </p>
-        <hr />
-        <p>
-          <span style={fontFamily4}> Weekly Consumption: </span> <span style={fontWeight}>  {weeklyCount}/{props.vice.limit}
-          </span>
-        </p>
-        <p>
-          <span style={fontWeight}>aka </span> <span style={percentageWeight}> {((weeklyCount / props.vice.limit) * 100).toFixed(1)}% </span>
-        </p>
-        <hr />
-        <p><span style={fontFamily4}>Monthly Consumption:</span><span style={fontWeight}> {monthlyCount}</span></p>
-        <p><span style={fontFamily4}>Monthly Cost: </span>  <span style={fontWeight}>  ${(monthlyCount * props.vice.cost).toFixed(2)}</span></p>
-        <Button
-          color="primary"
-          round
-          type="button" onClick={() => props.handleButtonClick(props.vice)}>
-          +
-      </Button>
-        <DeleteButton
-          {...props} />
+    <Card style={{ width: "max-content", margin: "30px" }}>
 
-      </CardBody>
+      <CardHeader style={{ width: "fit-content" }}>Your Vice: {props.vice.name}</CardHeader>
+      <Card style={{ width: "max-content" }}>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <CardHeader style={{ width: "fit-content" }}>{props.vice.name}</CardHeader>
+        </div>
+        <CardBody>
+          <p> <span style={fontFamily4}>Better Option:</span> <span style={fontWeight}> {props.vice.betteroption}
+          </span>
+          </p>
+          <hr />
+          <p>
+            <span style={fontFamily4}> Weekly Consumption: </span> <span style={fontWeight}>  {weeklyCount}/{props.vice.limit}
+            </span>
+          </p>
+          <p>
+            <span style={fontWeight}>aka </span> <span style={percentageWeight}> {((weeklyCount / props.vice.limit) * 100).toFixed(1)}% </span>
+          </p>
+          <hr />
+          <p><span style={fontFamily4}>Monthly Consumption:</span><span style={fontWeight}> {monthlyCount}</span></p>
+          <p><span style={fontFamily4}>Monthly Cost: </span>  <span style={fontWeight}>  ${(monthlyCount * props.vice.cost).toFixed(2)}</span></p>
+          <Button
+            color="primary"
+            round
+            type="button" onClick={() => props.handleButtonClick(props.vice)}>
+            +
+      </Button>
+          <DeleteButton
+            {...props} />
+
+        </CardBody>
+      </Card>
     </Card>
 
   );
