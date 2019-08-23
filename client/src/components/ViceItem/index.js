@@ -11,7 +11,7 @@ function DeleteButton(props) {
       color="rose"
       round
       type="button" onClick={() => props.handleDeleteButtonClick(props.vice)}>
-      X
+      Delete  Vice
     </Button>
   } else {
     return <></>
@@ -78,6 +78,7 @@ function ViceItem(props) {
           type="button" onClick={() => props.handleButtonClick(props.vice)}>
           +
       </Button>
+      <br></br>
         <DeleteButton
           {...props} />
 
