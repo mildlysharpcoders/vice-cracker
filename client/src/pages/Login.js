@@ -44,7 +44,7 @@ class Login extends Component {
       })
       .catch(error => {
         console.log(error);
-        this.setState({ error: "Invalid Username/Password" });
+        this.setState({ error: "Invalid Email/Password" });
       });
   };
 
@@ -73,7 +73,7 @@ class Login extends Component {
             <form onSubmit={this.submit}>
               <GridItem xs={12} sm={12} md={4}>
                 <CustomInput
-                  labelText="Username"
+                  labelText="E-Mail"
                   id="float"
                   formControlProps={{
                     fullWidth: true

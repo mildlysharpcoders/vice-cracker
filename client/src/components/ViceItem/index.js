@@ -79,15 +79,8 @@ function ViceItem(props) {
             type="button" onClick={() => props.handleButtonClick(props.vice)}>
             +
       </Button>
-<<<<<<< HEAD
-      <br></br>
-        <DeleteButton
-          {...props} />
-=======
           <DeleteButton
             {...props} />
->>>>>>> 1f0c485549137692f2f8de88fdd2efd35a672b83
-
         </CardBody>
     </Card>
 

@@ -88,6 +88,8 @@ class Modal extends React.Component {
                     <DialogActions
                         className={classes.modalFooter + " " + classes.modalFooterCenter}>
                         <Button
+                            color="primary"
+                            round
                             onClick={() => this.handleClose("modal")}
                         >
                             Got It?
