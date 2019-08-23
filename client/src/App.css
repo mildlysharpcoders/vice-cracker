@@ -26,16 +26,11 @@
   width: 600px;
 }
 
-/* html, body, .FourPage {
-  height: 100%;
-  min-height: 100%;
-} */
 
 .FourPage {
-  /* min-height: 400px;  */
-  /* height: 100%; */
-  /* width: 100%; */
   background: url("components/BackgroundImage/emea.jpg") !important;
+  /* background: url("components/BackgroundImage/vaporcode.png") !important; */
+
   background-size: cover !important;
   background-repeat: no-repeat !important;
   background-position: center !important;

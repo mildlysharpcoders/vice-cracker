@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import API from "../utils/API";
-// import ViceItem from "../components/ViceItem";
 import Card from "../components/Card/Card.jsx";
 import CardHeader from "../components/Card/CardHeader.jsx";
 import CardBody from "../components/Card/CardBody.jsx";
@@ -18,10 +17,9 @@ class Settings extends Component {
     super(props);
     this.state = {
       name: "",
-      betteroption: "",
+      betteroption: "Choose better option",
       limit: "",
       cost: "",
-      vices: [],
       error: "",
       betteroptions: [],
       redirect: false
@@ -29,32 +27,16 @@ class Settings extends Component {
   }
 
   componentDidMount = () => {
-    this.loadVices();
     this.loadBetterOptions();
   };
 
   componentDidUpdate = prevProps => {
     if (this.props.user.email !== prevProps.user.email) {
-      this.loadVices();
       if (this.props.user.email) {
         this.setState({ redirect: false });
       } else {
         this.setState({ redirect: true });
       }
-    }
-  };
-
-  loadVices = () => {
-    const user = this.props.user.email;
-    if (user) {
-      API.getVicesForUser(user)
-        .then(response => {
-          console.log(response.data.length, "vices returned");
-          this.setState({ vices: response.data });
-        })
-        .catch(error => {
-          console.log(error);
-        });
     }
   };
 
@@ -147,11 +129,10 @@ class Settings extends Component {
           console.log("Vice Created:", response.data);
           this.setState({
             name: "",
-            betteroption: "",
+            betteroption: "Choose better option",
             limit: "",
             cost: ""
           });
-          this.loadVices();
         })
         .catch(error => {
           console.log(error);
@@ -164,19 +145,6 @@ class Settings extends Component {
     API.deleteVice(vice._id)
       .then(response => {
         console.log(response.data);
-        this.loadVices();
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  };
-
-  handleIncrementButtonClick = vice => {
-    console.log("Increment Vice Button Clicked for vice:", vice);
-    API.createViceEvent(vice)
-      .then(response => {
-        console.log(response.data);
-        this.loadVices();
       })
       .catch(error => {
         console.log(error);
@@ -188,7 +156,6 @@ class Settings extends Component {
       return <Redirect to="/" />;
     }
   };
-
 
   handleMenuClick = betteroption => {
     this.setState({ betteroption });
@@ -206,11 +173,7 @@ class Settings extends Component {
             <Container>
               <GridItem xs={12} sm={12} md={12}>
                 <CustomInput
-                  // type='text'
                   labelText="Name Your Vice"
-                  // name='name'
-                  // value={this.state.name}
-                  // onChange={this.handleInputChange}
                   className="form-control"
                   placeholder="Your Vice"
                   aria-label="Username"
@@ -242,11 +205,7 @@ class Settings extends Component {
             <Container>
               <GridItem xs={12} sm={12} md={12}>
                 <CustomInput
-                  // type='number'
                   labelText="Consumption"
-                  // name='limit'
-                  // value={this.state.limit}
-                  // onChange={this.handleInputChange}
                   className="form-control"
                   placeholder="Consumption/Week"
                   aria-label="Username"
@@ -264,11 +223,7 @@ class Settings extends Component {
             <Container>
               <GridItem xs={12} sm={12} md={12}>
                 <CustomInput
-                  // type='number'
                   labelText="Cost"
-                  // name='cost'
-                  // value={this.state.cost}
-                  // onChange={this.handleInputChange}
                   className="form-control"
                   placeholder="Cost"
                   aria-label="Username"
@@ -283,7 +238,6 @@ class Settings extends Component {
               </GridItem>
             </Container>
 
-            {/* TODO: Replace this dull html with something more eye-grabbing */}
             <p>{this.state.error}</p>
 
             <Button
@@ -291,24 +245,10 @@ class Settings extends Component {
               round
               type="button"
               className="btn btn-secondary"
-              // onClick={this.handleFormSubmit}
               onClick={event => this.handleFormSubmit(event)}
             >
               Submit
             </Button>
-
-            {/* <Container>
-              {this.state.vices.map(vice => {
-                return (
-                  <ViceItem
-                    key={vice.name}
-                    vice={vice}
-                    handleButtonClick={this.handleIncrementButtonClick}
-                    handleDeleteButtonClick={this.handleDeleteButtonClick}
-                  />
-                );
-              })}
-            </Container> */}
           </CardBody>
         </Card>
       </Container>
