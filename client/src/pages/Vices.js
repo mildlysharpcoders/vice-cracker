@@ -77,7 +77,7 @@ class Vices extends Component {
       })
       .catch(error => {
         console.log(error);
-      }).then(window.location.reload())
+      }).then(this.loadVices());
   };
   render() {
     return (

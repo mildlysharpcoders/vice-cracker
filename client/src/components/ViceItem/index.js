@@ -7,14 +7,18 @@ import Button from "./../CustomButtons/Button.jsx";
 
 function DeleteButton(props) {
   if (props.handleDeleteButtonClick) {
-    return <Button
-      color="rose"
-      round
-      type="button" onClick={() => props.handleDeleteButtonClick(props.vice)}>
-      Delete  Vice
-    </Button>
+    return (
+      <Button
+        color="rose"
+        round
+        type="button"
+        onClick={() => props.handleDeleteButtonClick(props.vice)}
+      >
+        Delete Vice
+      </Button>
+    );
   } else {
-    return <></>
+    return <></>;
   }
 }
 
@@ -40,27 +44,38 @@ function ViceItem(props) {
   let fontWeight = {
     fontWeight: "500",
     fontSize: 17
-  }
+  };
   let percentageWeight = {
     fontWeight: "bolder",
     fontSize: 18
-  }
+  };
   let fontFamily4 = {
     fontFamily: "'DM Sans', sans-serif",
     fontSize: 20,
     fontWeight: "600"
-  }
-
+  };
 
   return (
     <Card style={{ width: "max-content", margin: "30px" }}>
-
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          <CardHeader style={{ width: "fit-content" }}>{props.vice.name}</CardHeader>
-        </div>
-        <CardBody>
-          <p> <span style={fontFamily4}>Better Option:</span> <span style={fontWeight}> {props.vice.betteroption}
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <CardHeader style={{ width: "fit-content" }}>
+          {props.vice.name}
+        </CardHeader>
+      </div>
+      <CardBody>
+        <p>
+          {" "}
+          <span style={fontFamily4}>Better Option:</span>{" "}
+          <span style={fontWeight}> {props.vice.betteroption}</span>
+        </p>
+        <hr />
+        <p>
+          <span style={fontFamily4}> Weekly Consumption: </span>{" "}
+          <span style={fontWeight}>
+            {" "}
+            {weeklyCount}/{props.vice.limit}
           </span>
+<<<<<<< HEAD
           </p>
           <hr />
           <p>
@@ -82,8 +97,39 @@ function ViceItem(props) {
           <DeleteButton
             {...props} />
         </CardBody>
+=======
+        </p>
+        <p>
+          <span style={fontWeight}>aka </span>{" "}
+          <span style={percentageWeight}>
+            {" "}
+            {((weeklyCount / props.vice.limit) * 100).toFixed(1)}%{" "}
+          </span>
+        </p>
+        <hr />
+        <p>
+          <span style={fontFamily4}>Monthly Consumption:</span>
+          <span style={fontWeight}> {monthlyCount}</span>
+        </p>
+        <p>
+          <span style={fontFamily4}>Monthly Cost: </span>{" "}
+          <span style={fontWeight}>
+            {" "}
+            ${(monthlyCount * props.vice.cost).toFixed(2)}
+          </span>
+        </p>
+        <Button
+          color="primary"
+          round
+          type="button"
+          onClick={() => props.handleButtonClick(props.vice)}
+        >
+          +
+        </Button>
+        <DeleteButton {...props} />
+      </CardBody>
+>>>>>>> aa063206ecbca0faaf799f9fa2dbd6e9258a44fe
     </Card>
-
   );
 }
 
