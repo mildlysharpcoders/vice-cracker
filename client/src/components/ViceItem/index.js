@@ -58,7 +58,7 @@ function ViceItem(props) {
   return (
     <Card style={{ width: "max-content", margin: "30px" }}>
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <CardHeader style={{ width: "fit-content" }}>
+        <CardHeader style={{ width: "min-content" }}>
           {props.vice.name}
         </CardHeader>
       </div>
