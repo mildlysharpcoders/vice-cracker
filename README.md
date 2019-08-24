@@ -24,19 +24,39 @@ Please log in or create an account
 
 ![alt text](client/src/assets/img/vice-login.png "Signin Image")
 
+Complete all fields for your user account. Make sure you are using a valid email, phone number, and address.
+
 ![alt text](client/src/assets/img/create-user.png "User Create Image")
+
+After creating your account you will be redirect to the create Vices page. If you are confused on what you need to do, there is a handy button for you to press to learn more about navigating the app. 
 
 ![alt text](client/src/assets/img/howitworks.png "Create Vice Image")
 
 ![alt text](client/src/assets/img/create-new-vice.png "Create New Vice Image")
 
+You can select your "better options" from a drop down list. If you are not sure which one you want, select random! Enter your max consumption and how much you spend per purchase.
+
 ![alt text](client/src/assets/img/create-dropdown.png "Create Dropdown Image")
+
+After you create your vice, you will be redirected to the vice page where you can see a list of all your vices so that you can track your consumption by pressing the "+" button. You can delete a vice if needed as well. 
 
 ![alt text](client/src/assets/img/vice-view-1.png "Vice View Image")
 
+New to add another vice or nagivate to another page? Use the drop down menu on the top left. 
+
 ![alt text](client/src/assets/img/dropdown.png "Navi Dropdown Image")
 
+You can add mulitple vices. Scroll through them and press the "plus" button each time you consume the vice. 
+
 ![alt text](client/src/assets/img/scroll-vices.png "Scroll Vices Image")
+
+You will receive notifications on your phone if you go over your consumption limit. The notifications will send you a link from the caterogy your selected as your "better option"
+
+![alt text](client/src/assets/img/firstmessage.jpg "Notifications Image")
+
+![alt text](client/src/assets/img/secondmessage.jpg "Notifications Image")
+
+You can also search all your past notifications in the app!
 
 ![alt text](client/src/assets/img/notifications-1.png "Notifications Image")
 
@@ -54,5 +74,6 @@ Please log in or create an account
   
 - Rewards and Pages for meeting your goals!
 - Push Notifications to your phone
+- Update user account information for change of address, email, and phone number. 
 
 :exclamation: You have reached the end. Thank you from Team Mildy Sharp Coders. :tada:
