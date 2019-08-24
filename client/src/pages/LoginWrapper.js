@@ -5,7 +5,7 @@ import Login from "./Login";
 function LoginWrapper(props) {
   return (
     <>
-      <UserConsumer>{identity => <Login {...props} user={identity.user} />}</UserConsumer>
+      <UserConsumer>{identity => <Login {...props} updateUser={identity.updateUser} user={identity.user} />}</UserConsumer>
     </>
   );
 }
