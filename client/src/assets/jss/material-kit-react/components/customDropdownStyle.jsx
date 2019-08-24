@@ -152,7 +152,7 @@ const customDropdownStyle = theme => ({
     display: "inline-block",
     width: "0",
     height: "0",
-    marginLeft: "9px",
+    marginRight: "9px",
     verticalAlign: "middle",
     borderTop: "4px solid",
     borderRight: "4px solid transparent",
