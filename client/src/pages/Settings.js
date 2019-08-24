@@ -134,6 +134,7 @@ class Settings extends Component {
             limit: "",
             cost: ""
           });
+          this.props.history.push("/vices");
         })
         .catch(error => {
           console.log(error);
