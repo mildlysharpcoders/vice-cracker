@@ -24,6 +24,26 @@ Please log in or create an account
 
 ![alt text](client/src/assets/img/vice-login.png "Signin Image")
 
+![alt text](client/src/assets/img/create-user.png "User Create Image")
+
+![alt text](client/src/assets/img/howitworks.png "Create Vice Image")
+
+![alt text](client/src/assets/img/creae-dropdown.png "Create Dropdown Image")
+
+![alt text](client/src/assets/img/vice-view-1.png "Vice View Image")
+
+![alt text](client/src/assets/img/dropdown.png "User Create Image")
+
+![alt text](client/src/assets/img/scroll-vices.png "User Create Image")
+
+![alt text](client/src/assets/img/notifications-1.png "User Create Image")
+
+![alt text](client/src/assets/img/notifications-2.png "User Create Image")
+
+
+
+
+
 ## The Future
 - Able to modify your vices if consumption levels need to be updated
 - Payment processing 
