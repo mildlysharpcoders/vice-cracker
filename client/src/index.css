@@ -16,6 +16,12 @@ body {
   background-position: center !important;
   min-height: 100vh;
 }
+.MuiDialog-paperWidthSm {
+  max-width: 700px;
+}
 
+.MuiDialog-paper {
+  margin: 10px !important;
 
+}
 
