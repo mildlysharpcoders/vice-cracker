@@ -70,7 +70,7 @@ Need to locate your past notifications? They are also stored in the app for futu
   - For extra assistance
   - Fee for not committing to your consumption limits
   
-- Rewards and Pages for meeting your goals!
+- Rewards and Badges for meeting your goals!
 - Push Notifications to your phone
 - Update user account information for change of address, email, and phone number. 
 
