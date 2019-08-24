@@ -126,7 +126,7 @@ class Login extends Component {
               <br />
 
               <Button color="info" round>
-                <Link to="/create">Create New User</Link>
+                <Link color="white" to="/create">Create New User</Link>
               </Button>
             </form>
           </CardBody>
