@@ -28,17 +28,19 @@ Please log in or create an account
 
 ![alt text](client/src/assets/img/howitworks.png "Create Vice Image")
 
+![alt text](client/src/assets/img/create-new-vice.png "Create New Vice Image")
+
 ![alt text](client/src/assets/img/create-dropdown.png "Create Dropdown Image")
 
 ![alt text](client/src/assets/img/vice-view-1.png "Vice View Image")
 
-![alt text](client/src/assets/img/dropdown.png "User Create Image")
+![alt text](client/src/assets/img/dropdown.png "Navi Dropdown Image")
 
-![alt text](client/src/assets/img/scroll-vices.png "User Create Image")
+![alt text](client/src/assets/img/scroll-vices.png "Scroll Vices Image")
 
-![alt text](client/src/assets/img/notifications-1.png "User Create Image")
+![alt text](client/src/assets/img/notifications-1.png "Notifications Image")
 
-![alt text](client/src/assets/img/notifications-2.png "User Create Image")
+![alt text](client/src/assets/img/notifications-2.png "Notifications Image")
 
 
 
