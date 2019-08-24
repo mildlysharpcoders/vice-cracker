@@ -198,7 +198,8 @@ class Settings extends Component {
                   onClick={this.handleMenuClick}
                   buttonProps={{
                     round: true,
-                    color: "info"
+                    color: "info",
+                    textShadow: "2px 2px black"
                   }}
                 />
               </GridItem>
