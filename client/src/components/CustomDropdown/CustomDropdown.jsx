@@ -104,6 +104,7 @@ class CustomDropdown extends React.Component {
       <div>
         <div>
           <Button
+          
             aria-label="Notifications"
             aria-owns={open ? "menu-list" : null}
             aria-haspopup="true"
@@ -113,9 +114,10 @@ class CustomDropdown extends React.Component {
             }}
             onClick={this.handleClick}
           >
+             {caret ? <b className={caretClasses} /> : null}
             {icon}
             {buttonText !== undefined ? buttonText : null}
-            {caret ? <b className={caretClasses} /> : null}
+            {/* {caret ? <b className={caretClasses} /> : null} */}
           </Button>
         </div>
         <Popper
