@@ -29,7 +29,7 @@ import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import Paper from "@material-ui/core/Paper";
 import Grow from "@material-ui/core/Grow";
 import Divider from "@material-ui/core/Divider";
-import Icon from "@material-ui/core/Icon";
+import Icon from "./../PalmIcon/index.js";
 import Popper from "@material-ui/core/Popper";
 
 // core components
@@ -104,6 +104,7 @@ class CustomDropdown extends React.Component {
       <div>
         <div>
           <Button
+          
             aria-label="Notifications"
             aria-owns={open ? "menu-list" : null}
             aria-haspopup="true"
@@ -113,9 +114,10 @@ class CustomDropdown extends React.Component {
             }}
             onClick={this.handleClick}
           >
+             {caret ? <b className={caretClasses} /> : null}
             {icon}
             {buttonText !== undefined ? buttonText : null}
-            {caret ? <b className={caretClasses} /> : null}
+            {/* {caret ? <b className={caretClasses} /> : null} */}
           </Button>
         </div>
         <Popper

@@ -17,7 +17,9 @@
 */
 const modalStyle = {
   modal: {
-    borderRadius: "6px"
+    borderRadius: "6px",
+    background: "#dce1e1e6",
+  
   },
   modalHeader: {
     borderBottom: "none",
@@ -28,8 +30,12 @@ const modalStyle = {
     minHeight: "16.43px"
   },
   modalTitle: {
-    margin: "0",
-    lineHeight: "1.42857143"
+    // margin: "0",
+    lineHeight: "1.42857143",
+    textAlign: "center",
+    fontFamily: "Lazer",
+    textShadow: "2px 2px cyan",
+    margin: "0px !important"
   },
   modalCloseButton: {
     color: "#999999",
@@ -51,7 +57,7 @@ const modalStyle = {
     height: "16px"
   },
   modalBody: {
-    paddingTop: "24px",
+    // paddingTop: "24px",
     paddingRight: "24px",
     paddingBottom: "16px",
     paddingLeft: "24px",

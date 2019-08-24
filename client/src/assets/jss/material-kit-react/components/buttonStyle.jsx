@@ -39,6 +39,7 @@ const buttonStyle = {
     padding: "12px 30px",
     margin: ".3125rem 1px",
     fontFamily: "Lazer",
+    textShadow: "2px 2px black",
     fontSize: "12px",
     fontWeight: "400",
     textTransform: "uppercase",
@@ -73,7 +74,10 @@ const buttonStyle = {
       width: "18px",
       height: "18px",
       marginRight: "4px",
-      verticalAlign: "middle"
+      verticalAlign: "middle",
+      backgroundColor: "white",
+      borderRadius: "6px"
+
     },
     "&$justIcon": {
       "& .fab,& .fas,& .far,& .fal,& .material-icons": {

@@ -69,6 +69,16 @@ class Vices extends Component {
       });
   };
 
+  handleDeleteButtonClick = vice => {
+    console.log("Delete Vice Button Clicked for vice:", vice.name);
+    API.deleteVice(vice._id)
+      .then(response => {
+        console.log(response.data);
+      })
+      .catch(error => {
+        console.log(error);
+      }).then(this.loadVices());
+  };
   render() {
     return (
       <>
@@ -82,6 +92,7 @@ class Vices extends Component {
                 <ViceItem
                   vice={vice}
                   handleButtonClick={this.handleButtonClick}
+                  handleDeleteButtonClick={this.handleDeleteButtonClick}
                 />
               </div>
             );

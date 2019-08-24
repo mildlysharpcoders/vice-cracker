@@ -33,12 +33,12 @@ const headerStyle = {
   appBar: {
     display: "flex",
     border: "0",
-    borderRadius: "3px",
-    padding: "0.625rem 0",
+    borderRadius: "2px",
+    // padding: "0.625rem 0",
     marginBottom: "20px",
-    color: roseColor,
+    color: "#f3087d",
     width: "100%",
-    backgroundColor: infoColor,
+    backgroundColor: "#35d5e8e6",
     boxShadow:
       "0 4px 18px 0px rgba(0, 0, 0, 0.12),",
     transition: "all 150ms ease 0s",
@@ -58,7 +58,8 @@ const headerStyle = {
   },
   container: {
     ...container,
-    minHeight: "20px",
+    minHeight: "10px",
+    
     flex: "1",
     alignItems: "center",
     justifyContent: "space-between",
@@ -153,7 +154,7 @@ const headerStyle = {
     position: "fixed",
     display: "block",
     top: "0",
-    height: "100vh",
+    height: "50vh",
     right: "0",
     left: "auto",
     visibility: "visible",

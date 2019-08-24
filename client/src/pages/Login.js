@@ -44,7 +44,7 @@ class Login extends Component {
       })
       .catch(error => {
         console.log(error);
-        this.setState({ error: "Invalid Username/Password" });
+        this.setState({ error: "Invalid Email/Password" });
       });
   };
 
@@ -66,14 +66,14 @@ class Login extends Component {
     return (
       <Container>
 
-        <Card>
+        <Card style={{width: "max-content"}}>
           <CardHeader>VICE CRACKER</CardHeader>
           <CardBody>
             {this.renderRedirect()}
             <form onSubmit={this.submit}>
-              <GridItem xs={12} sm={12} md={4}>
+              <GridItem xs={12} sm={12}>
                 <CustomInput
-                  labelText="Username"
+                  labelText="E-Mail"
                   id="float"
                   formControlProps={{
                     fullWidth: true
@@ -87,7 +87,7 @@ class Login extends Component {
                   }}
                 />
               </GridItem>
-              <GridItem xs={12} sm={12} md={4}>
+              <GridItem xs={12} sm={12}>
                 <CustomInput
                   labelText="Password"
                   id="float"
@@ -126,7 +126,7 @@ class Login extends Component {
               <br />
 
               <Button color="info" round>
-                <Link to="/create">Create New User</Link>
+                <Link style={{color: "white", textDecoration: "none"}} to="/create">Create New User</Link>
               </Button>
             </form>
           </CardBody>

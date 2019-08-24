@@ -7,13 +7,7 @@ import Button from "./../CustomButtons/Button.jsx"
 function LoggedIn(props) {
   return (
 <>
-      <Link to="/vices">Vices</Link>
-      <Link to="/settings">Settings</Link>
-      <Button 
-      color="rose"
-      type="button" onClick={props.handleButtonClick}>
-        Logout
-      </Button>
+
 </>
   );
 }
@@ -26,13 +20,20 @@ class Nav extends Component {
 
   handleLogoutButton = (event) => {
     this.props.logout();
+    {  renderRedirect = () => {
+      if (this.props.logout()) {
+        return <Redirect to="/" />;
+      }
+    };}
   }
+
+
 
   render() {
     if (this.props.user.email) {
       return <LoggedIn handleButtonClick={this.handleLogoutButton}/>;
     } else {
-      return <LoggedOut />;
+      return <LoggedOut /> ;
     }
   }
 }

@@ -5,7 +5,7 @@ import SettingsWrapper from "./pages/SettingsWrapper";
 import VicesWrapper from "./pages/VicesWrapper";
 import LoginWrapper from "./pages/LoginWrapper";
 import NoMatch from "./pages/NoMatch";
-import CreateUser from "./pages/CreateUser";
+import CreateUserWrapper from "./pages/CreateUserWrapper";
 import Test from "./pages/Test";
 import StatusWrapper from "./pages/StatusWrapper";
 import { UserProvider } from "./UserContext";
@@ -26,7 +26,6 @@ class App extends Component {
       API.logout()
         .then(result => {
           this.setState({ user: {} });
-          // Redirect to login screen somehow???
         })
         .catch(error => {
           console.log(error);
@@ -51,6 +50,7 @@ class App extends Component {
     // This seems neccessary since the state intialization fails.
     // Constructor happens before functions are assigned.
     this.setState({ logout: this.logout });
+    this.setState({ updateUser: this.updateUser });
   };
 
   render() {
@@ -58,21 +58,14 @@ class App extends Component {
       <UserProvider value={this.state}>
         <Router>
           <Switch>
-            <Route
-              exact
-              path="/"
-              render={props => (
-                <LoginWrapper {...props} updateUser={this.updateUser} />
-              )}
-            />
+            <Route exact path="/" component={LoginWrapper} />
             <Route exact path="/vices" component={VicesWrapper} />} />
-              <Route exact path="/settings" component={SettingsWrapper} />} />
-              <Route exact path="/status" component={StatusWrapper} />} />
-              <Route exact path="/create" component={CreateUser} />
+            <Route exact path="/settings" component={SettingsWrapper} />} />
+            <Route exact path="/status" component={StatusWrapper} />} />
+            <Route exact path="/create" component={CreateUserWrapper} />
             <Route exact path="/test" component={Test} />
             <Route component={NoMatch} />
           </Switch>
-
         </Router>
       </UserProvider>
     );
