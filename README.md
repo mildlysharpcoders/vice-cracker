@@ -78,5 +78,6 @@ Need to locate your past notifications? They are also stored in the app for futu
 - Update user account information for change of address, email, and phone number. 
 
 :exclamation: You have reached the end. Thank you from Team The Mildly Sharp Coders. :tada:
+
 Visit our heroku page to use our app
 <https://vice-cracker.herokuapp.com/>
