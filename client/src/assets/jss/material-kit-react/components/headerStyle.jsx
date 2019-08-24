@@ -33,12 +33,12 @@ const headerStyle = {
   appBar: {
     display: "flex",
     border: "0",
-    borderRadius: "3px",
-    padding: "0.625rem 0",
+    borderRadius: "2px",
+    // padding: "0.625rem 0",
     marginBottom: "20px",
     color: "#f3087d",
     width: "100%",
-    backgroundColor: "rgba(0, 188, 212, 0.76)",
+    backgroundColor: "#35d5e8e6",
     boxShadow:
       "0 4px 18px 0px rgba(0, 0, 0, 0.12),",
     transition: "all 150ms ease 0s",

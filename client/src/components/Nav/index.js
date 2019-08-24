@@ -20,13 +20,20 @@ class Nav extends Component {
 
   handleLogoutButton = (event) => {
     this.props.logout();
+    {  renderRedirect = () => {
+      if (this.props.logout()) {
+        return <Redirect to="/" />;
+      }
+    };}
   }
+
+
 
   render() {
     if (this.props.user.email) {
       return <LoggedIn handleButtonClick={this.handleLogoutButton}/>;
     } else {
-      return <LoggedOut />;
+      return <LoggedOut /> ;
     }
   }
 }

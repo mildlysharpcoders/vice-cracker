@@ -57,11 +57,12 @@ const headerLinksStyle = theme => ({
     color: "inherit",
     position: "relative",
     fontWeight: "400",
-    fontSize: "12px",
+    fontSize: "15px",
     textTransform: "uppercase",
     borderRadius: "3px",
     lineHeight: "20px",
     textDecoration: "none",
+    textShadow: "2px 2px white",
     margin: "0px",
     display: "inline-flex",
     "&:hover,&:focus": {

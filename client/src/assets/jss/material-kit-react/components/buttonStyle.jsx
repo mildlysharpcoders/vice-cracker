@@ -73,7 +73,10 @@ const buttonStyle = {
       width: "18px",
       height: "18px",
       marginRight: "4px",
-      verticalAlign: "middle"
+      verticalAlign: "middle",
+      backgroundColor: "white",
+      borderRadius: "6px"
+
     },
     "&$justIcon": {
       "& .fab,& .fas,& .far,& .fal,& .material-icons": {
