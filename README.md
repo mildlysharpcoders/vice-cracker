@@ -22,3 +22,13 @@ Our Application is ideal for mobile usage.
 
 Please log in or create an account
 
+## The Future
+- Able to modify your vices if consumption levels need to be updated
+- Payment processing 
+  - For extra assistance
+  - Fee for not committing to your consumption limits
+  
+- Rewards and Pages for meeting your goals!
+- Push Notifications to your phone
+
+:exclamation: You have reached the end. Thank you from Team Mildy Sharp Coders. :tada:
