@@ -28,7 +28,7 @@ Please log in or create an account
 
 ![alt text](client/src/assets/img/howitworks.png "Create Vice Image")
 
-![alt text](client/src/assets/img/creae-dropdown.png "Create Dropdown Image")
+![alt text](client/src/assets/img/create-dropdown.png "Create Dropdown Image")
 
 ![alt text](client/src/assets/img/vice-view-1.png "Vice View Image")
 
