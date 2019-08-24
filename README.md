@@ -21,6 +21,7 @@ Do you have very bad habits? DO you find yourself binging on Beer, Ice Cream, an
 Our Application is ideal for mobile usage. 
 
 Please log in or create an account
+
 ![alt text](client/src/assets/img/vice-login.png "Signin Image")
 
 ## The Future
